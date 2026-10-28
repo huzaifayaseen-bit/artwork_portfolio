@@ -5,17 +5,15 @@ import { ComicButton } from "@/components/ui/ComicButton";
 import { useSound } from "@/context/SoundContext";
 import {
   FileText,
-  Copy,
   Check,
   Mail,
-  ExternalLink,
   Sparkles,
-  Layers,
   Clock,
   Shield,
-  HelpCircle,
   Send,
   Loader2,
+  RefreshCw,
+  Zap,
 } from "lucide-react";
 
 export interface CommissionBriefBuilderProps {
@@ -58,7 +56,18 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
   const [clientContact, setClientContact] = useState<string>("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [showSuccessToast, setShowSuccessToast] = useState<boolean>(false);
+
+  const resetForm = () => {
+    setSelectedCategory("Character Design");
+    setSelectedScope("Full Character / Splash");
+    setRefLink("");
+    setNotes("");
+    setTimeline("Standard (1-2 Weeks)");
+    setIsCommercial(false);
+    setClientContact("");
+    setStatus("idle");
+    setErrorMessage("");
+  };
 
   // Generate structured brief string
   const formattedBrief = useMemo(() => {
@@ -77,34 +86,13 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
     return lines.join("\n");
   }, [selectedCategory, selectedScope, refLink, notes, timeline, isCommercial, clientContact]);
 
-  const handleCopyDiscordBrief = async () => {
+  const handleSubmitBrief = async () => {
     playClick();
     setStatus("loading");
     setErrorMessage("");
 
-    // 1. Copy formatted text to clipboard
     try {
-      if (navigator?.clipboard?.writeText) {
-        await navigator.clipboard.writeText(formattedBrief);
-      } else {
-        const textarea = document.createElement("textarea");
-        textarea.value = formattedBrief;
-        textarea.style.position = "fixed";
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textarea);
-      }
-    } catch (err) {
-      console.error("Clipboard copy error:", err);
-    }
-
-    // 2. Open Discord in a new browser tab using Emilia's server invite
-    window.open("https://discord.gg/jbvz6P9tfC", "_blank", "noopener,noreferrer");
-
-    // 3. Send brief payload in the background via POST to /api/commission-brief
-    try {
-      await fetch("/api/commission-brief", {
+      const res = await fetch("/api/commission-brief", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -120,21 +108,17 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
         }),
       });
 
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || `Server responded with status ${res.status}`);
+      }
+
       playSuccess();
       setStatus("success");
-      setShowSuccessToast(true);
-      setTimeout(() => {
-        setStatus("idle");
-        setShowSuccessToast(false);
-      }, 5500);
     } catch (error: any) {
-      playSuccess();
-      setStatus("success");
-      setShowSuccessToast(true);
-      setTimeout(() => {
-        setStatus("idle");
-        setShowSuccessToast(false);
-      }, 5500);
+      console.error("Submission error:", error);
+      setStatus("error");
+      setErrorMessage(error?.message || "Failed to transmit brief. Please try again.");
     }
   };
 
@@ -161,7 +145,7 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
           CONFIGURE YOUR COMMISSION BRIEF
         </h3>
         <p className="mt-2 text-sm text-neutral-700 font-sans">
-          Select your specs below to generate a standardized, high-conversion project brief ready to send via Discord DM or Email.
+          Select your specs below to generate a standardized project brief sent directly to Emilia&apos;s transmission queue.
         </p>
       </div>
 
@@ -326,93 +310,106 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
 
         {/* Right Live Brief Preview & Actions (5 cols) */}
         <div className="lg:col-span-5 bg-neutral-900 border-[3px] border-black p-6 sm:p-7 text-white shadow-neo flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between border-b-2 border-neutral-700 pb-3 mb-4">
-              <span className="font-comic text-base tracking-widest text-comic-yellow uppercase flex items-center gap-2">
-                <Sparkles className="w-4 h-4 fill-comic-yellow" />
-                TRANSMISSION PREVIEW
+          {status === "success" ? (
+            /* Comic Success Screen */
+            <div className="py-8 px-4 text-center flex flex-col items-center justify-center my-auto">
+              <div className="w-16 h-16 bg-comic-yellow border-[3px] border-black rounded-full flex items-center justify-center shadow-neo mb-5 animate-comic-snap">
+                <Zap className="w-9 h-9 text-black fill-black" />
+              </div>
+              <span className="bg-comic-green text-black font-nav text-xs font-bold px-3 py-1 uppercase tracking-wider border-2 border-black shadow-[2px_2px_0px_#000] mb-3">
+                TRANSMISSION CONFIRMED
               </span>
-              <span className="bg-white text-black font-nav text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider">
-                AUTO-FORMATTED
-              </span>
+              <h4 className="font-comic text-2xl sm:text-3xl uppercase text-white tracking-wide leading-tight mb-3">
+                COMMISSION BRIEF TRANSMITTED! ⚡
+              </h4>
+              <p className="font-sans text-xs sm:text-sm text-neutral-300 max-w-sm mx-auto leading-relaxed mb-6">
+                Your brief has been delivered directly to Emilia&apos;s desk. We&apos;ll be in touch shortly!
+              </p>
+              <button
+                type="button"
+                onClick={resetForm}
+                className="inline-flex items-center gap-2 border-[3px] border-black py-2.5 px-6 font-btn text-xs sm:text-sm font-bold uppercase tracking-wider bg-comic-yellow text-black hover:bg-[#FFF033] hover:-translate-x-[2px] hover:-translate-y-[2px] active:translate-x-[2px] active:translate-y-[2px] shadow-neo transition-all cursor-pointer"
+              >
+                <RefreshCw className="w-4 h-4" />
+                <span>SEND ANOTHER INQUIRY</span>
+              </button>
             </div>
+          ) : (
+            <>
+              <div>
+                <div className="flex items-center justify-between border-b-2 border-neutral-700 pb-3 mb-4">
+                  <span className="font-comic text-base tracking-widest text-comic-yellow uppercase flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 fill-comic-yellow" />
+                    TRANSMISSION PREVIEW
+                  </span>
+                  <span className="bg-white text-black font-nav text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider">
+                    AUTO-FORMATTED
+                  </span>
+                </div>
 
-            {/* Stylized Terminal Box */}
-            <div className="bg-black/90 border border-neutral-700 p-4 font-mono text-[11px] sm:text-xs text-neutral-300 whitespace-pre-wrap leading-relaxed max-h-[320px] overflow-y-auto">
-              {formattedBrief}
-            </div>
-          </div>
-
-          {/* Action Trigger Buttons */}
-          <div className="mt-6 space-y-3">
-            {/* Comic Success Toast / Popup */}
-            {showSuccessToast && (
-              <div className="bg-comic-green border-[3px] border-black p-3.5 shadow-neo-sm animate-comic-snap flex items-start gap-2.5">
-                <Check className="w-5 h-5 text-black stroke-[3] flex-shrink-0 mt-0.5" />
-                <div>
-                  <div className="font-comic text-base uppercase text-black leading-tight">
-                    TRANSMITTED TO EMILIA&apos;S DISCORD &amp; COPIED TO CLIPBOARD!
-                  </div>
-                  <div className="font-nav text-[11px] font-bold text-neutral-800 uppercase mt-0.5">
-                    Discord invite opened in a new tab. Paste the brief directly into Emilia&apos;s direct messages or commission ticket channel.
-                  </div>
+                {/* Stylized Terminal Box */}
+                <div className="bg-black/90 border border-neutral-700 p-4 font-mono text-[11px] sm:text-xs text-neutral-300 whitespace-pre-wrap leading-relaxed max-h-[320px] overflow-y-auto">
+                  {formattedBrief}
                 </div>
               </div>
-            )}
 
-            {/* Discord 1-Click Brief Generator & Webhook Sender */}
-            <button
-              type="button"
-              disabled={status === "loading"}
-              onClick={handleCopyDiscordBrief}
-              className={`
-                w-full flex items-center justify-center gap-2 border-[3px] border-black py-3 px-4
-                font-btn text-xs sm:text-sm font-bold uppercase tracking-wider
-                transition-all duration-75 select-none cursor-pointer shadow-neo
-                ${
-                  status === "loading"
-                    ? "bg-comic-cyan text-black cursor-wait"
-                    : status === "success"
-                    ? "bg-comic-green text-black translate-x-[2px] translate-y-[2px]"
-                    : "bg-comic-yellow text-black hover:bg-[#FFF033] hover:-translate-x-[2px] hover:-translate-y-[2px] active:translate-x-[2px] active:translate-y-[2px]"
-                }
-              `}
-            >
-              {status === "loading" ? (
-                <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  <span>TRANSMITTING TO DISCORD...</span>
-                </>
-              ) : status === "success" ? (
-                <>
-                  <Check className="w-5 h-5 stroke-[3]" />
-                  <span>✓ BRIEF TRANSMITTED &amp; COPIED!</span>
-                </>
-              ) : (
-                <>
-                  <Copy className="w-4 h-4" />
-                  <span>GENERATE &amp; COPY DISCORD BRIEF</span>
-                  <ExternalLink className="w-4 h-4 ml-1" />
-                </>
-              )}
-            </button>
+              {/* Action Trigger Buttons */}
+              <div className="mt-6 space-y-3">
+                {/* Error Banner */}
+                {status === "error" && (
+                  <div className="bg-comic-pink border-[3px] border-black p-3 shadow-neo-sm text-black">
+                    <div className="font-comic text-xs uppercase font-bold">TRANSMISSION FAILED</div>
+                    <div className="font-nav text-[11px] mt-0.5">{errorMessage || "Could not transmit brief. Please try again."}</div>
+                  </div>
+                )}
 
-            {/* Secondary Email Mailto Trigger */}
-            <a
-              href={mailtoUrl}
-              className="
-                w-full flex items-center justify-center gap-2 border-2 border-white/60 bg-neutral-800 hover:bg-neutral-700 text-white
-                py-2.5 px-4 font-nav text-xs font-bold uppercase tracking-wider transition-all
-              "
-            >
-              <Mail className="w-4 h-4 text-comic-cyan" />
-              <span>SEND PRE-FILLED EMAIL BRIEF</span>
-            </a>
+                {/* Pure Form Submit Button */}
+                <button
+                  type="button"
+                  disabled={status === "loading"}
+                  onClick={handleSubmitBrief}
+                  className={`
+                    w-full flex items-center justify-center gap-2 border-[3px] border-black py-3 px-4
+                    font-btn text-xs sm:text-sm font-bold uppercase tracking-wider
+                    transition-all duration-75 select-none cursor-pointer shadow-neo
+                    ${
+                      status === "loading"
+                        ? "bg-comic-cyan text-black cursor-wait"
+                        : "bg-comic-yellow text-black hover:bg-[#FFF033] hover:-translate-x-[2px] hover:-translate-y-[2px] active:translate-x-[2px] active:translate-y-[2px]"
+                    }
+                  `}
+                >
+                  {status === "loading" ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <span>TRANSMITTING BRIEF...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      <span>TRANSMIT COMMISSION BRIEF</span>
+                    </>
+                  )}
+                </button>
 
-            <div className="text-center font-nav text-[10px] text-neutral-400 uppercase tracking-wide">
-              Direct Discord Tag: <span className="text-white font-mono font-bold">{discordTag}</span>
-            </div>
-          </div>
+                {/* Secondary Email Mailto Trigger */}
+                <a
+                  href={mailtoUrl}
+                  className="
+                    w-full flex items-center justify-center gap-2 border-2 border-white/60 bg-neutral-800 hover:bg-neutral-700 text-white
+                    py-2.5 px-4 font-nav text-xs font-bold uppercase tracking-wider transition-all
+                  "
+                >
+                  <Mail className="w-4 h-4 text-comic-cyan" />
+                  <span>SEND PRE-FILLED EMAIL BRIEF</span>
+                </a>
+
+                <div className="text-center font-nav text-[10px] text-neutral-400 uppercase tracking-wide">
+                  Direct Inquiries &amp; Questions: <span className="text-white font-mono font-bold">{email}</span>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
