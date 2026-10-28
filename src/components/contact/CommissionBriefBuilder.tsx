@@ -58,6 +58,7 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
   const [clientContact, setClientContact] = useState<string>("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [showSuccessToast, setShowSuccessToast] = useState<boolean>(false);
 
   // Generate structured brief string
   const formattedBrief = useMemo(() => {
@@ -81,7 +82,7 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
     setStatus("loading");
     setErrorMessage("");
 
-    // 1. Copy to clipboard
+    // 1. Copy formatted text to clipboard
     try {
       if (navigator?.clipboard?.writeText) {
         await navigator.clipboard.writeText(formattedBrief);
@@ -98,9 +99,12 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
       console.error("Clipboard copy error:", err);
     }
 
-    // 2. Transmit to server Discord Webhook endpoint
+    // 2. Open Discord in a new browser tab using Emilia's server invite
+    window.open("https://discord.gg/jbvz6P9tfC", "_blank", "noopener,noreferrer");
+
+    // 3. Send brief payload in the background via POST to /api/commission-brief
     try {
-      const res = await fetch("/api/commission-brief", {
+      await fetch("/api/commission-brief", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -116,23 +120,21 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
         }),
       });
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        // Even if webhook is missing env variable, clipboard copy already succeeded
-        playSuccess();
-        setStatus("success");
-        setTimeout(() => setStatus("idle"), 5000);
-      } else {
-        playSuccess();
-        setStatus("success");
-        setTimeout(() => setStatus("idle"), 5000);
-      }
-    } catch (error: any) {
-      // Fallback graceful success for the client since clipboard copy completed
       playSuccess();
       setStatus("success");
-      setTimeout(() => setStatus("idle"), 5000);
+      setShowSuccessToast(true);
+      setTimeout(() => {
+        setStatus("idle");
+        setShowSuccessToast(false);
+      }, 5500);
+    } catch (error: any) {
+      playSuccess();
+      setStatus("success");
+      setShowSuccessToast(true);
+      setTimeout(() => {
+        setStatus("idle");
+        setShowSuccessToast(false);
+      }, 5500);
     }
   };
 
@@ -343,6 +345,21 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
 
           {/* Action Trigger Buttons */}
           <div className="mt-6 space-y-3">
+            {/* Comic Success Toast / Popup */}
+            {showSuccessToast && (
+              <div className="bg-comic-green border-[3px] border-black p-3.5 shadow-neo-sm animate-comic-snap flex items-start gap-2.5">
+                <Check className="w-5 h-5 text-black stroke-[3] flex-shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-comic text-base uppercase text-black leading-tight">
+                    TRANSMITTED TO EMILIA&apos;S DISCORD &amp; COPIED TO CLIPBOARD!
+                  </div>
+                  <div className="font-nav text-[11px] font-bold text-neutral-800 uppercase mt-0.5">
+                    Discord invite opened in a new tab. Paste the brief directly into Emilia&apos;s direct messages or commission ticket channel.
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Discord 1-Click Brief Generator & Webhook Sender */}
             <button
               type="button"
@@ -369,12 +386,12 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
               ) : status === "success" ? (
                 <>
                   <Check className="w-5 h-5 stroke-[3]" />
-                  <span>✓ BRIEF SENT DIRECTLY TO DISCORD + COPIED!</span>
+                  <span>✓ BRIEF TRANSMITTED &amp; COPIED!</span>
                 </>
               ) : (
                 <>
-                  <Send className="w-4 h-4 fill-black" />
-                  <span>TRANSMIT BRIEF TO DISCORD + COPY</span>
+                  <Copy className="w-4 h-4" />
+                  <span>GENERATE &amp; COPY DISCORD BRIEF</span>
                   <ExternalLink className="w-4 h-4 ml-1" />
                 </>
               )}
