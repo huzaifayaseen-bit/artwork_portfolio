@@ -27,6 +27,11 @@ export async function POST(request: Request) {
       color: 0xffde59, // Comic Yellow hex
       fields: [
         {
+          name: "👤 Client Contact (Discord / Email)",
+          value: clientContact ? String(clientContact).trim() : "Not provided",
+          inline: false,
+        },
+        {
           name: "🎨 Artwork Category",
           value: category || "Not specified",
           inline: true,
@@ -46,15 +51,6 @@ export async function POST(request: Request) {
           value: commercialUse ? "Commercial Buyout Rights Requested" : "Personal Use Only ($0)",
           inline: true,
         },
-        ...(clientContact
-          ? [
-              {
-                name: "✉ Client Contact / Handle",
-                value: String(clientContact),
-                inline: true,
-              },
-            ]
-          : []),
         {
           name: "🔗 Reference Link",
           value: referenceLink && referenceLink.trim() ? referenceLink.trim() : "None provided",
