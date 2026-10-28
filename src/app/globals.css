@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-dots: radial-gradient(#000000 15%, transparent 16%);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background-color: #fafafa;
+  color: #111111;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Halftone and Comic Texture Utilities */
+.bg-halftone {
+  background-image: radial-gradient(#000000 12%, transparent 13%);
+  background-size: 10px 10px;
+}
+
+.bg-halftone-dense {
+  background-image: radial-gradient(#000000 20%, transparent 21%);
+  background-size: 6px 6px;
+}
+
+.bg-comic-dots {
+  background-image: radial-gradient(rgba(0,0,0,0.15) 15%, transparent 16%);
+  background-size: 12px 12px;
+}
+
+/* Comic Strip Borders and Shadows */
+.comic-border {
+  border: 3px solid #000000;
+}
+
+.comic-shadow {
+  box-shadow: 6px 6px 0px #000000;
+}
+
+.comic-shadow-sm {
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.comic-shadow-lg {
+  box-shadow: 8px 8px 0px #000000;
+}
+
+/* Comic Interactive Tactile Buttons */
+.comic-btn-tactile {
+  border: 3px solid #000000;
+  box-shadow: 6px 6px 0px #000000;
+  transition: transform 0.05s steps(2, jump-none), box-shadow 0.05s steps(2, jump-none);
+}
+
+.comic-btn-tactile:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px #000000;
+}
+
+.comic-btn-tactile:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+/* Stepped transitions */
+.stepped-transition {
+  transition-timing-function: steps(2, jump-none);
+}
+
+/* Comic Entry Snap Animations */
+@keyframes comic-snap-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(6px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.02) translateY(-1px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes comic-pop-card {
+  0% {
+    opacity: 0;
+    transform: scale(0.94) rotate(-1.5deg);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.02) rotate(0.5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.animate-comic-snap {
+  animation: comic-snap-in 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+.animate-comic-pop {
+  animation: comic-pop-card 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+.animation-delay-80 {
+  animation-delay: 80ms;
+}
+
+.animation-delay-160 {
+  animation-delay: 160ms;
+}
+
+.animation-delay-240 {
+  animation-delay: 240ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-comic-snap,
+  .animate-comic-pop,
+  .animate-marquee {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Comic Infinite Marquee Animation */
+@keyframes comic-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: comic-marquee 32s linear infinite;
+}
+
+.pause-hover:hover {
+  animation-play-state: paused;
+}
+
+/* Custom Scrollbar for Lightbox */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-left: 3px solid #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffe600;
+  border: 2px solid #000000;
+}
+
+/* Image Drag Prevention */
+.no-drag {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+

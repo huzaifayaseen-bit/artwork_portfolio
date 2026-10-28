@@ -1,0 +1,1567 @@
+{
+  "profile": {
+    "name": "EMILIA // 2D CEL ARTIST",
+    "handle": "@emilia_cel",
+    "title": "Comic & Cel-Shaded Concept Artist",
+    "subtitle": "PUNCHY LINES, ELECTRIC CEL-SHADING & NEO-BRUTALIST COMIC PANELS",
+    "status": "OPEN",
+    "statusText": "COMMISSIONS OPEN // Q4 SLOTS",
+    "discordTag": "ame_01921",
+    "email": "commissions@emilia-art.com",
+    "bio": "2D illustrator specializing in high-energy cel-shaded character design, graphic novel covers, and dynamic action keyframes.",
+    "avatarUrl": "/assets/artworks/artwork_samples/Character_art/11.jpg",
+    "heroCharacterImage": "/assets/artworks/artwork_samples/Character_art/24.jpg",
+    "socials": [
+      {
+        "platform": "discord",
+        "label": "Discord // ame_01921",
+        "url": "https://discord.com/users/ame_01921"
+      },
+      {
+        "platform": "instagram",
+        "label": "Instagram // @emilia_fr1135",
+        "url": "https://www.instagram.com/emilia_fr1135/"
+      },
+      {
+        "platform": "reddit",
+        "label": "Reddit // u/Unlucky-Syllabub4978",
+        "url": "https://www.reddit.com/user/Unlucky-Syllabub4978/"
+      },
+      {
+        "platform": "email",
+        "label": "Direct Inquiry // Email Brief",
+        "url": "mailto:commissions@emilia-art.com?subject=Commission%20Inquiry%20-%20Emilia%20Portfolio"
+      }
+    ]
+  },
+  "artworks": [
+    {
+      "id": "banner-01",
+      "title": "BANNER // 1",
+      "category": "Banner",
+      "description": "Original banner production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-05",
+      "tags": [
+        "Banner",
+        "Cel Shaded",
+        "2D Art",
+        "Wide Banner",
+        "Keyframe"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/banner/1.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/banner/1.jpg",
+      "aspectRatio": "16/9",
+      "featured": true
+    },
+    {
+      "id": "banner-02",
+      "title": "BANNER // 2",
+      "category": "Banner",
+      "description": "Original banner production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-06",
+      "tags": [
+        "Banner",
+        "Cel Shaded",
+        "2D Art",
+        "Wide Banner",
+        "Keyframe"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/banner/2.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/banner/2.jpg",
+      "aspectRatio": "16/9",
+      "featured": false
+    },
+    {
+      "id": "banner-03",
+      "title": "BANNER // 3",
+      "category": "Banner",
+      "description": "Original banner production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-07",
+      "tags": [
+        "Banner",
+        "Cel Shaded",
+        "2D Art",
+        "Wide Banner",
+        "Keyframe"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/banner/3.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/banner/3.jpg",
+      "aspectRatio": "16/9",
+      "featured": false
+    },
+    {
+      "id": "banner-04",
+      "title": "BANNER // 4",
+      "category": "Banner",
+      "description": "Original banner production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-08",
+      "tags": [
+        "Banner",
+        "Cel Shaded",
+        "2D Art",
+        "Wide Banner",
+        "Keyframe"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/banner/4.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/banner/4.jpg",
+      "aspectRatio": "16/9",
+      "featured": true
+    },
+    {
+      "id": "banner-05",
+      "title": "BANNER // 5",
+      "category": "Banner",
+      "description": "Original banner production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-09",
+      "tags": [
+        "Banner",
+        "Cel Shaded",
+        "2D Art",
+        "Wide Banner",
+        "Keyframe"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/banner/5.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/banner/5.jpg",
+      "aspectRatio": "16/9",
+      "featured": false
+    },
+    {
+      "id": "banner-06",
+      "title": "BANNER // 6",
+      "category": "Banner",
+      "description": "Original banner production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-04",
+      "tags": [
+        "Banner",
+        "Cel Shaded",
+        "2D Art",
+        "Wide Banner",
+        "Keyframe"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/banner/6.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/banner/6.jpg",
+      "aspectRatio": "16/9",
+      "featured": false
+    },
+    {
+      "id": "banner-07",
+      "title": "BANNER // 7",
+      "category": "Banner",
+      "description": "Original banner production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-05",
+      "tags": [
+        "Banner",
+        "Cel Shaded",
+        "2D Art",
+        "Wide Banner",
+        "Keyframe"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/banner/7.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/banner/7.jpg",
+      "aspectRatio": "16/9",
+      "featured": false
+    },
+    {
+      "id": "banner-08",
+      "title": "BANNER // 8",
+      "category": "Banner",
+      "description": "Original banner production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-06",
+      "tags": [
+        "Banner",
+        "Cel Shaded",
+        "2D Art",
+        "Wide Banner",
+        "Keyframe"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/banner/8.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/banner/8.jpg",
+      "aspectRatio": "16/9",
+      "featured": false
+    },
+    {
+      "id": "book-cover-09",
+      "title": "BOOK COVER // ISSUE #9",
+      "category": "Book Cover",
+      "description": "Original book cover production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-07",
+      "tags": [
+        "Book Cover",
+        "Cel Shaded",
+        "2D Art",
+        "Graphic Novel",
+        "Print Ready"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Book cover/WhatsApp Image 2026-10-25 at 10.17.57 AM (2).jpeg",
+      "fullUrl": "/assets/artworks/artwork_samples/Book cover/WhatsApp Image 2026-10-25 at 10.17.57 AM (2).jpeg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "book-cover-10",
+      "title": "BOOK COVER // ISSUE #10",
+      "category": "Book Cover",
+      "description": "Original book cover production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-08",
+      "tags": [
+        "Book Cover",
+        "Cel Shaded",
+        "2D Art",
+        "Graphic Novel",
+        "Print Ready"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Book cover/WhatsApp Image 2026-10-25 at 10.17.58 AM (1).jpeg",
+      "fullUrl": "/assets/artworks/artwork_samples/Book cover/WhatsApp Image 2026-10-25 at 10.17.58 AM (1).jpeg",
+      "aspectRatio": "4/5",
+      "featured": false
+    },
+    {
+      "id": "book-cover-11",
+      "title": "BOOK COVER // ISSUE #11",
+      "category": "Book Cover",
+      "description": "Original book cover production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-09",
+      "tags": [
+        "Book Cover",
+        "Cel Shaded",
+        "2D Art",
+        "Graphic Novel",
+        "Print Ready"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Book cover/WhatsApp Image 2026-10-25 at 10.17.58 AM.jpeg",
+      "fullUrl": "/assets/artworks/artwork_samples/Book cover/WhatsApp Image 2026-10-25 at 10.17.58 AM.jpeg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-12",
+      "title": "CHARACTER ART // 10",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-04",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/10.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/10.jpg",
+      "aspectRatio": "1/1",
+      "featured": true
+    },
+    {
+      "id": "character-art-13",
+      "title": "CHARACTER ART // 11",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-05",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/11.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/11.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-14",
+      "title": "CHARACTER ART // 12",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-06",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/12.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/12.jpg",
+      "aspectRatio": "16/9",
+      "featured": false
+    },
+    {
+      "id": "character-art-15",
+      "title": "CHARACTER ART // 13",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-07",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/13.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/13.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-16",
+      "title": "CHARACTER ART // 14",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-08",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/14.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/14.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-17",
+      "title": "CHARACTER ART // 16",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-09",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/16.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/16.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-18",
+      "title": "CHARACTER ART // 17",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-04",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/17.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/17.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-19",
+      "title": "CHARACTER ART // 18",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-05",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/18.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/18.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-20",
+      "title": "CHARACTER ART // 19",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-06",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/19.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/19.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-21",
+      "title": "CHARACTER ART // 20",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-07",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/20.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/20.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-22",
+      "title": "CHARACTER ART // 21",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-08",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/21.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/21.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-23",
+      "title": "CHARACTER ART // 22",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-09",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/22.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/22.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-24",
+      "title": "CHARACTER ART // 23",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-04",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/23.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/23.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-25",
+      "title": "CHARACTER ART // 24",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-05",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/24.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/24.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-26",
+      "title": "CHARACTER ART // 25",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-06",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/25.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/25.jpg",
+      "aspectRatio": "16/9",
+      "featured": false
+    },
+    {
+      "id": "character-art-27",
+      "title": "CHARACTER ART // 26",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-07",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/26.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/26.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-28",
+      "title": "CHARACTER ART // 27",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-08",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/27.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/27.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-29",
+      "title": "CHARACTER ART // 28",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-09",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/28.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/28.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-30",
+      "title": "CHARACTER ART // 3",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-04",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/3.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/3.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-31",
+      "title": "CHARACTER ART // 39",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-05",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/39.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/39.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-32",
+      "title": "CHARACTER ART // 6",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-06",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/6.png",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/6.png",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-33",
+      "title": "CHARACTER ART // 7",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-07",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/7.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/7.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-34",
+      "title": "CHARACTER ART // 8",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-08",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/8.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/8.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "character-art-35",
+      "title": "CHARACTER ART // 9",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-09",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/9.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/9.jpg",
+      "aspectRatio": "16/9",
+      "featured": true
+    },
+    {
+      "id": "character-art-36",
+      "title": "CHARACTER ART // ISSUE #36",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-04",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/WhatsApp Image 2026-10-25 at 10.17.57 AM (1).jpeg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/WhatsApp Image 2026-10-25 at 10.17.57 AM (1).jpeg",
+      "aspectRatio": "4/5",
+      "featured": false
+    },
+    {
+      "id": "character-art-37",
+      "title": "CHARACTER ART // ISSUE #37",
+      "category": "Character Art",
+      "description": "Original character art production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-05",
+      "tags": [
+        "Character Art",
+        "Cel Shaded",
+        "2D Art",
+        "Concept Art",
+        "Lineart"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/Character_art/WhatsApp Image 2026-10-25 at 10.17.57 AM.jpeg",
+      "fullUrl": "/assets/artworks/artwork_samples/Character_art/WhatsApp Image 2026-10-25 at 10.17.57 AM.jpeg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "comic-38",
+      "title": "COMIC // ISSUE #38",
+      "category": "Comic",
+      "description": "Original comic production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-06",
+      "tags": [
+        "Comic",
+        "Cel Shaded",
+        "2D Art",
+        "Sequential",
+        "Action Panel"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/comic/WhatsApp Image 2026-10-25 at 10.17.58 AM (2).jpeg",
+      "fullUrl": "/assets/artworks/artwork_samples/comic/WhatsApp Image 2026-10-25 at 10.17.58 AM (2).jpeg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "comic-39",
+      "title": "COMIC // ISSUE #39",
+      "category": "Comic",
+      "description": "Original comic production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-07",
+      "tags": [
+        "Comic",
+        "Cel Shaded",
+        "2D Art",
+        "Sequential",
+        "Action Panel"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/comic/WhatsApp Image 2026-10-25 at 10.17.59 AM (2).jpeg",
+      "fullUrl": "/assets/artworks/artwork_samples/comic/WhatsApp Image 2026-10-25 at 10.17.59 AM (2).jpeg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "comic-40",
+      "title": "COMIC // ISSUE #40",
+      "category": "Comic",
+      "description": "Original comic production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-08",
+      "tags": [
+        "Comic",
+        "Cel Shaded",
+        "2D Art",
+        "Sequential",
+        "Action Panel"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/comic/WhatsApp Image 2026-10-25 at 10.17.59 AM (3).jpeg",
+      "fullUrl": "/assets/artworks/artwork_samples/comic/WhatsApp Image 2026-10-25 at 10.17.59 AM (3).jpeg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "emotes-41",
+      "title": "EMOTES // 1",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-09",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/1.png",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/1.png",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "emotes-42",
+      "title": "EMOTES // 10",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-04",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/10.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/10.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "emotes-43",
+      "title": "EMOTES // 11",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-05",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/11.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/11.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "emotes-44",
+      "title": "EMOTES // 12",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-06",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/12.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/12.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "emotes-45",
+      "title": "EMOTES // 13",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-07",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/13.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/13.jpg",
+      "aspectRatio": "1/1",
+      "featured": true
+    },
+    {
+      "id": "emotes-46",
+      "title": "EMOTES // 14",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-08",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/14.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/14.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "emotes-47",
+      "title": "EMOTES // 15",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-09",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/15.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/15.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "emotes-48",
+      "title": "EMOTES // 16",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-04",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/16.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/16.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "emotes-49",
+      "title": "EMOTES // 17",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-05",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/17.png",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/17.png",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "emotes-50",
+      "title": "EMOTES // 18",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-06",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/18.png",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/18.png",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "emotes-51",
+      "title": "EMOTES // 19",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-07",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/19.png",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/19.png",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "emotes-52",
+      "title": "EMOTES // 2",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-08",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/2.png",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/2.png",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "emotes-53",
+      "title": "EMOTES // 3",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-09",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/3.png",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/3.png",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "emotes-54",
+      "title": "EMOTES // 4",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-04",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/4.png",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/4.png",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "emotes-55",
+      "title": "EMOTES // 5",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-05",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/5.png",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/5.png",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "emotes-56",
+      "title": "EMOTES // 6",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-06",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/6.png",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/6.png",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "emotes-57",
+      "title": "EMOTES // 7",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-07",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/7.png",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/7.png",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "emotes-58",
+      "title": "EMOTES // 8",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-08",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/8.png",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/8.png",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "emotes-59",
+      "title": "EMOTES // 9",
+      "category": "Emotes",
+      "description": "Original emotes production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-09",
+      "tags": [
+        "Emotes",
+        "Cel Shaded",
+        "2D Art",
+        "Sticker",
+        "Twitch Emote"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/emotes/9.png",
+      "fullUrl": "/assets/artworks/artwork_samples/emotes/9.png",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "manga-60",
+      "title": "MANGA // ISSUE #60",
+      "category": "Manga",
+      "description": "Original manga production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-04",
+      "tags": [
+        "Manga",
+        "Cel Shaded",
+        "2D Art",
+        "Screentones",
+        "Manga Page"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/manga/WhatsApp Image 2026-10-25 at 10.17.58 AM (3).jpeg",
+      "fullUrl": "/assets/artworks/artwork_samples/manga/WhatsApp Image 2026-10-25 at 10.17.58 AM (3).jpeg",
+      "aspectRatio": "3/4",
+      "featured": true
+    },
+    {
+      "id": "manga-61",
+      "title": "MANGA // ISSUE #61",
+      "category": "Manga",
+      "description": "Original manga production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-05",
+      "tags": [
+        "Manga",
+        "Cel Shaded",
+        "2D Art",
+        "Screentones",
+        "Manga Page"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/manga/WhatsApp Image 2026-10-25 at 10.17.59 AM.jpeg",
+      "fullUrl": "/assets/artworks/artwork_samples/manga/WhatsApp Image 2026-10-25 at 10.17.59 AM.jpeg",
+      "aspectRatio": "3/4",
+      "featured": false
+    },
+    {
+      "id": "mascot-logo-62",
+      "title": "MASCOT LOGO // 1",
+      "category": "Mascot Logo",
+      "description": "Original mascot logo production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-06",
+      "tags": [
+        "Mascot Logo",
+        "Cel Shaded",
+        "2D Art",
+        "Logo Emblem",
+        "Vector Style"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/mascot logo/1..jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/mascot logo/1..jpg",
+      "aspectRatio": "16/9",
+      "featured": false
+    },
+    {
+      "id": "mascot-logo-63",
+      "title": "MASCOT LOGO // 2",
+      "category": "Mascot Logo",
+      "description": "Original mascot logo production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-07",
+      "tags": [
+        "Mascot Logo",
+        "Cel Shaded",
+        "2D Art",
+        "Logo Emblem",
+        "Vector Style"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/mascot logo/2.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/mascot logo/2.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "mascot-logo-64",
+      "title": "MASCOT LOGO // 3",
+      "category": "Mascot Logo",
+      "description": "Original mascot logo production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-08",
+      "tags": [
+        "Mascot Logo",
+        "Cel Shaded",
+        "2D Art",
+        "Logo Emblem",
+        "Vector Style"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/mascot logo/3.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/mascot logo/3.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "mascot-logo-65",
+      "title": "MASCOT LOGO // 4",
+      "category": "Mascot Logo",
+      "description": "Original mascot logo production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-09",
+      "tags": [
+        "Mascot Logo",
+        "Cel Shaded",
+        "2D Art",
+        "Logo Emblem",
+        "Vector Style"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/mascot logo/4.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/mascot logo/4.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "mascot-logo-66",
+      "title": "MASCOT LOGO // 5",
+      "category": "Mascot Logo",
+      "description": "Original mascot logo production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-04",
+      "tags": [
+        "Mascot Logo",
+        "Cel Shaded",
+        "2D Art",
+        "Logo Emblem",
+        "Vector Style"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/mascot logo/5.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/mascot logo/5.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "mascot-logo-67",
+      "title": "MASCOT LOGO // 6",
+      "category": "Mascot Logo",
+      "description": "Original mascot logo production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-05",
+      "tags": [
+        "Mascot Logo",
+        "Cel Shaded",
+        "2D Art",
+        "Logo Emblem",
+        "Vector Style"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/mascot logo/6.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/mascot logo/6.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "mascot-logo-68",
+      "title": "MASCOT LOGO // 7",
+      "category": "Mascot Logo",
+      "description": "Original mascot logo production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-06",
+      "tags": [
+        "Mascot Logo",
+        "Cel Shaded",
+        "2D Art",
+        "Logo Emblem",
+        "Vector Style"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/mascot logo/7.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/mascot logo/7.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "mascot-logo-69",
+      "title": "MASCOT LOGO // 8",
+      "category": "Mascot Logo",
+      "description": "Original mascot logo production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-07",
+      "tags": [
+        "Mascot Logo",
+        "Cel Shaded",
+        "2D Art",
+        "Logo Emblem",
+        "Vector Style"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/mascot logo/8.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/mascot logo/8.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    },
+    {
+      "id": "mascot-logo-70",
+      "title": "MASCOT LOGO // 9",
+      "category": "Mascot Logo",
+      "description": "Original mascot logo production asset crafted with precision ink linework, stepped cel-shaded tonal separation, and rich comic aesthetic palette.",
+      "date": "2026-08",
+      "tags": [
+        "Mascot Logo",
+        "Cel Shaded",
+        "2D Art",
+        "Logo Emblem",
+        "Vector Style"
+      ],
+      "thumbnailUrl": "/assets/artworks/artwork_samples/mascot logo/9.jpg",
+      "fullUrl": "/assets/artworks/artwork_samples/mascot logo/9.jpg",
+      "aspectRatio": "1/1",
+      "featured": false
+    }
+  ],
+  "showcaseComparison": {
+    "id": "showcase-01",
+    "title": "CEL-SHADE WORKFLOW DECONSTRUCTION",
+    "subtitle": "Raw Structural Inks vs. Dynamic High-Contrast Cel-Shaded Render",
+    "sketchImage": "/assets/artworks/artwork_samples/manga/WhatsApp Image 2026-10-25 at 10.17.58 AM (3).jpeg",
+    "sketchLabel": "PHASE 01: RAW BLUEPRINT & INKS",
+    "renderImage": "/assets/artworks/artwork_samples/Character_art/24.jpg",
+    "renderLabel": "PHASE 02: MULTI-LAYER CEL SHADING",
+    "description": "Drag the comic divider bar to interactively inspect how foundational pencil geometry and ink line-weights translate into vibrant, stepped cel-shaded production art."
+  },
+  "commissionTiers": [
+    {
+      "id": "tier-bust",
+      "name": "HEADSHOT / BUST",
+      "subtitle": "High-impact comic character portrait",
+      "price": 85,
+      "currency": "USD",
+      "turnaroundTime": "3-5 Business Days",
+      "deliverables": [
+        "High-Res 300 DPI PNG & WebP (3000x3000px)",
+        "Transparent Background + Cel-Shaded Backdrop",
+        "Flat Color Variant & Screentone Variant",
+        "Personal Non-Commercial License"
+      ],
+      "commercialUsage": false
+    },
+    {
+      "id": "tier-half",
+      "name": "HALF BODY ACTION",
+      "subtitle": "Dynamic waist-up character with weapon / prop",
+      "price": 160,
+      "currency": "USD",
+      "turnaroundTime": "7-10 Business Days",
+      "popular": true,
+      "deliverables": [
+        "High-Res 300 DPI Master File (4000x5000px)",
+        "Layered Source PSD with Inks & Cel-Layers",
+        "Custom Comic SFX & Action Halftone Frame",
+        "2 Free Revision Passes included",
+        "Personal Non-Commercial License"
+      ],
+      "commercialUsage": false
+    },
+    {
+      "id": "tier-full",
+      "name": "FULL CHARACTER / COMIC SPLASH",
+      "subtitle": "Complete full-body hero or cinematic comic page",
+      "price": 280,
+      "currency": "USD",
+      "turnaroundTime": "12-16 Business Days",
+      "deliverables": [
+        "Ultra-HD 300 DPI Print Ready (A3 / Poster Dimensions)",
+        "Full Commercial Rights Included (Merch & Streaming)",
+        "Complete Vector Inks & Separated Shading PSD",
+        "Custom Neo-Brutalist Typography Title Deck",
+        "Dedicated Discord Work-in-Progress Review Channel"
+      ],
+      "commercialUsage": true
+    }
+  ],
+  "termsOfService": {
+    "title": "TERMS OF SERVICE",
+    "subtitle": "To ensure a secure, transparent, and collaborative creative workflow between client and artist, please review the binding operational standards below before commissioning.",
+    "generalTerms": {
+      "title": "GENERAL TERMS & REGULATIONS",
+      "badge": "LEGAL CODEX",
+      "rules": [
+        "All project communication and brief confirmations occur via official verified channels (Discord DM: emilia_art#0001 or official commission mailbox).",
+        "Standard commissions are licensed exclusively for non-profit personal use (wallpapers, social avatars, personal prints) unless a commercial usage buyout is explicitly contracted.",
+        "Revisions Policy: Exactly 2 free revision rounds are included during the Rough Sketch & Lineart phase. Once cel-shading and final rendering begin, major structural or pose revisions will incur an additional milestone fee; only minor palette adjustments are permitted.",
+        "Strict Anti-AI Protection: Absolute prohibition against feeding, uploading, or training the commissioned artwork into generative AI models, LoRA fine-tuning datasets, or NFT/crypto minting.",
+        "The artist retains moral rights and the right to showcase watermarked artwork, WIP stages, and process timelapses across portfolios, social media, and artbooks."
+      ]
+    },
+    "paymentInvoicing": {
+      "title": "PAYMENT & INVOICING",
+      "badge": "PAYPAL EXCLUSIVE",
+      "rules": [
+        "Payments are exclusively accepted via secure PayPal (Invoice / Goods & Services in USD $).",
+        "Orders under $100 USD require 100% full payment upfront before pencil work begins.",
+        "Orders exceeding $100 USD allow a 50% upfront non-refundable deposit to secure the queue slot, and the remaining 50% balance before delivery of final unwatermarked files.",
+        "Final unwatermarked 300 DPI master files and PSD source archives are delivered only after the PayPal invoice balance is cleared in full.",
+        "No Chargeback Clause: Unauthorized payment disputes, chargebacks, or fraudulent reversals result in immediate permanent blacklisting, instant forfeiture of personal use license, and public DMCA claims."
+      ]
+    },
+    "guidelinesTitle": "CLIENT & ARTIST GUIDELINES",
+    "guidelines": [
+      {
+        "id": "your-rights",
+        "title": "CLIENT RIGHTS",
+        "iconType": "rights",
+        "colorVariant": "green",
+        "points": [
+          "Receive high-resolution, print-ready 300 DPI artwork (lossless PNG + transparent background variants) delivered strictly within agreed timeline windows.",
+          "Review milestone progress updates: Initial Rough Sketch, Clean Lineart, Flat Colors, and Final Cel-Shading.",
+          "Receive 2 complimentary revision rounds during the sketch and lineart phase prior to final color rendering.",
+          "Display and crop your commissioned piece across personal social channels with credited attribution."
+        ]
+      },
+      {
+        "id": "your-responsibilities",
+        "title": "CLIENT RESPONSIBILITIES",
+        "iconType": "responsibilities",
+        "colorVariant": "pink",
+        "points": [
+          "Provide organized visual references, moodboards, and character turnaround sheets during brief submission.",
+          "Client Response Window: Provide feedback within 48–72 hours of receiving a WIP update. Delays exceeding 7 days without prior notice move the project to the back of the queue.",
+          "Strict Anti-AI Adherence: Zero unauthorized ingestion of artwork into AI generative models, LoRAs, or blockchain tokens.",
+          "Honor payment agreements promptly via PayPal without initiating unauthorized third-party chargebacks."
+        ]
+      },
+      {
+        "id": "artist-rights",
+        "title": "ARTIST RIGHTS",
+        "iconType": "artist-rights",
+        "colorVariant": "purple",
+        "points": [
+          "Decline commission briefs that depict hate speech, non-consensual themes, or concepts outside artist comfort zones.",
+          "Retain full creator copyright and authorship of the artwork unless a comprehensive commercial buyout agreement is executed.",
+          "Adjust delivery milestones with advance notice in the event of personal emergency, health setbacks, or force majeure.",
+          "Enforce the No Chargeback Clause and file DMCA takedowns against unauthorized commercial exploitation or disputed commissions."
+        ]
+      },
+      {
+        "id": "artist-responsibilities",
+        "title": "ARTIST RESPONSIBILITIES",
+        "iconType": "artist-responsibilities",
+        "colorVariant": "yellow",
+        "points": [
+          "Maintain active, respectful, and direct communication through Discord or email throughout the creation lifecycle.",
+          "Execute artwork true to the artist's established portfolio quality, line weight standard, and cel-shaded rendering style.",
+          "Deliver master archives (lossless PNG, WebP, and layered PSD files where tier applicable) on or before deadline.",
+          "Incorporate client feedback constructively and faithfully implement agreed revision changes during the lineart phase."
+        ]
+      }
+    ]
+  },
+  "calculator": {
+    "title": "INTERACTIVE COMMISSION CALCULATOR",
+    "subtitle": "Configure your custom cel-shaded commission scope and optional add-ons below for an instant, transparent price estimate and formatted Discord brief.",
+    "scopes": [
+      {
+        "id": "scope-headshot",
+        "name": "HEADSHOT / BUST",
+        "subtitle": "High-impact character portrait to shoulders",
+        "basePrice": 60
+      },
+      {
+        "id": "scope-halfbody",
+        "name": "HALF BODY",
+        "subtitle": "Waist-up character with dynamic pose / hands",
+        "basePrice": 120
+      },
+      {
+        "id": "scope-fullbody",
+        "name": "FULL CHARACTER",
+        "subtitle": "Complete head-to-toe hero figure / action stance",
+        "basePrice": 220
+      }
+    ],
+    "addons": [
+      {
+        "id": "addon-extra-char",
+        "name": "ADDITIONAL CHARACTER (+50%)",
+        "description": "Second fully-rendered character interacting in same frame",
+        "type": "multiplier",
+        "value": 0.5
+      },
+      {
+        "id": "addon-complex-bg",
+        "name": "COMPLEX CEL ENVIRONMENT (+$60)",
+        "description": "Detailed background with perspective lines, neon signs, or landscape",
+        "type": "flat",
+        "value": 60
+      },
+      {
+        "id": "addon-commercial",
+        "name": "COMMERCIAL USAGE RIGHTS (+$100)",
+        "description": "Full monetization rights for merch, book covers, streaming, and marketing",
+        "type": "flat",
+        "value": 100
+      },
+      {
+        "id": "addon-rush",
+        "name": "3-DAY PRIORITY RUSH (+$50)",
+        "description": "Fast-tracked front-of-queue production with expedited turnaround",
+        "type": "flat",
+        "value": 50
+      }
+    ]
+  },
+  "queue": {
+    "title": "LIVE COMMISSION QUEUE",
+    "subtitle": "Real-time production pipeline status. Lock your slot before the queue closes.",
+    "quarterLabel": "OCT / Q4 SLOTS",
+    "slots": [
+      {
+        "id": 1,
+        "slotNumber": "01",
+        "status": "IN_PROGRESS",
+        "stage": "Clean Inks // Cel-Shading Pass",
+        "clientMask": "Client #A*** (Discord)",
+        "eta": "Oct 30",
+        "claimable": false
+      },
+      {
+        "id": 2,
+        "slotNumber": "02",
+        "status": "IN_PROGRESS",
+        "stage": "Rough Sketch Review // Pose Adjustments",
+        "clientMask": "Client #V*** (Twitter/X)",
+        "eta": "Nov 03",
+        "claimable": false
+      },
+      {
+        "id": 3,
+        "slotNumber": "03",
+        "status": "RESERVED",
+        "stage": "Deposit Verified // Brief Intake Queued",
+        "clientMask": "Client #K*** (Email)",
+        "eta": "Nov 07",
+        "claimable": false
+      },
+      {
+        "id": 4,
+        "slotNumber": "04",
+        "status": "OPEN",
+        "stage": "Available for Immediate Intake",
+        "clientMask": "Awaiting Commission Brief",
+        "eta": "Ready to Start",
+        "claimable": true
+      }
+    ]
+  },
+  "reviews": {
+    "title": "CLIENT TRANSMISSIONS // VERIFIED FEEDBACK",
+    "subtitle": "What writers, indie authors, and content creators say about working with Emilia.",
+    "ratingBadge": "★ 5.0 RATED BY COMMISSIONERS",
+    "items": [
+      {
+        "id": "rev-1",
+        "clientName": "@Kaelen_Writer",
+        "clientRole": "Fantasy & Sci-Fi Author",
+        "projectTag": "BOOK COVER",
+        "rating": 5,
+        "quote": "Emilia brought my novel's protagonist to life with mind-blowing fidelity. The cel-shaded lighting and hard shadow cuts make the cover pop off digital bookshelves. Turnaround was 4 days faster than estimated!",
+        "date": "Oct 2026"
+      },
+      {
+        "id": "rev-2",
+        "clientName": "Ren // V-Streamer",
+        "clientRole": "Twitch & YouTube Partner",
+        "projectTag": "TWITCH BANNER",
+        "rating": 5,
+        "quote": "Super communicative at every single stage! The rough sketch approval round was seamless, and the final 300 DPI master vector inks look absolutely flawless on stream and across all my socials.",
+        "date": "Sep 2026"
+      },
+      {
+        "id": "rev-3",
+        "clientName": "Marcus Thorne",
+        "clientRole": "Indie Comic Publisher",
+        "projectTag": "OC CHARACTER",
+        "rating": 5,
+        "quote": "Pure neo-brutalist mastery. Her line weight confidence and vibrant palette choices gave our key character instant iconic recognition. Will be booking a multi-page sequence next queue cycle!",
+        "date": "Aug 2026"
+      }
+    ]
+  }
+}
