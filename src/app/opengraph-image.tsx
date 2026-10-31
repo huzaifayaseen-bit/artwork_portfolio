@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-
+export const dynamic = "force-static";
 export const alt = "EMILIA // 2D Cel-Shaded Artist & Illustrator Portfolio";
 export const size = {
   width: 1200,

@@ -1,16 +1,14 @@
-import { NextResponse } from "next/server";
-
-export async function POST(request: Request) {
+export async function onRequestPost(context) {
   try {
-    const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
+    const webhookUrl = context.env.DISCORD_WEBHOOK_URL;
     if (!webhookUrl) {
-      return NextResponse.json(
-        { error: "DISCORD_WEBHOOK_URL environment variable is not configured." },
-        { status: 500 }
+      return new Response(
+        JSON.stringify({ error: "DISCORD_WEBHOOK_URL environment variable is not configured." }),
+        { status: 500, headers: { "Content-Type": "application/json" } }
       );
     }
 
-    const body = await request.json();
+    const body = await context.request.json();
     const {
       category,
       scope,
@@ -24,7 +22,7 @@ export async function POST(request: Request) {
     const embed = {
       title: "⚡ NEW COMMISSION BRIEF RECEIVED",
       description: "A client just generated and submitted a new commission brief from the portfolio!",
-      color: 0xffde59, // Comic Yellow hex
+      color: 0xffde59,
       fields: [
         {
           name: "👤 Client Contact (Discord / Email)",
@@ -75,24 +73,27 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         username: "Emilia Portfolio Transceiver",
-        avatar_url: "https://emilia-art.com/assets/artworks/artwork_samples/pfp/28.jpg",
+        avatar_url: "https://emiliaart.studio/assets/artworks/artwork_samples/pfp/28.jpg",
         embeds: [embed],
       }),
     });
 
     if (!discordResponse.ok) {
       const errorText = await discordResponse.text();
-      return NextResponse.json(
-        { error: `Discord Webhook returned status ${discordResponse.status}: ${errorText}` },
-        { status: discordResponse.status }
+      return new Response(
+        JSON.stringify({ error: `Discord Webhook returned status ${discordResponse.status}: ${errorText}` }),
+        { status: discordResponse.status, headers: { "Content-Type": "application/json" } }
       );
     }
 
-    return NextResponse.json({ success: true });
-  } catch (error: any) {
-    return NextResponse.json(
-      { error: error?.message || "Failed to process commission brief." },
-      { status: 500 }
+    return new Response(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    return new Response(
+      JSON.stringify({ error: error?.message || "Failed to process commission brief." }),
+      { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }
 }
