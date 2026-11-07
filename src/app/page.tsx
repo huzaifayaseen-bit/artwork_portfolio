@@ -12,7 +12,7 @@ import { ClientReviews } from "@/components/sections/ClientReviews";
 import { TermsOfService } from "@/components/sections/TermsOfService";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { CommissionBriefBuilder } from "@/components/contact/CommissionBriefBuilder";
-import { FloatingCommissionCTA } from "@/components/ui/FloatingCommissionCTA";
+import { ScrollToTop } from "@/components/ui/ScrollToTop";
 import { Sparkles, HelpCircle } from "lucide-react";
 
 export default function Home() {
@@ -157,8 +157,8 @@ export default function Home() {
         </section>
       </main>
 
-      {/* Floating Persistent Commission Action CTA */}
-      <FloatingCommissionCTA statusText={data.profile.statusText} />
+      {/* Floating Scroll to Top Action */}
+      <ScrollToTop />
 
       {/* Comic Footer */}
       <Footer profile={data.profile} />
