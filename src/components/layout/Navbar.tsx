@@ -30,12 +30,17 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const y = window.scrollY || document.documentElement.scrollTop || 0;
-      setIsScrolled(y > 40);
+      const doc = document.documentElement;
+      const y = window.pageYOffset ?? window.scrollY ?? doc.scrollTop ?? document.body.scrollTop ?? 0;
+      setIsScrolled(y > 30);
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    document.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   // Prevent background scrolling when mobile menu is open
@@ -140,8 +145,9 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
     <>
       {/* Edge-to-edge Top Bar (Xotoe reference style) */}
       <header
-        className="fixed top-0 left-0 w-full z-50 border-b-[3px] border-black transition-colors duration-200"
-        style={{ backgroundColor: isScrolled ? "#FFFFFF" : "#FF6B35" }}
+        className={`fixed top-0 left-0 w-full z-50 border-b-[3px] border-black transition-colors duration-200 ${
+          isScrolled || pathname !== "/" ? "!bg-white" : "!bg-[#FF6B35]"
+        }`}
       >
         <div className="max-w-6xl mx-auto h-14 sm:h-16 md:h-20 px-4 sm:px-6 flex items-center justify-between">
           {/* LEFT: EMILIA STUDIO logo in black */}
