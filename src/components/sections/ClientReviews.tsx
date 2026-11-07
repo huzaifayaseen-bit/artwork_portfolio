@@ -9,6 +9,42 @@ export interface ClientReviewsProps {
   reviewsData?: ReviewsData;
 }
 
+const PASTEL_THEMES = [
+  {
+    bg: "bg-[#FFE4E6]", // Soft Coral / Peach
+    tagBg: "bg-[#FF2A6D]",
+    tagText: "text-white",
+    avatarBg: "bg-white text-black",
+  },
+  {
+    bg: "bg-[#E0F2FE]", // Sky Blue / Mint
+    tagBg: "bg-[#0284C7]",
+    tagText: "text-white",
+    avatarBg: "bg-white text-black",
+  },
+  {
+    bg: "bg-[#EDE9FE]", // Soft Lilac / Purple
+    tagBg: "bg-[#7C3AED]",
+    tagText: "text-white",
+    avatarBg: "bg-white text-black",
+  },
+  {
+    bg: "bg-[#FEF08A]", // Pastel Butter Yellow
+    tagBg: "bg-[#EAB308]",
+    tagText: "text-black",
+    avatarBg: "bg-white text-black",
+  },
+];
+
+const getInitials = (name: string) => {
+  const clean = name.replace(/^[@/]+/, "").trim();
+  const parts = clean.split(/[\s/_-]+/);
+  if (parts.length >= 2 && parts[0] && parts[1]) {
+    return (parts[0][0] + parts[1][0]).toUpperCase();
+  }
+  return clean.slice(0, 2).toUpperCase() || "CL";
+};
+
 export const ClientReviews: React.FC<ClientReviewsProps> = ({ reviewsData }) => {
   if (!reviewsData || !reviewsData.items || reviewsData.items.length === 0) return null;
 
@@ -46,62 +82,74 @@ export const ClientReviews: React.FC<ClientReviewsProps> = ({ reviewsData }) => 
 
         {/* Seamless Scrolling Track (Duplicated items for flawless loop) */}
         <div className="animate-marquee group-hover:[animation-play-state:paused] flex gap-6 sm:gap-8 items-stretch will-change-transform pr-6">
-          {[...reviewsData.items, ...reviewsData.items].map((review, index) => (
-            <div
-              key={`${review.id}-${index}`}
-              className="
-                w-[320px] sm:w-[380px] md:w-[420px] flex-shrink-0 flex flex-col justify-between
-                bg-white border-[3px] border-black rounded-2xl p-5 sm:p-6 shadow-[5px_5px_0px_#000]
-                transition-all duration-100 hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[7px_7px_0px_#000]
-                select-none
-              "
-            >
-              {/* Top Comic Bubble Glyph & Tag */}
-              <div>
-                <div className="flex items-center justify-between gap-2 border-b-2 border-black/10 pb-3 mb-4">
-                  <div className="flex items-center gap-2">
-                    <span className="w-7 h-7 bg-comic-pink text-white border-2 border-black rounded-lg flex items-center justify-center shadow-[1px_1px_0px_#000]">
-                      <MessageSquareQuote className="w-4 h-4" />
-                    </span>
-                    <span className="bg-[#FF2A6D] text-white border-2 border-black font-black text-[10px] tracking-wider uppercase px-2 py-0.5 rounded-md shadow-[1.5px_1.5px_0px_#000]">
-                      {review.projectTag}
-                    </span>
-                  </div>
+          {[...reviewsData.items, ...reviewsData.items].map((review, index) => {
+            const theme = PASTEL_THEMES[index % PASTEL_THEMES.length];
+            const initials = getInitials(review.clientName);
 
-                  {/* 5 Solid Stars */}
-                  <div className="flex items-center gap-0.5" aria-label={`${review.rating} out of 5 stars`}>
-                    {Array.from({ length: 5 }).map((_, idx) => (
-                      <Star
-                        key={idx}
-                        className="w-4 h-4 fill-[#FACC15] text-[#FACC15] text-base drop-shadow-[1px_1px_0px_#000]"
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                {/* Dialogue Quote Bubble */}
-                <div className="relative font-sans text-zinc-900 font-medium text-sm leading-relaxed italic pr-2">
-                  “{review.quote}”
-                </div>
-              </div>
-
-              {/* Client Signature Colophon */}
-              <div className="mt-6 pt-4 border-t-2 border-dashed border-black/20 flex items-center justify-between">
+            return (
+              <div
+                key={`${review.id}-${index}`}
+                className={`
+                  w-[320px] sm:w-[380px] md:w-[420px] flex-shrink-0 flex flex-col justify-between min-h-[220px]
+                  ${theme.bg} border-[3px] border-black rounded-2xl p-6 shadow-[5px_5px_0px_#000]
+                  transition-transform duration-150 hover:-translate-y-1
+                  select-none
+                `}
+              >
+                {/* Top Comic Bubble Glyph & Tag */}
                 <div>
-                  <span className="inline-block bg-black text-white font-mono font-bold text-xs px-2.5 py-1 rounded-lg mb-1">
-                    {review.clientName}
-                  </span>
-                  <p className="text-[11px] font-nav font-semibold text-neutral-600 uppercase tracking-wider">
-                    {review.clientRole}
-                  </p>
+                  <div className="flex items-center justify-between gap-2 border-b-2 border-black/15 pb-3 mb-4">
+                    <div className="flex items-center gap-2">
+                      <span className="w-7 h-7 bg-white text-black border-2 border-black rounded-lg flex items-center justify-center shadow-[1px_1px_0px_#000]">
+                        <MessageSquareQuote className="w-4 h-4" />
+                      </span>
+                      <span
+                        className={`${theme.tagBg} ${theme.tagText} border-2 border-black font-black text-[10px] tracking-wider uppercase px-2 py-0.5 rounded-md shadow-[1.5px_1.5px_0px_#000]`}
+                      >
+                        {review.projectTag}
+                      </span>
+                    </div>
+
+                    {/* 5 Solid Stars */}
+                    <div className="flex items-center gap-0.5" aria-label={`${review.rating} out of 5 stars`}>
+                      {Array.from({ length: 5 }).map((_, idx) => (
+                        <Star
+                          key={idx}
+                          className="w-4 h-4 fill-[#FACC15] text-[#FACC15] text-base drop-shadow-[1px_1px_0px_#000]"
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Dialogue Quote Bubble */}
+                  <div className="relative font-sans text-zinc-900 font-semibold text-sm leading-relaxed pr-2">
+                    “{review.quote}”
+                  </div>
                 </div>
 
-                <span className="text-[10px] font-mono text-neutral-500 font-bold uppercase">
-                  {review.date}
-                </span>
+                {/* Bottom Author Row with Avatar */}
+                <div className="mt-6 pt-4 border-t-2 border-dashed border-black/20 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full border-2 border-black bg-white flex items-center justify-center font-black text-xs text-black shadow-[1.5px_1.5px_0px_#000] flex-shrink-0">
+                      {initials}
+                    </div>
+                    <div>
+                      <span className="font-black text-xs text-black block tracking-tight">
+                        {review.clientName}
+                      </span>
+                      <span className="text-[10px] font-bold text-zinc-700 block tracking-tight">
+                        {review.clientRole}
+                      </span>
+                    </div>
+                  </div>
+
+                  <span className="text-[10px] font-mono text-neutral-600 font-bold uppercase ml-2 flex-shrink-0">
+                    {review.date}
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
