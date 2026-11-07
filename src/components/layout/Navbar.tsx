@@ -32,7 +32,12 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
   // Track scroll position for compact pill morphing
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
+      const scrollTop =
+        window.scrollY ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        0;
+      setIsScrolled(scrollTop > 40);
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
