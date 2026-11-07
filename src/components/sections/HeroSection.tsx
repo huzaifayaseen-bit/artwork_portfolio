@@ -88,7 +88,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
     <section
       ref={containerRef}
       id="hero-section"
-      className="relative min-h-[calc(100svh-4rem)] flex flex-col justify-center pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 overflow-hidden bg-[#FF6B35] border-b-[4px] border-black w-full"
+      className="relative min-h-[calc(100svh-4.5rem)] flex items-center pt-32 pb-16 overflow-hidden bg-[#FF6B35] border-b-[4px] border-black w-full scroll-mt-20"
     >
       {/* 1. COMIC / ARCADE GEOMETRIC PATTERN OVERLAY */}
       <div className="absolute inset-0 pointer-events-none select-none -z-10" aria-hidden="true">
@@ -119,7 +119,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
         />
       </div>
 
-      {/* 2. TECHNICAL VECTOR ACCENTS (Crosshairs & Watermarks - Cleanly Spaced) */}
+      {/* 2. TECHNICAL VECTOR ACCENTS (Crosshairs & Watermarks - Positioned away from text) */}
       <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
         {/* Top-Right Watermark */}
         <div className="absolute top-6 right-4 sm:right-6 font-mono text-[9px] tracking-widest text-black/40 uppercase hidden sm:block">
@@ -130,54 +130,44 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
         <div className="absolute top-12 left-[48%] font-mono text-[13px] font-bold text-black/30 hidden md:block">
           +
         </div>
-
-        {/* Bottom-Left Crosshair */}
-        <div className="absolute bottom-12 left-4 sm:left-6 font-mono text-[11px] font-bold text-black/40 flex items-center gap-1.5">
-          <span>+</span>
-          <span className="text-[9px] tracking-widest uppercase">COORD.24.X</span>
-        </div>
       </div>
 
       {/* Main Editorial Studio Grid: 2-Column Responsive Layout */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-8 sm:gap-10 lg:gap-[clamp(32px,5vw,72px)] items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] gap-8 sm:gap-10 lg:gap-[clamp(32px,4vw,64px)] items-center">
         {/* LEFT / INTRO COLUMN */}
-        <div className="flex flex-col justify-center order-2 lg:order-1 min-w-0">
-          {/* Studio Meta Badges (Single Row) */}
-          <div className="flex flex-wrap items-center gap-2.5 mb-5">
-            <span className="inline-flex items-center gap-1.5 bg-white text-black border-2 border-black font-black text-[11px] uppercase tracking-wider rounded-lg px-2.5 py-0.5 shadow-[2px_2px_0px_#000]">
-              <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
-              INDEPENDENT STUDIO
-            </span>
-            <span className="inline-flex items-center gap-1.5 bg-white text-black border-2 border-black rounded-full px-3 py-0.5 text-[11px] font-black uppercase tracking-wider shadow-[2px_2px_0px_#000]">
+        <div className="flex flex-col justify-center order-2 lg:order-1 min-w-0 max-w-[min(100%,38rem)]">
+          {/* Studio Meta Badge (Single Pill) */}
+          <div className="flex items-center gap-2 mb-4">
+            <span className="inline-flex items-center gap-1.5 bg-white text-black border-2 border-black rounded-full px-3 py-0.5 text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_#000]">
               <span className="w-2 h-2 rounded-full bg-emerald-600 ring-2 ring-emerald-600/30" />
               COMMISSIONS OPEN
             </span>
           </div>
 
-          {/* Heavy ALL CAPS Poster Headline with Controlled Balanced Breaks */}
-          <h1 className="mb-4 select-none leading-[0.95] font-archivo [text-wrap:balance]">
-            <span className="text-[clamp(2.5rem,5.2vw,5rem)] font-black text-black tracking-tight block uppercase">
-              CHARACTERS WITH
+          {/* 2-Line Sentence Case Poster Headline */}
+          <h1
+            style={{ textTransform: "none" }}
+            className="mb-4 select-none leading-[1.05] font-archivo font-black text-4xl lg:text-5xl text-black tracking-tight"
+          >
+            <span className="block">
+              Characters with
             </span>
-            <span className="text-[clamp(2.5rem,5.2vw,5rem)] font-black text-black tracking-tight inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 uppercase">
-              <span>ATTITUDE &amp;</span>
-              <span className="inline-block bg-[#DFF0FF] text-black border-[3px] border-black rounded-xl px-3 sm:px-4 py-0.5 shadow-[4px_4px_0px_#000] -rotate-2">
-                SOUL.
-              </span>
+            <span className="inline-block bg-[#FFE600] border-[3px] border-black rounded-xl px-4 py-1 shadow-[4px_4px_0px_#000] -rotate-1 mt-2 whitespace-nowrap">
+              attitude &amp; soul.
             </span>
           </h1>
 
           {/* Crisp 1-2 Line Editorial Subtitle */}
-          <p className="text-black/90 text-sm sm:text-base leading-relaxed max-w-lg mb-8 font-medium [text-wrap:balance]">
+          <p className="text-black/90 text-sm sm:text-base leading-relaxed max-w-lg mb-6 sm:mb-7 font-medium [text-wrap:balance]">
             Original 2D cel-shaded illustrations for authors, indie game directors, and collectors.
           </p>
 
           {/* Commission Conversion Triggers */}
-          <div className="flex flex-wrap items-center gap-3.5 mb-8">
+          <div className="flex flex-wrap items-center gap-3.5 mb-6 sm:mb-7">
             <Link
               href="#contact-section"
               onClick={(e) => handleSmoothScroll(e, "contact-section")}
-              className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#FFE600] text-black border-[3px] border-black rounded-xl font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all active:bg-black active:text-[#FFE600]"
+              className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-[#FFE600] text-black border-[3px] border-black rounded-xl font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all active:bg-black active:text-[#FFE600]"
             >
               <Zap className="w-4 h-4 fill-black stroke-black" />
               <span>COMMISSION ME</span>
@@ -186,7 +176,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             <Link
               href="#artworks-section"
               onClick={(e) => handleSmoothScroll(e, "artworks-section")}
-              className="inline-flex items-center gap-2 px-6 py-3.5 bg-white text-black border-[3px] border-black rounded-xl font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all"
+              className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-white text-black border-[3px] border-black rounded-xl font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all"
             >
               <Compass className="w-4 h-4 text-black" />
               <span>EXPLORE ARTWORK</span>
@@ -194,8 +184,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             </Link>
           </div>
 
-          {/* Studio Craft Badges (Strict 1-Row on Desktop) */}
-          <div className="pt-5 border-t-2 border-black/20 flex flex-wrap lg:flex-nowrap items-center gap-x-5 lg:gap-x-6 gap-y-2 text-xs font-nav font-bold text-black/85">
+          {/* Studio Craft Badges (Scoped strictly to left column) */}
+          <div className="w-full pt-4 sm:pt-5 border-t-2 border-black/20 flex flex-wrap lg:flex-nowrap items-center gap-x-5 lg:gap-x-6 gap-y-2 text-xs font-nav font-bold text-black/85">
             <span className="inline-flex items-center gap-1.5 shrink-0 whitespace-nowrap">
               <CheckCircle2 className="w-4 h-4 text-black stroke-[2.5]" />
               300 DPI Print Masters
@@ -214,7 +204,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
         {/* RIGHT / COLLAGE STAGE */}
         <div className="order-1 lg:order-2 w-full">
           {/* Collage Stage Container */}
-          <div className="relative w-full max-w-[580px] lg:max-w-none mx-auto pt-4 pb-6 sm:pb-8 px-2 sm:px-4">
+          <div className="relative w-full max-w-[540px] lg:max-w-none mx-auto pt-2 pb-4 sm:pb-6 px-2 sm:px-4">
             {/* BRAND ACCENT GLOW BEHIND 3-IMAGE COLLAGE */}
             <div
               className="absolute inset-2 -z-20 pointer-events-none select-none blur-3xl opacity-10 transition-transform duration-700 ease-out"
@@ -226,7 +216,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             />
 
             {/* ARTWORK COLLAGE COMPOSITION WITH INTENTIONAL STAGGER & CLEAR OVERLAPS */}
-            <div className="relative w-full min-h-[420px] sm:min-h-[490px] lg:min-h-[520px]">
+            <div className="relative w-full h-[380px] sm:h-[440px] lg:h-[clamp(420px,52vh,500px)] max-h-[calc(100svh-4.5rem-80px)]">
 
               {/* 1. SECONDARY BACK LAYER (Top Left): Book Cover (Issue 10) - Tilted -2deg, top position adjusted for clean crop */}
               <div
@@ -258,7 +248,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
 
               {/* 2. PRIMARY FOCAL ARTWORK (Dominant Center-Right): Character 28 - Tilted +1.5deg with crisp Cyan backing */}
               <div
-                className="absolute top-4 sm:top-5 right-0 sm:right-2 w-[65%] sm:w-[64%] z-20 transition-transform duration-500 ease-out"
+                className="absolute top-2 sm:top-3 right-0 sm:right-2 w-[64%] sm:w-[63%] z-20 transition-transform duration-500 ease-out"
                 style={{
                   transform: `translate3d(${tilt.x * -6}px, ${tilt.y * -6}px, 0)`,
                 }}
@@ -288,7 +278,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
 
               {/* 3. TERTIARY ACCENT LAYER (Bottom Left): Character 10 Reaper - Overlaps only bottom corner of Book Cover, face unobstructed */}
               <div
-                className="absolute bottom-2 sm:bottom-4 left-3 sm:left-6 w-[36%] sm:w-[34%] z-30 transition-transform duration-700 ease-out"
+                className="absolute bottom-1 sm:bottom-2 left-2 sm:left-4 w-[35%] sm:w-[33%] z-30 transition-transform duration-700 ease-out"
                 style={{
                   transform: `translate3d(${tilt.x * 10}px, ${tilt.y * 10}px, 0)`,
                 }}

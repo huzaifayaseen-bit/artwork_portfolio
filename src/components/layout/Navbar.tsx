@@ -26,6 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
   const [pricingDropdownOpen, setPricingDropdownOpen] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const dropdownCloseTimeout = useRef<NodeJS.Timeout | null>(null);
+  const dropdownMenuRef = useRef<HTMLDivElement | null>(null);
 
   const openSlots = queueData?.slots?.filter((s) => s.status === "OPEN").length ?? 1;
 
@@ -37,7 +38,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
         document.documentElement.scrollTop ||
         document.body.scrollTop ||
         0;
-      setIsScrolled(scrollTop > 40);
+      setIsScrolled(scrollTop > 30);
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -82,6 +83,45 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
     }, 150);
   };
 
+  const handlePricingKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Escape") {
+      setPricingDropdownOpen(false);
+      return;
+    }
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      if (!pricingDropdownOpen) {
+        setPricingDropdownOpen(true);
+      } else if (dropdownMenuRef.current) {
+        const firstLink = dropdownMenuRef.current.querySelector<HTMLAnchorElement>("a");
+        firstLink?.focus();
+      }
+    }
+  };
+
+  const handleDropdownMenuKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Escape") {
+      e.preventDefault();
+      setPricingDropdownOpen(false);
+      return;
+    }
+    const focusable = dropdownMenuRef.current?.querySelectorAll<HTMLAnchorElement>("a");
+    if (!focusable || focusable.length === 0) return;
+
+    const items = Array.from(focusable);
+    const currentIndex = items.indexOf(document.activeElement as HTMLAnchorElement);
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      const nextIndex = (currentIndex + 1) % items.length;
+      items[nextIndex]?.focus();
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      const prevIndex = (currentIndex - 1 + items.length) % items.length;
+      items[prevIndex]?.focus();
+    }
+  };
+
   const handleNavClick = (
     e: React.MouseEvent,
     target: { href: string; sectionId?: string }
@@ -112,8 +152,8 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
           transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]
           ${
             isScrolled
-              ? "max-w-4xl lg:max-w-5xl py-1.5 px-3.5 sm:px-4 top-2.5 shadow-[4px_4px_0px_#000] rounded-full bg-white/95 backdrop-blur-md"
-              : "max-w-7xl py-3 sm:py-3.5 px-4 sm:px-6 top-3.5 shadow-[4px_4px_0px_#000] rounded-2xl bg-[#FF6B35]"
+              ? "max-w-3xl !bg-white py-1.5 px-5 top-2.5 shadow-[3px_3px_0px_#000] rounded-full"
+              : "max-w-6xl bg-[#FF6B35] py-3 px-6 top-3.5 shadow-[4px_4px_0px_#000] rounded-2xl"
           }
         `}
       >
@@ -130,6 +170,9 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
               onClick={(e) =>
                 handleNavClick(e, { href: "/pricing", sectionId: "pricing-section" })
               }
+              onKeyDown={handlePricingKeyDown}
+              aria-haspopup="true"
+              aria-expanded={pricingDropdownOpen}
               className={`
                 font-nav font-bold uppercase tracking-wider border-2 transition-all flex items-center gap-1 select-none
                 ${pricingDropdownOpen ? "rounded-t-full rounded-b-none border-b-black" : "rounded-full"}
@@ -143,16 +186,20 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
             >
               <span>PRICING</span>
               <ChevronDown
-                className={`transition-transform duration-200 ${
+                className={`transition-transform duration-150 ${
                   isScrolled ? "w-3 h-3" : "w-3.5 h-3.5"
                 } ${pricingDropdownOpen ? "rotate-180" : ""}`}
               />
             </Link>
 
-            {/* Ultra-Compact High-Contrast Comic Index Strip */}
+            {/* Neo-Brutalist Solid White Dropdown Drawer */}
             {pricingDropdownOpen && (
-              <div className="absolute top-full left-0 pt-1 z-50 w-56">
-                <div className="bg-black text-white border-2 border-black rounded-xl p-1.5 shadow-[4px_4px_0px_#FFE600] flex flex-col gap-1 animate-comic-snap select-none">
+              <div
+                ref={dropdownMenuRef}
+                onKeyDown={handleDropdownMenuKeyDown}
+                className="absolute top-[calc(100%+8px)] left-0 z-[60] min-w-[240px] max-w-[calc(100vw-32px)] bg-white border-[3px] border-black rounded-2xl shadow-[6px_6px_0px_#000] overflow-hidden select-none animate-comic-snap"
+              >
+                <div className="flex flex-col divide-y-2 divide-black">
                   <Link
                     href={pathname === "/" ? "#calculator-section" : "/pricing#calculator"}
                     onClick={(e) =>
@@ -161,12 +208,15 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                         sectionId: "calculator-section",
                       })
                     }
-                    className="group flex items-center justify-between py-2 px-3 rounded-lg text-xs font-black tracking-wider uppercase hover:bg-[#FFE600] hover:text-black transition-all cursor-pointer font-comic"
+                    className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-[14px] sm:text-[15px] uppercase tracking-[0.05em] text-black hover:bg-[#FFE600] focus-visible:bg-[#FFE600] focus-visible:outline-none transition-colors duration-120 cursor-pointer"
                   >
-                    <span className="group-hover:translate-x-0.5 transition-transform">
-                      01 // CALCULATOR
+                    <span className="flex items-center gap-2.5">
+                      <span className="bg-transparent text-black border-2 border-black px-1.5 py-0.5 rounded text-[10px] sm:text-xs font-mono font-black shadow-[1px_1px_0px_#000]">
+                        01
+                      </span>
+                      <span>CALCULATOR</span>
                     </span>
-                    <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-sm font-black">
+                    <span className="opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 group-hover:translate-x-0.5 transition-all text-sm font-black">
                       →
                     </span>
                   </Link>
@@ -179,12 +229,15 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                         sectionId: "pricing-section",
                       })
                     }
-                    className="group flex items-center justify-between py-2 px-3 rounded-lg text-xs font-black tracking-wider uppercase hover:bg-[#FFE600] hover:text-black transition-all cursor-pointer font-comic"
+                    className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-[14px] sm:text-[15px] uppercase tracking-[0.05em] text-black hover:bg-[#FFE600] focus-visible:bg-[#FFE600] focus-visible:outline-none transition-colors duration-120 cursor-pointer"
                   >
-                    <span className="group-hover:translate-x-0.5 transition-transform">
-                      02 // RATES &amp; TIERS
+                    <span className="flex items-center gap-2.5">
+                      <span className="bg-transparent text-black border-2 border-black px-1.5 py-0.5 rounded text-[10px] sm:text-xs font-mono font-black shadow-[1px_1px_0px_#000]">
+                        02
+                      </span>
+                      <span>RATES &amp; TIERS</span>
                     </span>
-                    <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-sm font-black">
+                    <span className="opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 group-hover:translate-x-0.5 transition-all text-sm font-black">
                       →
                     </span>
                   </Link>
@@ -194,12 +247,15 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                     onClick={(e) =>
                       handleNavClick(e, { href: "/tos", sectionId: "tos-section" })
                     }
-                    className="group flex items-center justify-between py-2 px-3 rounded-lg text-xs font-black tracking-wider uppercase hover:bg-[#FFE600] hover:text-black transition-all cursor-pointer font-comic"
+                    className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-[14px] sm:text-[15px] uppercase tracking-[0.05em] text-black hover:bg-[#FFE600] focus-visible:bg-[#FFE600] focus-visible:outline-none transition-colors duration-120 cursor-pointer"
                   >
-                    <span className="group-hover:translate-x-0.5 transition-transform">
-                      03 // COMMISSION TERMS
+                    <span className="flex items-center gap-2.5">
+                      <span className="bg-transparent text-black border-2 border-black px-1.5 py-0.5 rounded text-[10px] sm:text-xs font-mono font-black shadow-[1px_1px_0px_#000]">
+                        03
+                      </span>
+                      <span>COMMISSION TERMS</span>
                     </span>
-                    <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-sm font-black">
+                    <span className="opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 group-hover:translate-x-0.5 transition-all text-sm font-black">
                       →
                     </span>
                   </Link>
@@ -307,7 +363,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
             )}
           </button>
 
-          {/* Primary Action Button: COMMISSION ME (Secondary White/Outline look) */}
+          {/* Primary Action Button: COMMISSION ME (White on top, Yellow when scrolled) */}
           <Link
             href={pathname === "/" ? "#contact-section" : "/contact"}
             onClick={(e) =>
@@ -317,11 +373,11 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
           >
             <span
               className={`
-                text-black font-black uppercase border-2 border-black bg-white shadow-[3px_3px_0px_#000] hover:bg-neutral-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all duration-300 cursor-pointer inline-flex items-center gap-1 font-btn
+                text-black font-black uppercase border-2 border-black shadow-[3px_3px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all duration-300 cursor-pointer inline-flex items-center gap-1 font-btn
                 ${
                   isScrolled
-                    ? "px-3 py-1.5 text-[11px] rounded-full"
-                    : "px-4 py-2 text-xs rounded-xl"
+                    ? "px-3 py-1.5 text-[11px] rounded-full bg-[#FFE600] hover:bg-[#FFF033]"
+                    : "px-4 py-2 text-xs rounded-xl bg-white hover:bg-neutral-100"
                 }
               `}
             >
