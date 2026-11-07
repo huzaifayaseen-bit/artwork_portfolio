@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Bebas_Neue, Space_Grotesk, Inter, Righteous } from "next/font/google";
 import "./globals.css";
 import { SoundProvider } from "@/context/SoundContext";
-import { ComicNewsletterModal } from "@/components/ui/ComicNewsletterModal";
 import { ArtworkProtectionToast } from "@/components/ui/ArtworkProtectionToast";
 
 const bebasNeue = Bebas_Neue({
@@ -85,7 +84,6 @@ export default function RootLayout({
       <body className="font-sans antialiased min-h-screen selection:bg-comic-yellow selection:text-black text-neutral-900">
         <SoundProvider>
           {children}
-          <ComicNewsletterModal />
           <ArtworkProtectionToast />
         </SoundProvider>
       </body>
