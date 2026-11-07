@@ -51,21 +51,23 @@ export const ClientReviews: React.FC<ClientReviewsProps> = ({ reviewsData }) => 
   return (
     <section className="py-2 sm:py-4">
       {/* Section Header */}
-      <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-8 md:mb-10">
-        <div className="inline-flex items-center gap-1.5 bg-comic-yellow text-black border-2 border-black px-3 py-0.5 font-nav text-xs font-bold uppercase tracking-wider mb-2 shadow-[2px_2px_0px_#000]">
-          <CheckCircle2 className="w-3.5 h-3.5 fill-black text-comic-yellow" />
-          <span>{reviewsData.ratingBadge}</span>
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 md:mb-8">
+        <div>
+          <div className="inline-flex items-center gap-1.5 bg-comic-yellow text-black border-2 border-black px-3 py-0.5 font-nav text-xs font-bold uppercase tracking-wider mb-2 shadow-[2px_2px_0px_#000]">
+            <CheckCircle2 className="w-3.5 h-3.5 fill-black text-comic-yellow" />
+            <span>{reviewsData.ratingBadge}</span>
+          </div>
+          <h2 className="font-comic text-4xl sm:text-6xl uppercase text-black tracking-wide leading-none">
+            {reviewsData.title}
+          </h2>
+          <p className="mt-2 text-sm sm:text-base text-neutral-700 font-sans max-w-2xl">
+            {reviewsData.subtitle}
+          </p>
         </div>
-        <h2 className="font-comic text-4xl sm:text-6xl uppercase text-black tracking-wide leading-none">
-          {reviewsData.title}
-        </h2>
-        <p className="mt-2 text-sm sm:text-base text-neutral-700 font-sans max-w-2xl">
-          {reviewsData.subtitle}
-        </p>
 
         <Link
           href="/pricing"
-          className="mt-4 inline-flex items-center gap-2 font-btn text-xs font-bold uppercase tracking-wider bg-black hover:bg-neutral-800 text-white border-2 border-black px-4 py-2 shadow-neo-sm hover:shadow-neo transition-all"
+          className="self-start md:self-end inline-flex items-center gap-2 font-btn text-xs font-bold uppercase tracking-wider bg-black hover:bg-neutral-800 text-white border-2 border-black px-4 py-2 shadow-neo-sm hover:shadow-neo transition-all"
         >
           <span>VIEW COMMISSION RATES</span>
           <ArrowRight className="w-4 h-4 text-comic-yellow" />

@@ -273,8 +273,8 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
   return (
     <div id="brief-builder" className="mt-8 pt-8 border-t-2 border-black/15 relative">
       {/* Builder Header */}
-      <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-10">
-        <div className="flex flex-wrap items-center justify-center gap-2.5 mb-2">
+      <div className="max-w-2xl mb-8">
+        <div className="flex flex-wrap items-center gap-2.5 mb-2">
           <div className="inline-flex items-center gap-2 bg-comic-yellow text-black border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider rounded-full shadow-[2px_2px_0px_#000]">
             <FileText className="w-4 h-4 fill-black" />
             INTERACTIVE BRIEF BUILDER
@@ -286,7 +286,7 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
         <h3 className="font-comic text-3xl sm:text-5xl uppercase text-black tracking-wide leading-none">
           CONFIGURE YOUR COMMISSION BRIEF
         </h3>
-        <p className="mt-2 text-sm text-neutral-700 font-sans max-w-xl">
+        <p className="mt-2 text-sm text-neutral-700 font-sans">
           Select your specs below to generate a standardized project brief sent directly to Emilia&apos;s transmission queue.
         </p>
       </div>

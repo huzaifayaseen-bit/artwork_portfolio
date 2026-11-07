@@ -146,8 +146,8 @@ export const CommissionCalculator: React.FC<CommissionCalculatorProps> = ({
   return (
     <div className="relative">
       {/* Widget Header */}
-      <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-10">
-        <div className="flex flex-wrap items-center justify-center gap-2.5 mb-2">
+      <div className="max-w-2xl mb-8">
+        <div className="flex flex-wrap items-center gap-2.5 mb-2">
           <div className="inline-flex items-center gap-2 bg-comic-cyan text-black border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider rounded-full shadow-[2px_2px_0px_#000]">
             <Calculator className="w-4 h-4 fill-black" />
             COST CALCULATOR
@@ -159,7 +159,7 @@ export const CommissionCalculator: React.FC<CommissionCalculatorProps> = ({
         <h3 className="font-comic text-3xl sm:text-5xl uppercase text-black tracking-wide leading-none">
           {calculatorData.title}
         </h3>
-        <p className="mt-2 text-sm text-neutral-700 font-sans max-w-xl">
+        <p className="mt-2 text-sm text-neutral-700 font-sans">
           {calculatorData.subtitle}
         </p>
       </div>
