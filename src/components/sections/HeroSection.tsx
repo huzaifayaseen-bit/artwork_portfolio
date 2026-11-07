@@ -304,14 +304,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                   </div>
                   <div
                     onContextMenu={handleContextMenu}
-                    className="relative w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 cursor-pointer die-cut-sticker -rotate-12 active:scale-95"
+                    className="relative w-12 h-12 md:w-14 md:h-14 shrink-0 cursor-pointer die-cut-sticker -rotate-12 active:scale-95 drop-shadow-[2px_2px_0px_#000]"
                   >
                     <Image
                       src="/assets/artworks/artwork_samples/emotes/3.png"
                       alt="Cel-shaded love mascot emote sticker"
                       fill
-                      sizes="64px"
-                      className="object-contain no-drag"
+                      sizes="(max-width: 768px) 48px, 56px"
+                      className="object-contain shrink-0 no-drag"
                     />
                   </div>
                 </div>
@@ -326,14 +326,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 </div>
                 <div
                   onContextMenu={handleContextMenu}
-                  className="relative w-12 h-12 md:w-14 md:h-14 cursor-pointer die-cut-sticker rotate-6 active:scale-95 drop-shadow-[2px_2px_0px_#000]"
+                  className="relative w-12 h-12 md:w-14 md:h-14 shrink-0 cursor-pointer die-cut-sticker rotate-6 active:scale-95 drop-shadow-[2px_2px_0px_#000]"
                 >
                   <Image
                     src="/assets/artworks/artwork_samples/emotes/1.png"
                     alt="Hand-drawn happy mascot emote sticker"
                     fill
                     sizes="(max-width: 768px) 48px, 56px"
-                    className="object-contain no-drag"
+                    className="object-contain shrink-0 no-drag"
                   />
                 </div>
               </div>
