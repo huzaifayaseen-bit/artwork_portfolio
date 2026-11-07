@@ -280,12 +280,12 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
           <button
             type="button"
             onClick={toggleSFX}
-            title={sfxEnabled ? "Mute Comic SFX" : "Enable Comic SFX"}
-            aria-label={sfxEnabled ? "Mute sound effects" : "Enable sound effects"}
+            title="Toggle sound effects"
+            aria-label="Toggle sound effects"
             className={`
               hidden sm:flex items-center gap-1 border-2 border-black rounded-lg font-comic uppercase tracking-wider
               shadow-[2px_2px_0px_#000] active:shadow-none active:translate-x-[1px] active:translate-y-[1px]
-              transition-all duration-300 cursor-pointer select-none
+              transition-all duration-300 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black
               ${isScrolled ? "px-1.5 py-0.5 text-[10px]" : "px-2 py-1 text-xs"}
               ${
                 sfxEnabled
@@ -307,21 +307,21 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
             )}
           </button>
 
-          {/* Primary Action Button: COMMISSION ME */}
+          {/* Primary Action Button: COMMISSION ME (Secondary White/Outline look) */}
           <Link
             href={pathname === "/" ? "#contact-section" : "/contact"}
             onClick={(e) =>
               handleNavClick(e, { href: "/contact", sectionId: "contact-section" })
             }
-            className="hidden sm:inline-block"
+            className="hidden sm:inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black rounded-xl"
           >
             <span
               className={`
-                text-black font-black uppercase border-2 border-black shadow-[3px_3px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all duration-300 cursor-pointer inline-flex items-center gap-1 font-btn
+                text-black font-black uppercase border-2 border-black bg-white shadow-[3px_3px_0px_#000] hover:bg-neutral-100 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all duration-300 cursor-pointer inline-flex items-center gap-1 font-btn
                 ${
                   isScrolled
-                    ? "px-3 py-1.5 text-[11px] rounded-full bg-[#FFE600]"
-                    : "px-4 py-2 text-xs rounded-xl bg-white"
+                    ? "px-3 py-1.5 text-[11px] rounded-full"
+                    : "px-4 py-2 text-xs rounded-xl"
                 }
               `}
             >

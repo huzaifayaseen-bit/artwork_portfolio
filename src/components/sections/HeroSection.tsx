@@ -17,19 +17,19 @@ const EMOTE_STICKERS = [
   {
     id: "emote-happy",
     src: "/assets/artworks/artwork_samples/emotes/1.png",
-    alt: "Hand-drawn happy emote sticker",
+    alt: "Hand-drawn happy mascot emote sticker",
     tooltip: "CUSTOM EMOTES // HAND-DRAWN",
-    positionClass: "-top-3 -right-2 sm:-top-5 sm:-right-4",
+    positionClass: "-top-6 -right-6 sm:-top-8 sm:-right-8",
     animationClass: "animate-sticker-1",
     initialRotate: "rotate-6",
-    sizeClass: "w-14 h-14 sm:w-18 sm:h-18 lg:w-20 lg:h-20",
+    sizeClass: "w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28",
   },
   {
     id: "emote-love",
     src: "/assets/artworks/artwork_samples/emotes/3.png",
-    alt: "Cel-shaded love emote sticker",
+    alt: "Cel-shaded love mascot emote sticker",
     tooltip: "TWITCH & DISCORD // READY",
-    positionClass: "-bottom-6 sm:-bottom-8 -left-3 sm:-left-6",
+    positionClass: "-bottom-6 sm:-bottom-8 -left-4 sm:-left-7",
     animationClass: "animate-sticker-2",
     initialRotate: "-rotate-12",
     sizeClass: "w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20",
@@ -88,7 +88,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
     <section
       ref={containerRef}
       id="hero-section"
-      className="relative pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 overflow-hidden bg-[#FF6B35] border-b-[4px] border-black w-full"
+      className="relative min-h-[calc(100svh-4rem)] flex flex-col justify-center pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 overflow-hidden bg-[#FF6B35] border-b-[4px] border-black w-full"
     >
       {/* 1. COMIC / ARCADE GEOMETRIC PATTERN OVERLAY */}
       <div className="absolute inset-0 pointer-events-none select-none -z-10" aria-hidden="true">
@@ -142,32 +142,34 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
         {/* LEFT / INTRO COLUMN (5 cols on lg) */}
         <div className="lg:col-span-5 flex flex-col justify-center order-2 lg:order-1">
-          {/* Studio Meta Status */}
-          <div className="flex items-center mb-5">
-            <span className="inline-flex items-center gap-1.5 bg-white text-black border-2 border-black rounded-full px-3 py-1 text-xs font-black shadow-[2px_2px_0px_#000]">
+          {/* Studio Meta Badges (Single Row) */}
+          <div className="flex flex-wrap items-center gap-2.5 mb-5">
+            <span className="inline-flex items-center gap-1.5 bg-white text-black border-2 border-black font-black text-[11px] uppercase tracking-wider rounded-lg px-2.5 py-0.5 shadow-[2px_2px_0px_#000]">
+              <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
+              INDEPENDENT STUDIO
+            </span>
+            <span className="inline-flex items-center gap-1.5 bg-white text-black border-2 border-black rounded-full px-3 py-0.5 text-[11px] font-black uppercase tracking-wider shadow-[2px_2px_0px_#000]">
               <span className="w-2 h-2 rounded-full bg-emerald-600 ring-2 ring-emerald-600/30" />
               COMMISSIONS OPEN
             </span>
           </div>
 
-          {/* Xotoe 2-Line Sentence-Case Title Lockup */}
-          <h1 className="mb-2 select-none">
-            <span className="text-5xl md:text-6xl font-black text-black tracking-tight leading-[1.08] block font-nav">
-              Characters with
+          {/* Heavy ALL CAPS Poster Headline with Soft Blue Highlight Box on "SOUL." */}
+          <h1 className="mb-4 select-none leading-[0.95] font-archivo">
+            <span className="text-[clamp(2.5rem,6.5vw,4.5rem)] font-black text-black tracking-tight block uppercase">
+              CHARACTERS WITH
             </span>
-            <span className="inline-block bg-[#FFE600] text-black border-[3px] border-black rounded-2xl px-4 py-1 pb-2 shadow-[5px_5px_0px_#000] -rotate-1 mt-1.5 font-black text-5xl md:text-6xl tracking-tight leading-none font-nav">
-              attitude &amp; soul.
+            <span className="text-[clamp(2.5rem,6.5vw,4.5rem)] font-black text-black tracking-tight inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 uppercase">
+              <span>ATTITUDE &amp;</span>
+              <span className="inline-block bg-[#DFF0FF] text-black border-[3px] border-black rounded-xl px-3 sm:px-4 py-0.5 shadow-[4px_4px_0px_#000] -rotate-2">
+                SOUL.
+              </span>
             </span>
           </h1>
 
-          {/* Xotoe Sub-Kicker */}
-          <p className="text-xs md:text-sm font-black uppercase tracking-[0.15em] text-black mt-6 mb-3">
-            2D CEL-SHADED ILLUSTRATION • STORYBOARDS &amp; COVERS
-          </p>
-
-          {/* Editorial Style Narrative Introduction */}
-          <p className="text-black/90 text-sm sm:text-base leading-relaxed max-w-lg mb-7 font-medium">
-            Original 2D cel-shaded illustrations built with razor-sharp vector inking, stepped tonal separation, and high-impact comic sensibilities. Handcrafted for authors, indie game directors, and collectors.
+          {/* Crisp 1-2 Line Editorial Subtitle */}
+          <p className="text-black/90 text-sm sm:text-base leading-relaxed max-w-lg mb-8 font-medium">
+            Original 2D cel-shaded illustrations for authors, indie game directors, and collectors.
           </p>
 
           {/* Commission Conversion Triggers */}
@@ -175,7 +177,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             <Link
               href="#contact-section"
               onClick={(e) => handleSmoothScroll(e, "contact-section")}
-              className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#FFE600] text-black border-[3px] border-black rounded-xl font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all active:bg-black active:text-[#FFE600]"
+              className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#FFE600] text-black border-[3px] border-black rounded-xl font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all active:bg-black active:text-[#FFE600]"
             >
               <Zap className="w-4 h-4 fill-black stroke-black" />
               <span>COMMISSION ME</span>
@@ -184,7 +186,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             <Link
               href="#artworks-section"
               onClick={(e) => handleSmoothScroll(e, "artworks-section")}
-              className="inline-flex items-center gap-2 px-6 py-3.5 bg-white text-black border-[3px] border-black rounded-xl font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3.5 bg-white text-black border-[3px] border-black rounded-xl font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all"
             >
               <Compass className="w-4 h-4 text-black" />
               <span>EXPLORE ARTWORK</span>
@@ -224,15 +226,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
               aria-hidden="true"
             />
 
-            {/* Integrated Cyan & Violet Structural Framing Underlays */}
+            {/* Integrated Framing Underlays */}
             <div
               className="absolute inset-x-6 top-6 bottom-6 bg-gradient-to-br from-[#00E5FF]/15 via-transparent to-[#9933FF]/15 border border-black/10 -z-20 pointer-events-none"
-              aria-hidden="true"
-            />
-            {/* Cyan structural backing block */}
-            <div
-              className="absolute top-2 sm:top-4 right-10 sm:right-20 w-48 sm:w-60 h-52 sm:h-64 bg-[#00E5FF]/20 border border-black/20 -z-10 pointer-events-none transition-transform duration-700 ease-out"
-              style={{ transform: `translate3d(${tilt.x * -8}px, ${tilt.y * -8}px, 0)` }}
               aria-hidden="true"
             />
             {/* Violet geometric grounding block */}
@@ -242,58 +238,58 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
               aria-hidden="true"
             />
 
-            {/* ARTWORK COLLAGE COMPOSITION WITH SPRING HOVER PHYSICS */}
+            {/* ARTWORK COLLAGE COMPOSITION WITH INTENTIONAL STAGGER & CLEAR OVERLAPS */}
             <div className="relative w-full min-h-[420px] sm:min-h-[490px] lg:min-h-[520px]">
 
-              {/* 1. SECONDARY BACK LAYER (Top Left): Editorial Graphic Novel Cover (Issue 10, 4/5 Aspect) */}
+              {/* 1. SECONDARY BACK LAYER (Top Left): Book Cover (Issue 10) - Tilted -2deg, top position adjusted for clean crop */}
               <div
-                className="absolute top-0 left-0 w-[42%] sm:w-[38%] z-10 transition-transform duration-500 ease-out"
+                className="absolute top-0 left-0 w-[42%] sm:w-[40%] z-10 transition-transform duration-500 ease-out"
                 style={{
                   transform: `translate3d(${tilt.x * 6}px, ${tilt.y * 6}px, 0)`,
                 }}
               >
                 {/* Violet Accent Underlay */}
                 <div
-                  className="absolute inset-0 bg-[#9933FF] translate-x-1.5 translate-y-1.5 -z-10 border border-black/60"
+                  className="absolute inset-0 bg-[#9933FF] translate-x-2 translate-y-2 -z-10 border border-black/80 -rotate-2"
                   aria-hidden="true"
                 />
                 <div
                   onContextMenu={handleContextMenu}
-                  className="group relative bg-neutral-900 border-[2px] border-black shadow-[4px_4px_0px_#000000] overflow-hidden cursor-pointer transition-all duration-[350ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-x-1 hover:-translate-y-2 hover:-rotate-1 hover:shadow-[8px_8px_0px_#000000] hover:z-40"
+                  className="group relative bg-neutral-900 border-[3px] border-black -rotate-2 shadow-[6px_6px_0px_#000000] overflow-hidden cursor-pointer transition-all duration-[350ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-x-1 hover:-translate-y-2 hover:-rotate-3 hover:shadow-[8px_8px_0px_#000000] hover:z-40"
                 >
                   <div className="relative aspect-[4/5] w-full overflow-hidden bg-neutral-900">
                     <Image
                       src="/assets/artworks/artwork_samples/Book cover/WhatsApp Image 2026-10-25 at 10.17.58 AM (1).jpeg"
-                      alt="Editorial graphic novel cover by Emilia"
+                      alt="Editorial graphic novel cover artwork by Emilia"
                       fill
                       sizes="(max-width: 640px) 42vw, 24vw"
-                      className="object-cover object-center filter contrast-[1.02] transition-transform duration-500 ease-out group-hover:scale-105"
+                      className="object-cover object-bottom filter contrast-[1.02] transition-transform duration-500 ease-out group-hover:scale-105"
                     />
                   </div>
                 </div>
               </div>
 
-              {/* 2. PRIMARY FOCAL ARTWORK (Dominant Center-Right): Character 28 (CHARACTER-ART-29: Blue-haired girl with blue top hat, 1/1 Aspect) */}
+              {/* 2. PRIMARY FOCAL ARTWORK (Dominant Center-Right): Character 28 - Tilted +1.5deg with crisp Cyan backing */}
               <div
-                className="absolute top-4 sm:top-6 right-0 sm:right-2 w-[65%] sm:w-[66%] z-20 transition-transform duration-500 ease-out"
+                className="absolute top-4 sm:top-5 right-0 sm:right-2 w-[65%] sm:w-[64%] z-20 transition-transform duration-500 ease-out"
                 style={{
                   transform: `translate3d(${tilt.x * -6}px, ${tilt.y * -6}px, 0)`,
                 }}
               >
                 {/* Solid Cyan Offset Anchor Slab */}
                 <div
-                  className="absolute inset-0 bg-[#00E5FF] translate-x-2.5 translate-y-2.5 sm:translate-x-3.5 sm:translate-y-3.5 -z-10 border-2 border-black"
+                  className="absolute inset-0 bg-[#00E5FF] translate-x-3 translate-y-3 sm:translate-x-3.5 sm:translate-y-3.5 -z-10 border-2 border-black rotate-[1.5deg]"
                   aria-hidden="true"
                 />
 
                 <div
                   onContextMenu={handleContextMenu}
-                  className="group relative bg-white border-[2.5px] sm:border-[3px] border-black shadow-[6px_6px_0px_#000000] overflow-hidden cursor-pointer transition-all duration-[350ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-x-1 hover:-translate-y-2 hover:rotate-1 hover:shadow-[8px_8px_0px_#000000] hover:z-40"
+                  className="group relative bg-white border-[3px] border-black rotate-[1.5deg] shadow-[6px_6px_0px_#000000] overflow-hidden cursor-pointer transition-all duration-[350ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-x-1 hover:-translate-y-2 hover:rotate-1 hover:shadow-[8px_8px_0px_#000000] hover:z-40"
                 >
                   <div className="relative aspect-square w-full overflow-hidden bg-neutral-950">
                     <Image
                       src="/assets/artworks/artwork_samples/Character_art/28.jpg"
-                      alt="Featured character illustration by Emilia"
+                      alt="Featured character illustration of blue-haired girl by Emilia"
                       fill
                       priority
                       sizes="(max-width: 640px) 66vw, (max-width: 1024px) 50vw, 38vw"
@@ -303,26 +299,26 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 </div>
               </div>
 
-              {/* 3. TERTIARY ACCENT LAYER (Bottom Left): Character 10 Reaper (1/1 Aspect) */}
+              {/* 3. TERTIARY ACCENT LAYER (Bottom Left): Character 10 Reaper - Overlaps only bottom corner of Book Cover, face unobstructed */}
               <div
-                className="absolute bottom-3 sm:bottom-5 left-5 sm:left-8 w-[36%] sm:w-[34%] z-30 transition-transform duration-700 ease-out"
+                className="absolute bottom-2 sm:bottom-4 left-3 sm:left-6 w-[36%] sm:w-[34%] z-30 transition-transform duration-700 ease-out"
                 style={{
                   transform: `translate3d(${tilt.x * 10}px, ${tilt.y * 10}px, 0)`,
                 }}
               >
                 {/* Dark Ink Offset Slab */}
                 <div
-                  className="absolute inset-0 bg-black translate-x-1.5 translate-y-1.5 -z-10"
+                  className="absolute inset-0 bg-black translate-x-2 translate-y-2 -z-10 -rotate-1"
                   aria-hidden="true"
                 />
                 <div
                   onContextMenu={handleContextMenu}
-                  className="group relative bg-white border-[2px] border-black shadow-[4px_4px_0px_#000000] overflow-hidden cursor-pointer transition-all duration-[350ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-x-1 hover:-translate-y-2 hover:-rotate-1 hover:shadow-[8px_8px_0px_#000000] hover:z-40"
+                  className="group relative bg-white border-[3px] border-black -rotate-1 shadow-[5px_5px_0px_#000000] overflow-hidden cursor-pointer transition-all duration-[350ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-x-1 hover:-translate-y-2 hover:rotate-0 hover:shadow-[8px_8px_0px_#000000] hover:z-40"
                 >
                   <div className="relative aspect-square w-full overflow-hidden bg-neutral-900">
                     <Image
                       src="/assets/artworks/artwork_samples/Character_art/10.jpg"
-                      alt="Kinetic cel character illustration by Emilia"
+                      alt="Kinetic reaper character illustration by Emilia"
                       fill
                       sizes="(max-width: 640px) 36vw, 20vw"
                       className="object-cover object-top filter contrast-[1.02] transition-transform duration-500 ease-out group-hover:scale-105"
