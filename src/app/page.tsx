@@ -170,7 +170,7 @@ export default function Home() {
         {/* Section 7: Terms of Service // Codex (Soft Sage / Mint) */}
         <section
           id="tos"
-          className="w-full bg-[#ECFDF5] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
+          className="w-full bg-[#ECFDF5] border-b-[3px] border-black pt-14 md:pt-18 pb-32 px-6 scroll-mt-20"
         >
           <div className="max-w-6xl mx-auto">
             <TermsOfService tosData={data.termsOfService} />
