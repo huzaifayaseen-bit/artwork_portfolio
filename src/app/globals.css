@@ -335,6 +335,28 @@ body {
   transform: scale(1.15) rotate(0deg) !important;
 }
 
+/* Tools of the Trade Continuous Floating Animation */
+@keyframes tool-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(2deg);
+  }
+}
+
+.tool-float-item {
+  animation: tool-float 3.5s ease-in-out infinite;
+  transition: transform 0.25s ease-out, filter 0.25s ease-out;
+  will-change: transform, filter;
+}
+
+.tool-float-item:hover {
+  animation-play-state: paused;
+  transform: scale(1.2) rotate(-6deg) !important;
+  filter: drop-shadow(6px 6px 0 #000) !important;
+}
+
 /* Custom Scrollbar for Lightbox */
 ::-webkit-scrollbar {
   width: 10px;

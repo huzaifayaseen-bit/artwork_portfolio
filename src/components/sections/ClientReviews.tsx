@@ -51,7 +51,7 @@ export const ClientReviews: React.FC<ClientReviewsProps> = ({ reviewsData }) => 
               key={`${review.id}-${index}`}
               className="
                 w-[320px] sm:w-[380px] md:w-[420px] flex-shrink-0 flex flex-col justify-between
-                bg-[#FFFBEB] border-[3px] border-black rounded-2xl p-5 sm:p-6 shadow-[4px_4px_0px_#000]
+                bg-[#ECFEFF] border-[3px] border-black rounded-2xl p-5 sm:p-6 shadow-[4px_4px_0px_#000]
                 transition-all duration-100 hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[6px_6px_0px_#000]
                 select-none
               "
@@ -63,8 +63,8 @@ export const ClientReviews: React.FC<ClientReviewsProps> = ({ reviewsData }) => 
                     <span className="w-7 h-7 bg-comic-pink text-white border-2 border-black rounded-lg flex items-center justify-center shadow-[1px_1px_0px_#000]">
                       <MessageSquareQuote className="w-4 h-4" />
                     </span>
-                    <span className="font-nav text-[11px] font-bold uppercase tracking-wider bg-white border border-black px-2 py-0.5 rounded-full shadow-[1px_1px_0px_#000]">
-                      [{review.projectTag}]
+                    <span className="font-mono text-[11px] font-black uppercase tracking-wider bg-black text-white border border-black px-2.5 py-0.5 rounded-full shadow-[1px_1px_0px_#000]">
+                      {review.projectTag}
                     </span>
                   </div>
 
@@ -73,7 +73,7 @@ export const ClientReviews: React.FC<ClientReviewsProps> = ({ reviewsData }) => 
                     {Array.from({ length: 5 }).map((_, idx) => (
                       <Star
                         key={idx}
-                        className="w-4 h-4 fill-comic-yellow text-black stroke-[1.5]"
+                        className="w-4 h-4 fill-[#F59E0B] text-[#F59E0B] stroke-[1.5]"
                       />
                     ))}
                   </div>
@@ -88,7 +88,7 @@ export const ClientReviews: React.FC<ClientReviewsProps> = ({ reviewsData }) => 
               {/* Client Signature Colophon */}
               <div className="mt-6 pt-4 border-t-2 border-dashed border-black/20 flex items-center justify-between">
                 <div>
-                  <span className="inline-block bg-white text-black font-nav text-xs font-black px-2.5 py-0.5 rounded-full border border-black shadow-[1px_1px_0px_#000] mb-1">
+                  <span className="inline-block bg-white text-black font-mono text-xs font-black px-2.5 py-0.5 rounded-full border-2 border-black shadow-[2px_2px_0px_#000] mb-1">
                     {review.clientName}
                   </span>
                   <p className="text-[11px] font-nav font-semibold text-neutral-600 uppercase tracking-wider">

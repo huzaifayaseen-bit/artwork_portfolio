@@ -10,6 +10,7 @@ import { PricingTierCard } from "@/components/commissions/PricingTierCard";
 import { CommissionCalculator } from "@/components/pricing/CommissionCalculator";
 import { ClientReviews } from "@/components/sections/ClientReviews";
 import { TermsOfService } from "@/components/sections/TermsOfService";
+import { ToolsOfTheTrade } from "@/components/sections/ToolsOfTheTrade";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { CommissionBriefBuilder } from "@/components/contact/CommissionBriefBuilder";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
@@ -69,7 +70,7 @@ export default function Home() {
         <HeroSection profile={data.profile} />
 
         {/* 2. Curated Artworks Gallery Section (Directly under Hero) */}
-        <section id="artworks-section" className="py-16 md:py-24 scroll-mt-20 border-t-4 border-black">
+        <section id="artworks-section" className="pt-8 md:pt-12 pb-16 md:pb-24 scroll-mt-20 border-t-4 border-black">
           <ArtGallery artworks={data.artworks} limit={12} showViewAllLink={true} />
         </section>
 
@@ -143,7 +144,10 @@ export default function Home() {
           <TermsOfService tosData={data.termsOfService} />
         </section>
 
-        {/* 7. Contact & Commission Brief Builder */}
+        {/* 7. Tools of the Trade */}
+        <ToolsOfTheTrade />
+
+        {/* 8. Contact & Commission Brief Builder */}
         <section id="contact-section" className="py-16 md:py-24 scroll-mt-20 space-y-8 border-t-4 border-black">
           <ContactSection profile={data.profile} />
           <CommissionBriefBuilder

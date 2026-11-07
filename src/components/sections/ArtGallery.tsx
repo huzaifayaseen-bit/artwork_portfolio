@@ -99,7 +99,7 @@ export const ArtGallery: React.FC<ArtGalleryProps> = ({
   }, [activeCategory]);
 
   return (
-    <section id="gallery" className="py-8 sm:py-12 scroll-mt-20">
+    <section id="gallery" className="pt-2 sm:pt-4 pb-8 sm:pb-12 scroll-mt-20">
       {/* Section Header & Stacked Filter Bar */}
       <div className="flex flex-col gap-6 mb-10">
         {/* Title, Badge & Subtitle */}

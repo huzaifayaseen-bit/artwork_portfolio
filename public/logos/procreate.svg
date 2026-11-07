@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="96" height="96">
+  <rect width="256" height="256" rx="56" fill="#0A0A0A"/>
+  <path d="M198 62 C180 44 148 40 126 54 L64 96 C46 108 38 132 48 152 C58 172 80 184 102 178 L156 162 C172 158 186 168 188 184 C190 198 178 212 164 212 H108"
+        stroke="url(#procreate-swirl-grad)"
+        stroke-width="24"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"/>
+  <defs>
+    <linearGradient id="procreate-swirl-grad" x1="40" y1="40" x2="210" y2="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF3366"/>
+      <stop offset="35%" stop-color="#FFAA00"/>
+      <stop offset="70%" stop-color="#00E5FF"/>
+      <stop offset="100%" stop-color="#9933FF"/>
+    </linearGradient>
+  </defs>
+</svg>
