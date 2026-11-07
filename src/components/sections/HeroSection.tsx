@@ -318,21 +318,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
               </div>
             </div>
 
-            {/* Happy Emote Sticker pinned near top-right of main hero artwork */}
-            <div className="absolute -top-3 right-0 sm:right-2 z-40 pointer-events-auto select-none">
-              <div className="group relative animate-sticker-1">
+            {/* Happy Emote Sticker pinned near top-right corner of anime card */}
+            <div className="absolute top-1 right-2 z-40 pointer-events-auto select-none">
+              <div className="group relative animate-bounce [animation-duration:3s]">
                 <div className="absolute -top-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 z-50 whitespace-nowrap bg-black text-[#FFE600] border border-black text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 shadow-[2px_2px_0px_#FFE600]">
                   CUSTOM EMOTES // HAND-DRAWN
                 </div>
                 <div
                   onContextMenu={handleContextMenu}
-                  className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-22 lg:h-22 cursor-pointer die-cut-sticker rotate-6 active:scale-95"
+                  className="relative w-12 h-12 md:w-14 md:h-14 cursor-pointer die-cut-sticker rotate-6 active:scale-95 drop-shadow-[2px_2px_0px_#000]"
                 >
                   <Image
                     src="/assets/artworks/artwork_samples/emotes/1.png"
                     alt="Hand-drawn happy mascot emote sticker"
                     fill
-                    sizes="88px"
+                    sizes="(max-width: 768px) 48px, 56px"
                     className="object-contain no-drag"
                   />
                 </div>
