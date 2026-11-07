@@ -11,8 +11,6 @@ import {
   ShieldAlert,
   CheckCircle2,
   Scale,
-  Copy,
-  Check,
 } from "lucide-react";
 
 export interface TermsOfServiceProps {
@@ -27,22 +25,8 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
     "artist-rights": true,
     "artist-responsibilities": true,
   });
-  const [copiedDiscord, setCopiedDiscord] = useState(false);
 
   if (!tosData) return null;
-
-  const handleCopyDiscord = async () => {
-    try {
-      if (navigator?.clipboard?.writeText) {
-        await navigator.clipboard.writeText("ame_01921");
-      }
-      setCopiedDiscord(true);
-      setTimeout(() => setCopiedDiscord(false), 2000);
-    } catch {
-      setCopiedDiscord(true);
-      setTimeout(() => setCopiedDiscord(false), 2000);
-    }
-  };
 
   const toggleAccordion = (id: string) => {
     setOpenItems((prev) => ({
@@ -82,9 +66,9 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
   };
 
   return (
-    <section id="tos" className="py-12 sm:py-16">
+    <section id="tos" className="py-2 sm:py-4">
       {/* Section Header */}
-      <div className="max-w-3xl mb-10">
+      <div className="max-w-3xl mb-6 md:mb-8">
         <div className="inline-flex items-center gap-2 bg-comic-yellow text-black border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider mb-2 shadow-[2px_2px_0px_#000]">
           <Scale className="w-4 h-4 fill-black" />
           COMMISSION CONTRACT
@@ -98,7 +82,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
       </div>
 
       {/* Top 2 Neo-Brutalist Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch mb-8 sm:mb-10">
         {/* Card 1: General Terms */}
         <div className="bg-white border-[3px] border-black rounded-2xl p-6 sm:p-8 shadow-[5px_5px_0px_#000] flex flex-col justify-between">
           <div>
@@ -236,56 +220,6 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
               </div>
             );
           })}
-        </div>
-      </div>
-
-      {/* Balanced 2-Column Bento Grid Row */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl mx-auto w-full my-8">
-        {/* Card 1: Master Deliverables */}
-        <div className="bg-[#FEF08A] border-[3px] border-black rounded-2xl p-5 shadow-[4px_4px_0px_#000] flex flex-col justify-between">
-          <span className="text-[10px] font-black uppercase tracking-widest text-zinc-800 mb-3">
-            STANDARD // ASSETS
-          </span>
-          <div className="flex flex-wrap gap-2 py-1 items-center">
-            <span className="inline-flex items-center px-2.5 py-1.5 bg-white border-2 border-black rounded-lg text-xs font-black uppercase text-black shadow-[2px_2px_0px_#000]">
-              300 DPI LOSSLESS
-            </span>
-            <span className="inline-flex items-center px-2.5 py-1.5 bg-white border-2 border-black rounded-lg text-xs font-black uppercase text-black shadow-[2px_2px_0px_#000]">
-              LAYERED PSD
-            </span>
-            <span className="inline-flex items-center px-2.5 py-1.5 bg-white border-2 border-black rounded-lg text-xs font-black uppercase text-black shadow-[2px_2px_0px_#000]">
-              VECTOR LINEART
-            </span>
-          </div>
-        </div>
-
-        {/* Card 2: Fast Response Transmission */}
-        <div className="bg-[#E0F2FE] border-[3px] border-black rounded-2xl p-5 shadow-[4px_4px_0px_#000] flex flex-col justify-between">
-          <span className="text-[10px] font-black uppercase tracking-widest text-zinc-800 mb-3">
-            PRIMARY // CHANNEL
-          </span>
-          <div className="flex items-center justify-between gap-3 py-1">
-            <span className="font-mono font-black text-sm text-black tracking-wide">
-              ame_01921
-            </span>
-            <button
-              type="button"
-              onClick={handleCopyDiscord}
-              className="bg-black text-white px-3 py-1.5 rounded-lg text-xs font-black hover:bg-zinc-800 border-2 border-black shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer inline-flex items-center gap-1.5"
-            >
-              {copiedDiscord ? (
-                <>
-                  <Check className="w-3.5 h-3.5 text-comic-green stroke-[3]" />
-                  <span>COPIED!</span>
-                </>
-              ) : (
-                <>
-                  <Copy className="w-3.5 h-3.5" />
-                  <span>COPY</span>
-                </>
-              )}
-            </button>
-          </div>
         </div>
       </div>
     </section>

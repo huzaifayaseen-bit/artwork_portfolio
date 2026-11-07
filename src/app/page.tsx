@@ -70,14 +70,14 @@ export default function Home() {
         <HeroSection profile={data.profile} />
 
         {/* 2. Curated Artworks Gallery Section (Directly under Hero) */}
-        <section id="artworks-section" className="pt-8 md:pt-12 pb-16 md:pb-24 scroll-mt-20 border-t-4 border-black">
+        <section id="artworks-section" className="py-10 md:py-14 scroll-mt-20 border-t-4 border-black">
           <ArtGallery artworks={data.artworks} limit={12} showViewAllLink={true} />
         </section>
 
         {/* 3. Commission Pricing Cards */}
-        <section id="pricing-section" className="py-16 md:py-24 scroll-mt-20 border-t-4 border-black">
+        <section id="pricing-section" className="py-10 md:py-14 scroll-mt-20 border-t-4 border-black">
           {/* Pricing Header */}
-          <div className="max-w-3xl mb-8">
+          <div className="max-w-3xl mb-6 md:mb-8">
             <div className="inline-flex items-center gap-2 bg-comic-pink text-white border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider mb-2 rounded-full shadow-[2px_2px_0px_#000]">
               <Sparkles className="w-4 h-4 fill-white" />
               AVAILABLE TIERS
@@ -102,7 +102,7 @@ export default function Home() {
           </div>
 
           {/* Custom Project Note */}
-          <div className="mt-8 bg-white border-[3px] border-black rounded-2xl p-5 sm:p-6 shadow-[4px_4px_0px_#000] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="mt-6 sm:mt-8 bg-white border-[3px] border-black rounded-2xl p-5 sm:p-6 shadow-[4px_4px_0px_#000] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex items-start gap-3">
               <HelpCircle className="w-6 h-6 text-comic-purple flex-shrink-0 mt-0.5" />
               <div>
@@ -125,7 +125,7 @@ export default function Home() {
         </section>
 
         {/* 4. Interactive Commission Cost Calculator */}
-        <section id="calculator-section" className="py-16 md:py-24 scroll-mt-20 border-t-4 border-black">
+        <section id="calculator-section" className="py-10 md:py-14 scroll-mt-20 border-t-4 border-black">
           <CommissionCalculator
             calculatorData={data.calculator}
             discordTag={data.profile.discordTag}
@@ -135,12 +135,12 @@ export default function Home() {
         </section>
 
         {/* 5. Client Reviews / Verified Social Proof */}
-        <section id="reviews-section" className="scroll-mt-20 py-16 md:py-24 border-t-4 border-black">
+        <section id="reviews-section" className="scroll-mt-20 py-10 md:py-14 border-t-4 border-black">
           <ClientReviews reviewsData={data.reviews} />
         </section>
 
         {/* 6. Commission Terms of Service (TOS) Summary */}
-        <section id="tos-section" className="py-16 md:py-24 scroll-mt-20 border-t-4 border-black">
+        <section id="tos-section" className="py-10 md:py-14 scroll-mt-20 border-t-4 border-black">
           <TermsOfService tosData={data.termsOfService} />
         </section>
 
@@ -148,7 +148,7 @@ export default function Home() {
         <ToolsOfTheTrade />
 
         {/* 8. Contact & Commission Brief Builder */}
-        <section id="contact-section" className="py-16 md:py-24 scroll-mt-20 space-y-8 border-t-4 border-black">
+        <section id="contact-section" className="py-10 md:py-14 scroll-mt-20 space-y-6 md:space-y-8 border-t-4 border-black">
           <ContactSection profile={data.profile} />
           <CommissionBriefBuilder
             discordTag={data.profile.discordTag}

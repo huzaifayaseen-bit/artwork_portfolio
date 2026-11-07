@@ -88,7 +88,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
     <section
       ref={containerRef}
       id="hero-section"
-      className="relative pt-24 sm:pt-28 lg:pt-32 pb-0 overflow-hidden bg-[#FAFAFA]"
+      className="relative pt-16 sm:pt-20 lg:pt-24 pb-0 overflow-hidden bg-[#FAFAFA]"
     >
       {/* 1. COMIC HALFTONE BACKGROUND MATRIX & ATMOSPHERIC WASH */}
       <div className="absolute inset-0 pointer-events-none select-none -z-10" aria-hidden="true">

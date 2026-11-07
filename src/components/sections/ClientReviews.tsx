@@ -49,9 +49,9 @@ export const ClientReviews: React.FC<ClientReviewsProps> = ({ reviewsData }) => 
   if (!reviewsData || !reviewsData.items || reviewsData.items.length === 0) return null;
 
   return (
-    <section className="py-8 sm:py-12">
+    <section className="py-2 sm:py-4">
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 md:mb-8">
         <div>
           <div className="inline-flex items-center gap-1.5 bg-comic-yellow text-black border-2 border-black px-3 py-0.5 font-nav text-xs font-bold uppercase tracking-wider mb-2 shadow-[2px_2px_0px_#000]">
             <CheckCircle2 className="w-3.5 h-3.5 fill-black text-comic-yellow" />

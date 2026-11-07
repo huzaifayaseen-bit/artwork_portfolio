@@ -12,8 +12,8 @@ export interface ContactSectionProps {
 
 export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
   return (
-    <section id="contact" className="py-12 sm:py-16">
-      <div className="border-[3px] border-black bg-white rounded-3xl p-6 sm:p-12 shadow-[6px_6px_0px_#000] relative overflow-hidden">
+    <section id="contact" className="py-2 sm:py-4">
+      <div className="border-[3px] border-black bg-white rounded-3xl p-6 sm:p-10 shadow-[6px_6px_0px_#000] relative overflow-hidden">
         {/* Background Comic Decal Accent */}
         <div className="absolute top-0 right-0 bg-comic-yellow border-b-[3px] border-l-[3px] border-black px-4 py-1 font-nav text-xs font-bold uppercase tracking-wider rounded-bl-xl">
           TRANSMISSION LINE

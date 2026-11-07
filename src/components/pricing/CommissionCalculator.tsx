@@ -144,7 +144,7 @@ export const CommissionCalculator: React.FC<CommissionCalculatorProps> = ({
   };
 
   return (
-    <div className="mt-12 bg-white border-[3px] border-black rounded-3xl p-6 sm:p-10 shadow-[6px_6px_0px_#000] relative overflow-hidden">
+    <div className="mt-2 sm:mt-4 bg-white border-[3px] border-black rounded-3xl p-6 sm:p-10 shadow-[6px_6px_0px_#000] relative overflow-hidden">
       {/* Top Graphic Decal Accent */}
       <div className="absolute top-0 right-0 bg-comic-yellow border-b-[3px] border-l-[3px] border-black px-4 py-1 font-nav text-xs font-bold uppercase tracking-wider rounded-bl-xl">
         REAL-TIME ESTIMATOR
