@@ -24,26 +24,8 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
   const { sfxEnabled, toggleSFX, playClick } = useSound();
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [pricingDropdownOpen, setPricingDropdownOpen] = useState<boolean>(false);
-  const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const dropdownCloseTimeout = useRef<NodeJS.Timeout | null>(null);
   const dropdownMenuRef = useRef<HTMLDivElement | null>(null);
-
-  const openSlots = queueData?.slots?.filter((s) => s.status === "OPEN").length ?? 1;
-
-  // Track scroll position for compact pill morphing
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop =
-        window.scrollY ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop ||
-        0;
-      setIsScrolled(scrollTop > 30);
-    };
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Prevent background scrolling when mobile menu is open
   useEffect(() => {
@@ -145,260 +127,217 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
 
   return (
     <>
-      {/* Floating Neo-Brutalist Island Container */}
-      <header
-        className={`
-          fixed top-3.5 left-4 right-4 z-50 w-[94%] max-w-6xl mx-auto border-[3px] border-black rounded-2xl py-3 px-6
-          shadow-[4px_4px_0px_#000] flex items-center justify-between
-          transition-colors duration-200
-          ${isScrolled ? "bg-white" : "bg-[#FF6B35]"}
-        `}
-      >
-        {/* 1. LEFT: Desktop Navigation Links with Pricing Dropdown Drawer */}
-        <div className="hidden lg:flex items-center gap-1 xl:gap-2">
-          {/* GALLERY Link */}
-          <Link
-            href={pathname === "/" ? "#gallery" : "/artworks"}
-            onClick={(e) =>
-              handleNavClick(e, { href: "/artworks", sectionId: "gallery" })
-            }
-            className={`
-              font-nav font-bold uppercase tracking-wider rounded-full border-2 transition-all select-none px-3 py-1.5 text-xs
-              ${
-                isGalleryActive
-                  ? "bg-[#FFE600] text-black border-black shadow-[2px_2px_0px_#000]"
-                  : "text-black border-transparent hover:border-black hover:bg-[#FFE600] hover:shadow-[2px_2px_0px_#000]"
-              }
-            `}
-          >
-            GALLERY
-          </Link>
-
-          {/* PRICING with Neo-Brutalist Dropdown Drawer */}
-          <div
-            className="relative"
-            onMouseEnter={handleMouseEnterPricing}
-            onMouseLeave={handleMouseLeavePricing}
-          >
-            <Link
-              href={pathname === "/" ? "#pricing" : "/pricing"}
-              onClick={(e) =>
-                handleNavClick(e, { href: "/pricing", sectionId: "pricing" })
-              }
-              onKeyDown={handlePricingKeyDown}
-              aria-haspopup="true"
-              aria-expanded={pricingDropdownOpen}
-              className={`
-                font-nav font-bold uppercase tracking-wider border-2 transition-all flex items-center gap-1 select-none px-3 py-1.5 text-xs
-                ${pricingDropdownOpen ? "rounded-t-full rounded-b-none border-b-black" : "rounded-full"}
-                ${
-                  isPricingActive || pricingDropdownOpen
-                    ? "bg-[#FFE600] text-black border-black shadow-[2px_2px_0px_#000]"
-                    : "text-black border-transparent hover:border-black hover:bg-[#FFE600] hover:shadow-[2px_2px_0px_#000]"
-                }
-              `}
-            >
-              <span>PRICING</span>
-              <ChevronDown
-                className={`transition-transform duration-150 w-3.5 h-3.5 ${pricingDropdownOpen ? "rotate-180" : ""}`}
-              />
-            </Link>
-
-            {/* Neo-Brutalist Solid White Dropdown Drawer */}
-            {pricingDropdownOpen && (
-              <div
-                ref={dropdownMenuRef}
-                onKeyDown={handleDropdownMenuKeyDown}
-                className="absolute top-[calc(100%+8px)] left-0 z-[60] min-w-[240px] max-w-[calc(100vw-32px)] bg-white border-[3px] border-black rounded-2xl shadow-[6px_6px_0px_#000] overflow-hidden select-none animate-comic-snap"
-              >
-                <div className="flex flex-col divide-y-2 divide-black">
-                  <Link
-                    href={pathname === "/" ? "#pricing" : "/pricing"}
-                    onClick={(e) =>
-                      handleNavClick(e, {
-                        href: "/pricing",
-                        sectionId: "pricing",
-                      })
-                    }
-                    className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-[14px] sm:text-[15px] uppercase tracking-[0.05em] text-black hover:bg-[#FFE600] focus-visible:bg-[#FFE600] focus-visible:outline-none transition-colors duration-120 cursor-pointer"
-                  >
-                    <span className="flex items-center gap-2.5">
-                      <span className="bg-transparent text-black border-2 border-black px-1.5 py-0.5 rounded text-[10px] sm:text-xs font-mono font-black shadow-[1px_1px_0px_#000]">
-                        01
-                      </span>
-                      <span>RATES &amp; TIERS</span>
-                    </span>
-                    <span className="opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 group-hover:translate-x-0.5 transition-all text-sm font-black">
-                      →
-                    </span>
-                  </Link>
-
-                  <Link
-                    href={pathname === "/" ? "#calculator" : "/pricing#calculator"}
-                    onClick={(e) =>
-                      handleNavClick(e, {
-                        href: "/pricing#calculator",
-                        sectionId: "calculator",
-                      })
-                    }
-                    className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-[14px] sm:text-[15px] uppercase tracking-[0.05em] text-black hover:bg-[#FFE600] focus-visible:bg-[#FFE600] focus-visible:outline-none transition-colors duration-120 cursor-pointer"
-                  >
-                    <span className="flex items-center gap-2.5">
-                      <span className="bg-transparent text-black border-2 border-black px-1.5 py-0.5 rounded text-[10px] sm:text-xs font-mono font-black shadow-[1px_1px_0px_#000]">
-                        02
-                      </span>
-                      <span>CALCULATOR</span>
-                    </span>
-                    <span className="opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 group-hover:translate-x-0.5 transition-all text-sm font-black">
-                      →
-                    </span>
-                  </Link>
-
-                  <Link
-                    href={pathname === "/" ? "#tos" : "/tos"}
-                    onClick={(e) =>
-                      handleNavClick(e, { href: "/tos", sectionId: "tos" })
-                    }
-                    className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-[14px] sm:text-[15px] uppercase tracking-[0.05em] text-black hover:bg-[#FFE600] focus-visible:bg-[#FFE600] focus-visible:outline-none transition-colors duration-120 cursor-pointer"
-                  >
-                    <span className="flex items-center gap-2.5">
-                      <span className="bg-transparent text-black border-2 border-black px-1.5 py-0.5 rounded text-[10px] sm:text-xs font-mono font-black shadow-[1px_1px_0px_#000]">
-                        03
-                      </span>
-                      <span>COMMISSION TERMS</span>
-                    </span>
-                    <span className="opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 group-hover:translate-x-0.5 transition-all text-sm font-black">
-                      →
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* TOS Link */}
-          <Link
-            href={pathname === "/" ? "#tos" : "/tos"}
-            onClick={(e) =>
-              handleNavClick(e, { href: "/tos", sectionId: "tos" })
-            }
-            className={`
-              font-nav font-bold uppercase tracking-wider rounded-full border-2 transition-all select-none px-3 py-1.5 text-xs
-              ${
-                isTosActive
-                  ? "bg-[#FFE600] text-black border-black shadow-[2px_2px_0px_#000]"
-                  : "text-black border-transparent hover:border-black hover:bg-[#FFE600] hover:shadow-[2px_2px_0px_#000]"
-              }
-            `}
-          >
-            TOS
-          </Link>
-        </div>
-
-        {/* 2. CENTER: Bored Cow Style Chunky Stacked Brand Mark */}
-        <div className="flex-1 lg:flex-initial flex justify-start lg:justify-center">
+      {/* Edge-to-edge Top Bar (Xotoe reference style) */}
+      <header className="fixed top-0 left-0 w-full z-50 bg-white border-b-[3px] border-black">
+        <div className="max-w-6xl mx-auto h-16 md:h-20 px-6 flex items-center justify-between">
+          {/* LEFT: EMILIA STUDIO logo in black */}
           <Link
             href="/"
             onClick={playClick}
-            className="flex flex-col items-center justify-center leading-[0.85] select-none cursor-pointer group"
+            className="flex items-center gap-2 select-none cursor-pointer group"
             aria-label="EMILIA STUDIO - Home"
           >
-            <span className="font-black tracking-normal uppercase font-display text-black group-hover:text-comic-pink transition-colors duration-300 drop-shadow-[1px_1px_0px_#000] text-2xl sm:text-3xl">
+            <span className="font-display font-black text-2xl md:text-3xl uppercase tracking-tight text-black group-hover:text-comic-pink transition-colors">
               EMILIA
             </span>
-            <span className="font-black tracking-widest uppercase font-mono bg-black text-[#FFE600] rounded-sm group-hover:bg-[#FFE600] group-hover:text-black border border-black shadow-[1px_1px_0px_#000] transition-colors duration-300 -mt-0.5 text-[10px] px-1.5 py-0.5">
+            <span className="font-mono text-xs md:text-sm font-black uppercase bg-black text-white px-1.5 py-0.5 rounded border border-black group-hover:bg-[#FFE600] group-hover:text-black transition-colors">
               STUDIO
             </span>
           </Link>
-        </div>
 
-        {/* 3. RIGHT: Audio Toggle + Live Queue Pill Badge + COMMISSION ME CTA + Mobile Hamburger */}
-        <div className="flex items-center gap-2 sm:gap-2.5">
-          {/* Retro SFX Neo-Brutalist Toggle */}
-          <button
-            type="button"
-            onClick={toggleSFX}
-            title="Toggle sound effects"
-            aria-label="Toggle sound effects"
-            className={`
-              hidden sm:flex items-center gap-1 border-2 border-black rounded-lg font-comic uppercase tracking-wider
-              shadow-[2px_2px_0px_#000] active:shadow-none active:translate-x-[1px] active:translate-y-[1px]
-              transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black px-2 py-1 text-xs
-              ${
-                sfxEnabled
-                  ? "bg-[#FFE600] text-black hover:bg-[#FFF033]"
-                  : "bg-neutral-200 text-neutral-600 hover:bg-neutral-300"
+          {/* CENTER: Clean horizontal navigation links in bold uppercase */}
+          <nav className="hidden md:flex items-center gap-8">
+            {/* PRICING with Dropdown Drawer */}
+            <div
+              className="relative"
+              onMouseEnter={handleMouseEnterPricing}
+              onMouseLeave={handleMouseLeavePricing}
+            >
+              <Link
+                href={pathname === "/" ? "#pricing" : "/pricing"}
+                onClick={(e) =>
+                  handleNavClick(e, { href: "/pricing", sectionId: "pricing" })
+                }
+                onKeyDown={handlePricingKeyDown}
+                aria-haspopup="true"
+                aria-expanded={pricingDropdownOpen}
+                className={`
+                  font-nav font-bold text-sm uppercase tracking-wider flex items-center gap-1 transition-colors py-2 select-none
+                  ${isPricingActive || pricingDropdownOpen ? "text-black underline underline-offset-4" : "text-black/80 hover:text-black"}
+                `}
+              >
+                <span>PRICING</span>
+                <ChevronDown
+                  className={`transition-transform duration-150 w-4 h-4 ${pricingDropdownOpen ? "rotate-180" : ""}`}
+                />
+              </Link>
+
+              {/* Solid White Dropdown Drawer */}
+              {pricingDropdownOpen && (
+                <div
+                  ref={dropdownMenuRef}
+                  onKeyDown={handleDropdownMenuKeyDown}
+                  className="absolute top-full left-0 z-[60] min-w-[240px] bg-white border-[3px] border-black rounded-xl shadow-[6px_6px_0px_#000] overflow-hidden select-none animate-comic-snap"
+                >
+                  <div className="flex flex-col divide-y-2 divide-black">
+                    <Link
+                      href={pathname === "/" ? "#pricing" : "/pricing"}
+                      onClick={(e) =>
+                        handleNavClick(e, {
+                          href: "/pricing",
+                          sectionId: "pricing",
+                        })
+                      }
+                      className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-sm uppercase tracking-wider text-black hover:bg-[#FFE600] transition-colors cursor-pointer"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="text-[10px] font-mono font-black border border-black px-1 rounded">01</span>
+                        <span>RATES &amp; TIERS</span>
+                      </span>
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                    </Link>
+
+                    <Link
+                      href={pathname === "/" ? "#calculator" : "/pricing#calculator"}
+                      onClick={(e) =>
+                        handleNavClick(e, {
+                          href: "/pricing#calculator",
+                          sectionId: "calculator",
+                        })
+                      }
+                      className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-sm uppercase tracking-wider text-black hover:bg-[#FFE600] transition-colors cursor-pointer"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="text-[10px] font-mono font-black border border-black px-1 rounded">02</span>
+                        <span>CALCULATOR</span>
+                      </span>
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                    </Link>
+
+                    <Link
+                      href={pathname === "/" ? "#tos" : "/tos"}
+                      onClick={(e) =>
+                        handleNavClick(e, { href: "/tos", sectionId: "tos" })
+                      }
+                      className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-sm uppercase tracking-wider text-black hover:bg-[#FFE600] transition-colors cursor-pointer"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="text-[10px] font-mono font-black border border-black px-1 rounded">03</span>
+                        <span>COMMISSION TERMS</span>
+                      </span>
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* GALLERY */}
+            <Link
+              href={pathname === "/" ? "#gallery" : "/artworks"}
+              onClick={(e) =>
+                handleNavClick(e, { href: "/artworks", sectionId: "gallery" })
               }
-            `}
-          >
-            {sfxEnabled ? (
-              <>
-                <Volume2 className="w-3.5 h-3.5 stroke-[2.5]" />
-                <span className="font-bold hidden md:inline text-[10px]">SFX</span>
-              </>
-            ) : (
-              <>
-                <VolumeX className="w-3.5 h-3.5 stroke-[2]" />
-                <span className="font-bold hidden md:inline text-[10px]">MUTED</span>
-              </>
-            )}
-          </button>
-
-          {/* Primary Action Button: COMMISSION ME (White on top, Yellow when scrolled) */}
-          <Link
-            href={pathname === "/" ? "#contact-section" : "/contact"}
-            onClick={(e) =>
-              handleNavClick(e, { href: "/contact", sectionId: "contact-section" })
-            }
-            className="hidden sm:inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black rounded-xl"
-          >
-            <span
               className={`
-                text-black font-black uppercase border-2 border-black shadow-[3px_3px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all duration-200 cursor-pointer inline-flex items-center gap-1 font-btn px-4 py-2 text-xs rounded-xl
+                font-nav font-bold text-sm uppercase tracking-wider transition-colors py-2 select-none
+                ${isGalleryActive ? "text-black underline underline-offset-4" : "text-black/80 hover:text-black"}
+              `}
+            >
+              GALLERY
+            </Link>
+
+            {/* TOS */}
+            <Link
+              href={pathname === "/" ? "#tos" : "/tos"}
+              onClick={(e) =>
+                handleNavClick(e, { href: "/tos", sectionId: "tos" })
+              }
+              className={`
+                font-nav font-bold text-sm uppercase tracking-wider transition-colors py-2 select-none
+                ${isTosActive ? "text-black underline underline-offset-4" : "text-black/80 hover:text-black"}
+              `}
+            >
+              TOS
+            </Link>
+          </nav>
+
+          {/* RIGHT: SFX toggle + COMMISSION ME button + Mobile Menu Button */}
+          <div className="flex items-center gap-3">
+            {/* Retro SFX Toggle */}
+            <button
+              type="button"
+              onClick={toggleSFX}
+              title="Toggle sound effects"
+              aria-label="Toggle sound effects"
+              className={`
+                hidden sm:flex items-center gap-1.5 border-2 border-black rounded-lg font-comic uppercase tracking-wider
+                shadow-[2px_2px_0px_#000] active:shadow-none active:translate-x-[1px] active:translate-y-[1px]
+                transition-all cursor-pointer select-none px-2.5 py-1.5 text-xs
                 ${
-                  isScrolled
-                    ? "bg-[#FFE600] hover:bg-[#FFF033]"
-                    : "bg-white hover:bg-neutral-100"
+                  sfxEnabled
+                    ? "bg-[#FFE600] text-black hover:bg-[#FFF033]"
+                    : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
                 }
               `}
             >
+              {sfxEnabled ? (
+                <>
+                  <Volume2 className="w-3.5 h-3.5 stroke-[2.5]" />
+                  <span className="font-bold text-[11px]">SFX</span>
+                </>
+              ) : (
+                <>
+                  <VolumeX className="w-3.5 h-3.5 stroke-[2]" />
+                  <span className="font-bold text-[11px]">MUTED</span>
+                </>
+              )}
+            </button>
+
+            {/* Primary Action Button: COMMISSION ME → */}
+            <Link
+              href={pathname === "/" ? "#contact" : "/contact"}
+              onClick={(e) =>
+                handleNavClick(e, { href: "/contact", sectionId: "contact" })
+              }
+              className="hidden sm:inline-flex items-center gap-1.5 bg-white hover:bg-black hover:text-white text-black font-black text-xs uppercase px-4 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer font-btn"
+            >
               <span>COMMISSION ME</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </span>
-          </Link>
+            </Link>
 
-          {/* Neo-Brutalist Comic Hamburger Button (< 1024px) */}
-          <button
-            type="button"
-            onClick={() => {
-              playClick();
-              setMobileMenuOpen((prev) => !prev);
-            }}
-            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-            className={`
-              lg:hidden flex items-center justify-center rounded-xl
-              border-2 border-black shadow-[2px_2px_0px_#000]
-              active:shadow-none active:translate-x-[1px] active:translate-y-[1px]
-              transition-all duration-200 cursor-pointer w-9 h-9
-              ${
-                mobileMenuOpen
-                  ? "bg-comic-pink text-white"
-                  : "bg-[#FFE600] text-black hover:bg-[#FFF033]"
-              }
-            `}
-          >
-            {mobileMenuOpen ? (
-              <X className="w-5 h-5 stroke-[3]" />
-            ) : (
-              <Menu className="w-5 h-5 stroke-[3]" />
-            )}
-          </button>
+            {/* Mobile Hamburger Button (< 768px) */}
+            <button
+              type="button"
+              onClick={() => {
+                playClick();
+                setMobileMenuOpen((prev) => !prev);
+              }}
+              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              className={`
+                md:hidden flex items-center justify-center rounded-lg
+                border-2 border-black shadow-[2px_2px_0px_#000]
+                active:shadow-none active:translate-x-[1px] active:translate-y-[1px]
+                transition-colors cursor-pointer w-10 h-10
+                ${
+                  mobileMenuOpen
+                    ? "bg-comic-pink text-white"
+                    : "bg-white text-black hover:bg-neutral-100"
+                }
+              `}
+            >
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5 stroke-[3]" />
+              ) : (
+                <Menu className="w-5 h-5 stroke-[3]" />
+              )}
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* Full Screen Overlay Drawer (< 1024px) */}
+      {/* Full Screen Overlay Drawer (< 768px) */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-50">
+        <div className="md:hidden fixed inset-0 z-50">
           {/* Backdrop Overlay */}
           <div
             onClick={() => setMobileMenuOpen(false)}
@@ -421,11 +360,11 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
             <div>
               {/* Drawer Header */}
               <div className="flex items-center justify-between pb-5 border-b-[3px] border-black">
-                <div className="flex flex-col items-start leading-[0.85]">
-                  <span className="font-display text-2xl font-black uppercase text-black tracking-tight drop-shadow-[1px_1px_0px_#000]">
+                <div className="flex items-center gap-2">
+                  <span className="font-display text-2xl font-black uppercase text-black tracking-tight">
                     EMILIA
                   </span>
-                  <span className="text-[10px] font-mono font-black bg-black text-[#FFE600] px-1.5 py-0.5 rounded-sm border border-black shadow-[1px_1px_0px_#000] -mt-0.5">
+                  <span className="text-[10px] font-mono font-black bg-black text-white px-1.5 py-0.5 rounded border border-black">
                     STUDIO
                   </span>
                 </div>
@@ -488,57 +427,40 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                           ? `#${link.sectionId}`
                           : link.href
                       }
-                      onClick={(e) => handleNavClick(e, link)}
+                      onClick={(e) =>
+                        handleNavClick(e, {
+                          href: link.href,
+                          sectionId: link.sectionId,
+                        })
+                      }
                       className={`
-                        w-full text-left font-black tracking-wider text-sm py-3 px-4 rounded-xl
-                        border-[3px] border-black flex items-center justify-between
-                        active:translate-x-1 active:translate-y-1 shadow-[4px_4px_0px_#000] active:shadow-none
-                        transition-all cursor-pointer font-comic
+                        flex items-center gap-3 px-4 py-3 rounded-xl border-2 font-nav font-bold uppercase tracking-wider text-sm transition-all
                         ${
                           isActive
-                            ? "bg-[#FFE600] text-black -translate-x-0.5 -translate-y-0.5 shadow-[5px_5px_0px_#000]"
-                            : "bg-neutral-100 hover:bg-[#FFE600] text-black"
+                            ? "bg-[#FFE600] text-black border-black shadow-[3px_3px_0px_#000]"
+                            : "bg-white text-black border-black hover:bg-neutral-50 shadow-[2px_2px_0px_#000]"
                         }
                       `}
                     >
-                      <span className="flex items-center gap-2.5">
-                        <span>{link.emoji}</span>
-                        <span>{link.label}</span>
-                      </span>
-                      <span className="text-sm font-sans font-black">»</span>
+                      <span className="text-base">{link.emoji}</span>
+                      <span>{link.label}</span>
                     </Link>
                   );
                 })}
-
-                {/* Primary Commission CTA */}
-                <Link
-                  href={pathname === "/" ? "#contact-section" : "/contact"}
-                  onClick={(e) =>
-                    handleNavClick(e, {
-                      href: "/contact",
-                      sectionId: "contact-section",
-                    })
-                  }
-                  className="w-full text-center font-btn font-black text-sm uppercase py-3.5 px-4 rounded-xl bg-comic-pink text-white border-[3px] border-black shadow-[4px_4px_0px_#000] active:shadow-none active:translate-x-1 active:translate-y-1 transition-all mt-2"
-                >
-                  ⚡ COMMISSION ME NOW
-                </Link>
               </nav>
             </div>
 
-            {/* Mobile Footer Status */}
-            <div className="pt-4 border-t-2 border-black flex items-center justify-between text-xs font-nav font-bold">
-              <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>SLOTS: {openSlots} LEFT</span>
-              </span>
-              <button
-                type="button"
-                onClick={toggleSFX}
-                className="font-mono text-[10px] uppercase font-bold underline"
+            {/* Drawer Footer Actions */}
+            <div className="pt-4 border-t-2 border-black flex flex-col gap-3">
+              <Link
+                href={pathname === "/" ? "#contact" : "/contact"}
+                onClick={(e) =>
+                  handleNavClick(e, { href: "/contact", sectionId: "contact" })
+                }
+                className="w-full text-center py-3 bg-[#FFE600] hover:bg-[#FFF033] text-black font-black uppercase text-xs rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] active:shadow-none active:translate-x-0.5 active:translate-y-0.5 font-btn transition-all"
               >
-                SFX: {sfxEnabled ? "ON" : "OFF"}
-              </button>
+                COMMISSION ME →
+              </Link>
             </div>
           </aside>
         </div>

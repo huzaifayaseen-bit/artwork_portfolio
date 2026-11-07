@@ -88,7 +88,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
     <section
       ref={containerRef}
       id="hero-section"
-      className="relative min-h-[calc(100svh-4.5rem)] flex items-center pt-32 pb-16 overflow-hidden bg-[#FF6B35] border-b-[4px] border-black w-full scroll-mt-20"
+      className="relative min-h-[calc(100svh-4.5rem)] flex items-center pt-24 md:pt-28 pb-16 overflow-hidden bg-[#FF6B35] border-b-[4px] border-black w-full scroll-mt-20"
     >
       {/* 1. COMIC / ARCADE GEOMETRIC PATTERN OVERLAY */}
       <div className="absolute inset-0 pointer-events-none select-none -z-10" aria-hidden="true">
