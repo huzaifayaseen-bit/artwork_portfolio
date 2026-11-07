@@ -60,7 +60,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFDF9] flex flex-col selection:bg-comic-yellow selection:text-black">
+    <div className="min-h-screen bg-[#FAFAFA] flex flex-col selection:bg-comic-yellow selection:text-black">
       {/* Sticky Comic Navbar */}
       <Navbar profile={data.profile} queueData={data.queue} />
 
@@ -69,10 +69,10 @@ export default function Home() {
         {/* Section 1: Hero (Electric Orange) */}
         <HeroSection profile={data.profile} />
 
-        {/* Section 2: Commission Pricing Bento (Crisp Off-White) */}
+        {/* Section 2: Commission Pricing Bento (Clean Light Mode) */}
         <section
           id="pricing-section"
-          className="w-full bg-[#FFFDF9] border-b-[3px] border-black py-14 md:py-20 scroll-mt-20"
+          className="w-full bg-[#FAFAFA] border-b-[3px] border-black py-14 md:py-20 scroll-mt-20"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Pricing Header */}
@@ -124,10 +124,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 3: Interactive Calculator (Electric Yellow) */}
+        {/* Section 3: Interactive Calculator (Clean Light Mode) */}
         <section
           id="calculator-section"
-          className="w-full bg-[#FFE600] border-b-[3px] border-black py-14 md:py-20 scroll-mt-20"
+          className="w-full bg-white border-b-[3px] border-black py-14 md:py-20 scroll-mt-20"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <CommissionCalculator
@@ -139,30 +139,30 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 4: Curated Artworks Gallery (Warm Sand / Paper Tint) */}
+        {/* Section 4: Curated Artworks Gallery (Clean Light Mode) */}
         <section
           id="artworks-section"
-          className="w-full bg-[#FAF6F0] border-b-[3px] border-black py-14 md:py-20 scroll-mt-20"
+          className="w-full bg-[#FAFAFA] border-b-[3px] border-black py-14 md:py-20 scroll-mt-20"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ArtGallery artworks={data.artworks} limit={12} showViewAllLink={true} />
           </div>
         </section>
 
-        {/* Section 5: Client Transmissions / Reviews (Soft Mint) */}
+        {/* Section 5: Client Transmissions / Reviews (Clean Light Mode) */}
         <section
           id="reviews-section"
-          className="w-full bg-[#ECFDF5] border-b-[3px] border-black py-14 md:py-20 scroll-mt-20"
+          className="w-full bg-white border-b-[3px] border-black py-14 md:py-20 scroll-mt-20"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ClientReviews reviewsData={data.reviews} />
           </div>
         </section>
 
-        {/* Section 6: Terms of Service Codex (Clean White) */}
+        {/* Section 6: Terms of Service Codex (Clean Light Mode) */}
         <section
           id="tos-section"
-          className="w-full bg-white border-b-[3px] border-black py-14 md:py-20 scroll-mt-20"
+          className="w-full bg-[#FAFAFA] border-b-[3px] border-black py-14 md:py-20 scroll-mt-20"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <TermsOfService tosData={data.termsOfService} />
@@ -174,10 +174,10 @@ export default function Home() {
           <ToolsOfTheTrade />
         </div>
 
-        {/* Section 8: Start a Project / Commission Brief (Electric Orange) */}
+        {/* Section 8: Start a Project / Commission Brief (Clean Light Mode) */}
         <section
           id="contact-section"
-          className="w-full bg-[#FF6B35] border-b-[3px] border-black py-14 md:py-20 scroll-mt-20"
+          className="w-full bg-[#FAFAFA] border-b-[3px] border-black py-14 md:py-20 scroll-mt-20"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
             <ContactSection profile={data.profile} />

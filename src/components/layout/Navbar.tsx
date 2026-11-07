@@ -252,7 +252,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
           >
             <span
               className={`
-                font-black tracking-tighter uppercase font-display text-black group-hover:text-comic-pink transition-all duration-300 drop-shadow-[1px_1px_0px_#000]
+                font-black tracking-normal uppercase font-display text-black group-hover:text-comic-pink transition-all duration-300 drop-shadow-[1px_1px_0px_#000]
                 ${isScrolled ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl"}
               `}
             >

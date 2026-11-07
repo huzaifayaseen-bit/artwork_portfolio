@@ -155,7 +155,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
           </div>
 
           {/* Artist Moniker */}
-          <h1 className="font-comic text-7xl sm:text-8xl lg:text-8xl xl:text-9xl text-black font-black tracking-tighter leading-[0.88] select-none mb-3">
+          <h1
+            className="font-comic text-7xl sm:text-8xl lg:text-8xl xl:text-9xl text-[#FFFDF9] font-black tracking-wide leading-[0.88] select-none mb-3 [-webkit-text-stroke:3px_#000000] [text-shadow:6px_6px_0px_#000000]"
+          >
             EMILIA
           </h1>
 
