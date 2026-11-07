@@ -24,8 +24,19 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
   const { sfxEnabled, toggleSFX, playClick } = useSound();
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [pricingDropdownOpen, setPricingDropdownOpen] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const dropdownCloseTimeout = useRef<NodeJS.Timeout | null>(null);
   const dropdownMenuRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      setIsScrolled(y > 40);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Prevent background scrolling when mobile menu is open
   useEffect(() => {
@@ -128,7 +139,10 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
   return (
     <>
       {/* Edge-to-edge Top Bar (Xotoe reference style) */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-white border-b-[3px] border-black">
+      <header
+        className="fixed top-0 left-0 w-full z-50 border-b-[3px] border-black transition-colors duration-200"
+        style={{ backgroundColor: isScrolled ? "#FFFFFF" : "#FF6B35" }}
+      >
         <div className="max-w-6xl mx-auto h-16 md:h-20 px-6 flex items-center justify-between">
           {/* LEFT: EMILIA STUDIO logo in black */}
           <Link
@@ -299,7 +313,14 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
               onClick={(e) =>
                 handleNavClick(e, { href: "/contact", sectionId: "contact" })
               }
-              className="hidden sm:inline-flex items-center gap-1.5 bg-white hover:bg-black hover:text-white text-black font-black text-xs uppercase px-4 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer font-btn"
+              className={`
+                hidden sm:inline-flex items-center gap-1.5 font-black text-xs uppercase px-4 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer font-btn
+                ${
+                  isScrolled
+                    ? "bg-[#FFE600] hover:bg-[#FFF033] text-black"
+                    : "bg-white hover:bg-black hover:text-white text-black"
+                }
+              `}
             >
               <span>COMMISSION ME</span>
               <ArrowRight className="w-3.5 h-3.5" />
