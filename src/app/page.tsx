@@ -140,7 +140,7 @@ export default function Home() {
         </section>
 
         {/* 6. Commission Terms of Service (TOS) Summary */}
-        <section id="tos-section" className="py-10 md:py-14 scroll-mt-20 border-t-4 border-black">
+        <section id="tos-section" className="scroll-mt-20 border-t-4 border-black">
           <TermsOfService tosData={data.termsOfService} />
         </section>
 
