@@ -39,20 +39,20 @@ export const ClientReviews: React.FC<ClientReviewsProps> = ({ reviewsData }) => 
       </div>
 
       {/* Infinite Auto-Scrolling Comic Marquee Strip */}
-      <div className="relative w-full overflow-hidden py-4 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 group">
+      <div className="relative w-full overflow-hidden py-4 px-2 sm:px-4 group">
         {/* Subtle Left & Right Comic Edge Fades */}
         <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 z-10 pointer-events-none bg-gradient-to-r from-[#FAFAFA] to-transparent" />
         <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 z-10 pointer-events-none bg-gradient-to-l from-[#FAFAFA] to-transparent" />
 
         {/* Seamless Scrolling Track (Duplicated items for flawless loop) */}
-        <div className="animate-marquee group-hover:[animation-play-state:paused] flex gap-6 sm:gap-8 items-stretch will-change-transform">
+        <div className="animate-marquee group-hover:[animation-play-state:paused] flex gap-6 sm:gap-8 items-stretch will-change-transform pr-6">
           {[...reviewsData.items, ...reviewsData.items].map((review, index) => (
             <div
               key={`${review.id}-${index}`}
               className="
                 w-[320px] sm:w-[380px] md:w-[420px] flex-shrink-0 flex flex-col justify-between
-                bg-white border-[3px] border-black p-5 sm:p-6 shadow-neo
-                transition-all duration-100 hover:-translate-x-[2px] hover:-translate-y-[2px]
+                bg-[#FFFBEB] border-[3px] border-black rounded-2xl p-5 sm:p-6 shadow-[4px_4px_0px_#000]
+                transition-all duration-100 hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[6px_6px_0px_#000]
                 select-none
               "
             >
@@ -60,10 +60,10 @@ export const ClientReviews: React.FC<ClientReviewsProps> = ({ reviewsData }) => 
               <div>
                 <div className="flex items-center justify-between gap-2 border-b-2 border-black/10 pb-3 mb-4">
                   <div className="flex items-center gap-2">
-                    <span className="w-7 h-7 bg-comic-pink text-white border-2 border-black flex items-center justify-center shadow-[1px_1px_0px_#000]">
+                    <span className="w-7 h-7 bg-comic-pink text-white border-2 border-black rounded-lg flex items-center justify-center shadow-[1px_1px_0px_#000]">
                       <MessageSquareQuote className="w-4 h-4" />
                     </span>
-                    <span className="font-nav text-[11px] font-bold uppercase tracking-wider bg-neutral-100 border border-black px-2 py-0.5">
+                    <span className="font-nav text-[11px] font-bold uppercase tracking-wider bg-white border border-black px-2 py-0.5 rounded-full shadow-[1px_1px_0px_#000]">
                       [{review.projectTag}]
                     </span>
                   </div>
@@ -88,15 +88,15 @@ export const ClientReviews: React.FC<ClientReviewsProps> = ({ reviewsData }) => 
               {/* Client Signature Colophon */}
               <div className="mt-6 pt-4 border-t-2 border-dashed border-black/20 flex items-center justify-between">
                 <div>
-                  <h4 className="font-comic text-lg uppercase text-black tracking-wide leading-tight">
+                  <span className="inline-block bg-white text-black font-nav text-xs font-black px-2.5 py-0.5 rounded-full border border-black shadow-[1px_1px_0px_#000] mb-1">
                     {review.clientName}
-                  </h4>
-                  <p className="text-[11px] font-nav font-semibold text-neutral-500 uppercase tracking-wider">
+                  </span>
+                  <p className="text-[11px] font-nav font-semibold text-neutral-600 uppercase tracking-wider">
                     {review.clientRole}
                   </p>
                 </div>
 
-                <span className="text-[10px] font-mono text-neutral-400 font-bold uppercase">
+                <span className="text-[10px] font-mono text-neutral-500 font-bold uppercase">
                   {review.date}
                 </span>
               </div>

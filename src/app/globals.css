@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  background-color: #fafafa;
+  background-color: #faf7f2;
   color: #111111;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   overflow-x: hidden;
@@ -127,11 +127,183 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .animate-comic-snap,
   .animate-comic-pop,
-  .animate-marquee {
+  .animate-marquee,
+  .animate-float-bob,
+  .animate-halftone-drift,
+  .animate-speed-lines,
+  .animate-tape-marquee,
+  .animate-ink-float,
+  .animate-paper-float,
+  .animate-cloud-drift-slow,
+  .animate-cloud-drift-reverse,
+  .animate-burst-pulse,
+  .animate-sketch-wobble {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
   }
+}
+
+/* Organic 2D Cel-Shaded Cloud Drift */
+@keyframes cloud-drift-slow {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(18px, -8px, 0) scale(1.02);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.animate-cloud-drift-slow {
+  animation: cloud-drift-slow 16s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes cloud-drift-reverse {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-14px, 6px, 0) scale(0.98);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.animate-cloud-drift-reverse {
+  animation: cloud-drift-reverse 20s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Comic Halftone Burst Slow Breathing Pulse */
+@keyframes burst-pulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.22;
+  }
+  50% {
+    transform: scale(1.05) rotate(1.5deg);
+    opacity: 0.32;
+  }
+}
+
+.animate-burst-pulse {
+  animation: burst-pulse 10s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Sketch Line Organic Micro-Wobble */
+@keyframes sketch-wobble {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-3px) rotate(0.5deg);
+  }
+  66% {
+    transform: translateY(2px) rotate(-0.5deg);
+  }
+}
+
+.animate-sketch-wobble {
+  animation: sketch-wobble 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Subtle organic 2D floating for illustrated comic background accents */
+@keyframes ink-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(-1deg);
+  }
+}
+
+.animate-ink-float {
+  animation: ink-float 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes paper-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1.5deg);
+  }
+}
+
+.animate-paper-float {
+  animation: paper-float 8s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Manga Halftone Breathing & Drift */
+@keyframes halftone-breathe {
+  0%, 100% {
+    opacity: 0.05;
+    background-position: 0px 0px;
+  }
+  50% {
+    opacity: 0.08;
+    background-position: 10px 10px;
+  }
+}
+
+.animate-halftone-drift {
+  animation: halftone-breathe 14s ease-in-out infinite;
+  will-change: opacity, background-position;
+}
+
+/* Anime Diagonal Speed Accent Lines */
+@keyframes speed-lines-drift {
+  0% {
+    background-position: 0px 0px;
+    opacity: 0.07;
+  }
+  50% {
+    background-position: -40px 40px;
+    opacity: 0.12;
+  }
+  100% {
+    background-position: -80px 80px;
+    opacity: 0.07;
+  }
+}
+
+.animate-speed-lines {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(0, 0, 0, 0.45) 0px,
+    rgba(0, 0, 0, 0.45) 1.5px,
+    transparent 1.5px,
+    transparent 18px
+  );
+  background-size: 50px 50px;
+  animation: speed-lines-drift 10s linear infinite;
+  will-change: background-position, opacity;
+}
+
+/* Angled Background Kinetic Tape Marquee */
+@keyframes tape-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-tape-marquee {
+  display: flex;
+  width: max-content;
+  animation: tape-marquee 24s linear infinite;
+  will-change: transform;
 }
 
 /* Comic Infinite Marquee Animation */
@@ -178,4 +350,42 @@ body {
   -o-user-drag: none;
   user-drag: none;
 }
+
+/* Decathland-Inspired Die-Cut Sticker Interactions */
+@keyframes sticker-bob-1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-1deg);
+  }
+}
+
+@keyframes sticker-bob-2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(4deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(6deg);
+  }
+}
+
+.animate-sticker-1 {
+  animation: sticker-bob-1 4.5s ease-in-out infinite;
+}
+
+.animate-sticker-2 {
+  animation: sticker-bob-2 5.2s ease-in-out infinite 0.7s;
+}
+
+.die-cut-sticker {
+  filter: drop-shadow(0 0 1px #ffffff) drop-shadow(0 0 2px #ffffff) drop-shadow(3px 3px 0px #000000);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.die-cut-sticker:hover {
+  transform: scale(1.18) rotate(8deg);
+  filter: drop-shadow(0 0 2px #ffffff) drop-shadow(0 0 4px #ffffff) drop-shadow(5px 5px 0px #000000);
+}
+
 

@@ -1,79 +1,418 @@
-import React from "react";
+"use client";
+
+import React, { useRef, useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ArtistProfile } from "@/types/portfolio";
 import { ComicButton } from "@/components/ui/ComicButton";
-import { HeroComicCard } from "@/components/sections/HeroComicCard";
-import { Sparkles, ArrowRight, ShieldCheck, Zap } from "lucide-react";
+import { triggerArtworkProtectedToast } from "@/components/ui/ArtworkProtectionToast";
+import { ArrowUpRight, Zap, Compass, CheckCircle2, Star } from "lucide-react";
 
 export interface HeroSectionProps {
   profile: ArtistProfile;
 }
 
+/** Configurable Die-Cut Emote Stickers */
+const EMOTE_STICKERS = [
+  {
+    id: "emote-happy",
+    src: "/assets/artworks/artwork_samples/emotes/1.png",
+    alt: "Hand-drawn happy emote sticker",
+    tooltip: "CUSTOM EMOTES // HAND-DRAWN",
+    positionClass: "-top-3 -right-2 sm:-top-5 sm:-right-4",
+    animationClass: "animate-sticker-1",
+    initialRotate: "rotate-6",
+    sizeClass: "w-14 h-14 sm:w-18 sm:h-18 lg:w-20 lg:h-20",
+  },
+  {
+    id: "emote-love",
+    src: "/assets/artworks/artwork_samples/emotes/3.png",
+    alt: "Cel-shaded love emote sticker",
+    tooltip: "TWITCH & DISCORD // READY",
+    positionClass: "-bottom-6 sm:-bottom-8 -left-3 sm:-left-6",
+    animationClass: "animate-sticker-2",
+    initialRotate: "-rotate-12",
+    sizeClass: "w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20",
+  },
+];
+
+const TICKER_ITEMS = [
+  "2D CEL-SHADED ILLUSTRATIONS",
+  "CUSTOM EMOTE PACKS",
+  "WEBCOMIC ADAPTATIONS",
+  "RAZOR-SHARP VECTOR INKING",
+  "CHARACTER SHEETS",
+  "STORYBOARDS",
+];
+
 export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
+  const containerRef = useRef<HTMLElement>(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    let rafId: number;
+    const handleMouseMove = (e: MouseEvent) => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        if (!containerRef.current) return;
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+        const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+        setTilt({
+          x: Math.max(-1, Math.min(1, x)),
+          y: Math.max(-1, Math.min(1, y)),
+        });
+      });
+    };
+
+    const el = containerRef.current;
+    if (el) {
+      el.addEventListener("mousemove", handleMouseMove);
+    }
+    return () => {
+      if (el) {
+        el.removeEventListener("mousemove", handleMouseMove);
+      }
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  const handleContextMenu = (e: React.MouseEvent) => {
+    e.preventDefault();
+    triggerArtworkProtectedToast();
+  };
+
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    const el = document.getElementById(targetId);
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <section id="hero-section" className="pt-10 sm:pt-14 md:pt-16 pb-14 sm:pb-20">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-        {/* Left Column: Bold Headline & Action Triggers */}
-        <div className="lg:col-span-7 flex flex-col items-start">
-          {/* Status Badge */}
-          <div className="animate-comic-snap inline-flex items-center gap-2 bg-comic-green text-black border-[3px] border-black px-3.5 py-1 font-nav text-xs sm:text-sm font-bold uppercase tracking-wider shadow-neo-sm mb-4">
-            <span className="w-2.5 h-2.5 rounded-none bg-black animate-pulse" />
-            <span>{profile.statusText}</span>
+    <section
+      ref={containerRef}
+      id="hero-section"
+      className="relative pt-24 sm:pt-28 lg:pt-32 pb-0 overflow-hidden bg-[#FAFAFA]"
+    >
+      {/* 1. COMIC HALFTONE BACKGROUND MATRIX & ATMOSPHERIC WASH */}
+      <div className="absolute inset-0 pointer-events-none select-none -z-10" aria-hidden="true">
+        {/* Comic halftone dot matrix overlay with radial mask over left text column */}
+        <div
+          className="absolute inset-0 opacity-[0.12]"
+          style={{
+            backgroundImage: "radial-gradient(#000 1.25px, transparent 1.25px)",
+            backgroundSize: "24px 24px",
+            maskImage:
+              "radial-gradient(circle at 25% 45%, transparent 0%, transparent 35%, rgba(0, 0, 0, 0.4) 60%, black 90%)",
+            WebkitMaskImage:
+              "radial-gradient(circle at 25% 45%, transparent 0%, transparent 35%, rgba(0, 0, 0, 0.4) 60%, black 90%)",
+          }}
+        />
+
+        {/* Ambient Cyan Wash (Top-Right focal area) */}
+        <div
+          className="absolute -top-12 -right-16 w-[560px] h-[560px] rounded-full bg-[#00E5FF]/10 blur-3xl transition-transform duration-1000 ease-out"
+          style={{ transform: `translate3d(${tilt.x * -14}px, ${tilt.y * -14}px, 0)` }}
+        />
+        {/* Ambient Violet Wash (Bottom-Left undercurrent) */}
+        <div
+          className="absolute bottom-4 left-10 w-[420px] h-[420px] rounded-full bg-[#9933FF]/10 blur-3xl transition-transform duration-1000 ease-out"
+          style={{ transform: `translate3d(${tilt.x * 12}px, ${tilt.y * 12}px, 0)` }}
+        />
+
+        {/* Precision Registration Studio Grid Lines */}
+        <div
+          className="absolute inset-0 opacity-[0.025]"
+          style={{
+            backgroundImage:
+              "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
+        />
+      </div>
+
+      {/* 2. TECHNICAL VECTOR ACCENTS (Crosshairs & Watermarks - Cleanly Spaced) */}
+      <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
+        {/* Top-Right Watermark */}
+        <div className="absolute top-6 right-4 sm:right-6 font-mono text-[9px] tracking-widest text-black/25 uppercase hidden sm:block">
+          SYS.INK_V2 // 2026.STUDIO
+        </div>
+
+        {/* Center-Grid Crosshair Accent */}
+        <div className="absolute top-12 left-[48%] font-mono text-[13px] font-bold text-black/15 hidden md:block">
+          +
+        </div>
+
+        {/* Bottom-Left Crosshair */}
+        <div className="absolute bottom-12 left-4 sm:left-6 font-mono text-[11px] font-bold text-black/25 flex items-center gap-1.5">
+          <span>+</span>
+          <span className="text-[9px] tracking-widest uppercase">COORD.24.X</span>
+        </div>
+      </div>
+
+      {/* Main Editorial Studio Grid: 12 Columns */}
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center pb-8 sm:pb-12 lg:pb-16">
+        {/* LEFT / INTRO COLUMN (5 cols on lg) */}
+        <div className="lg:col-span-5 flex flex-col justify-center order-2 lg:order-1">
+          {/* Studio Meta Eyebrow & Status */}
+          <div className="flex flex-wrap items-center gap-3 mb-5">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 border border-black/80 bg-white font-nav text-[11px] font-bold uppercase tracking-wider text-black shadow-[2px_2px_0px_#000000]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00E5FF] animate-pulse" />
+              INDEPENDENT STUDIO
+            </span>
+            <span className="inline-flex items-center gap-1.5 text-[11px] font-nav font-medium text-neutral-600 tracking-wide">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 ring-2 ring-emerald-500/20" />
+              {profile.statusText || "COMMISSIONS OPEN // Q4 SLOTS"}
+            </span>
           </div>
 
-          {/* Punchy Title */}
-          <h1 className="animate-comic-snap animation-delay-80 font-comic text-6xl sm:text-8xl xl:text-9xl uppercase tracking-wide text-black leading-[0.9] mb-4">
-            EMILIA // <br className="hidden sm:inline" />
-            <span className="text-stroke-comic">2D CEL-SHADED ARTIST</span>
+          {/* Artist Moniker */}
+          <h1 className="font-comic text-7xl sm:text-8xl lg:text-8xl xl:text-9xl tracking-tight text-black leading-[0.88] select-none mb-3">
+            EMILIA
           </h1>
 
-          {/* Tagline / Subtitle */}
-          <div className="animate-comic-snap animation-delay-160 bg-comic-yellow border-[3px] border-black p-3.5 sm:p-4 shadow-neo-sm mb-6 max-w-xl">
-            <p className="font-nav text-sm sm:text-base font-semibold uppercase text-black tracking-wide leading-snug">
-              BOLD CHARACTERS. VIBRANT COLORS. CLEAN CEL-SHADING.
-            </p>
-          </div>
-
-          <p className="animate-comic-snap animation-delay-240 text-sm sm:text-base text-neutral-800 font-sans leading-relaxed max-w-xl mb-8">
-            I create expressive 2D cel-shaded character illustrations, fan art, and original character designs.
+          {/* Short Evocative Headline */}
+          <p className="font-nav text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-neutral-900 mb-4 flex items-center gap-2">
+            <span>Characters with attitude.</span>
+            <span className="inline-block w-8 h-[3px] bg-[#00E5FF]" />
           </p>
 
-          {/* Call to Actions */}
-          <div className="animate-comic-snap animation-delay-240 flex flex-wrap items-center gap-4">
-            <Link href="/artworks">
-              <ComicButton variant="primary" size="lg" icon={<Zap className="w-5 h-5 fill-black" />}>
-                VIEW ARTWORK
+          {/* Editorial Style Narrative Introduction */}
+          <p className="text-neutral-700 text-sm sm:text-base leading-relaxed max-w-lg mb-7 font-sans">
+            Original 2D cel-shaded illustrations built with razor-sharp vector inking, stepped tonal separation, and high-impact comic sensibilities. Handcrafted for authors, indie game directors, and collectors.
+          </p>
+
+          {/* Commission Conversion Triggers */}
+          <div className="flex flex-wrap items-center gap-3.5 mb-8">
+            <Link
+              href="#contact-section"
+              onClick={(e) => handleSmoothScroll(e, "contact-section")}
+              className="group"
+            >
+              <ComicButton
+                variant="accent"
+                size="lg"
+                icon={<Zap className="w-4 h-4 fill-white" />}
+                className="shadow-[4px_4px_0px_#000000] hover:shadow-[6px_6px_0px_#000000] transition-all"
+              >
+                COMMISSION ME
               </ComicButton>
             </Link>
-            <Link href="/pricing">
-              <ComicButton variant="accent" size="lg" icon={<ArrowRight className="w-5 h-5" />}>
-                VIEW COMMISSIONS
-              </ComicButton>
+
+            <Link
+              href="#artworks-section"
+              onClick={(e) => handleSmoothScroll(e, "artworks-section")}
+              className="inline-flex items-center gap-2 px-5 py-3 border-2 border-black bg-white hover:bg-neutral-100 font-nav text-xs sm:text-sm font-bold uppercase tracking-wider text-black shadow-[3px_3px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] transition-all"
+            >
+              <Compass className="w-4 h-4 text-[#9933FF]" />
+              <span>EXPLORE ARTWORK</span>
+              <ArrowUpRight className="w-4 h-4 text-black/60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
           </div>
 
-          {/* Micro Value Highlights */}
-          <div className="mt-8 flex flex-wrap gap-4 text-xs font-nav font-semibold text-neutral-700 uppercase tracking-wider">
-            <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-comic-pink stroke-[2.5]" />
-              300 DPI PRINT MASTER ASSETS
+          {/* Studio Craft Badges */}
+          <div className="pt-6 border-t border-black/15 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-nav text-neutral-600">
+            <span className="inline-flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#00E5FF]" />
+              300 DPI Print Masters
             </span>
-            <span className="flex items-center gap-1.5">
-              <Sparkles className="w-4 h-4 text-comic-cyan stroke-[2.5]" />
-              VECTOR INKS &amp; PSD SOURCE FILES
+            <span className="inline-flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#9933FF]" />
+              Stepped Cel Values
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-black" />
+              Layered PSD + Vector Inks
             </span>
           </div>
         </div>
 
-        {/* Right Column: Featured Character Showcase Panel with 2.5D Parallax */}
-        <div className="lg:col-span-5 flex justify-center">
-          <div className="w-full flex justify-center animate-comic-pop animation-delay-160">
-            <HeroComicCard
-              imageSrc={profile.heroCharacterImage}
-              characterTitle="CYBER RONIN // REKKA"
-              badgeTag="ISSUE #01"
+        {/* RIGHT / 3. ARTWORK COLLAGE WITH SPRING PHYSICS & DIE-CUT EMOTE STICKERS (7 cols on lg) */}
+        <div className="lg:col-span-7 order-1 lg:order-2">
+          {/* Collage Stage Container */}
+          <div className="relative w-full max-w-[580px] lg:max-w-none mx-auto pt-2 pb-6 sm:pb-8 px-2 sm:px-4">
+
+            {/* BRAND ACCENT GLOW BEHIND 3-IMAGE COLLAGE */}
+            <div
+              className="absolute inset-2 -z-20 pointer-events-none select-none blur-3xl opacity-10 transition-transform duration-700 ease-out"
+              style={{
+                background: "radial-gradient(circle at 60% 45%, #FFE600 0%, #FF2A6D 50%, #9933FF 85%)",
+                transform: `translate3d(${tilt.x * -10}px, ${tilt.y * -10}px, 0)`,
+              }}
+              aria-hidden="true"
             />
+
+            {/* Integrated Cyan & Violet Structural Framing Underlays */}
+            <div
+              className="absolute inset-x-6 top-6 bottom-6 bg-gradient-to-br from-[#00E5FF]/15 via-transparent to-[#9933FF]/15 border border-black/10 -z-20 pointer-events-none"
+              aria-hidden="true"
+            />
+            {/* Cyan structural backing block */}
+            <div
+              className="absolute top-2 sm:top-4 right-10 sm:right-20 w-48 sm:w-60 h-52 sm:h-64 bg-[#00E5FF]/20 border border-black/20 -z-10 pointer-events-none transition-transform duration-700 ease-out"
+              style={{ transform: `translate3d(${tilt.x * -8}px, ${tilt.y * -8}px, 0)` }}
+              aria-hidden="true"
+            />
+            {/* Violet geometric grounding block */}
+            <div
+              className="absolute bottom-6 sm:bottom-8 left-6 sm:left-12 w-44 sm:w-56 h-40 sm:h-52 bg-[#9933FF]/15 border border-black/20 -z-10 pointer-events-none transition-transform duration-700 ease-out"
+              style={{ transform: `translate3d(${tilt.x * 10}px, ${tilt.y * 10}px, 0)` }}
+              aria-hidden="true"
+            />
+
+            {/* ARTWORK COLLAGE COMPOSITION WITH SPRING HOVER PHYSICS */}
+            <div className="relative w-full min-h-[420px] sm:min-h-[490px] lg:min-h-[520px]">
+
+              {/* 1. SECONDARY BACK LAYER (Top Left): Editorial Graphic Novel Cover (Issue 10, 4/5 Aspect) */}
+              <div
+                className="absolute top-0 left-0 w-[42%] sm:w-[38%] z-10 transition-transform duration-500 ease-out"
+                style={{
+                  transform: `translate3d(${tilt.x * 6}px, ${tilt.y * 6}px, 0)`,
+                }}
+              >
+                {/* Violet Accent Underlay */}
+                <div
+                  className="absolute inset-0 bg-[#9933FF] translate-x-1.5 translate-y-1.5 -z-10 border border-black/60"
+                  aria-hidden="true"
+                />
+                <div
+                  onContextMenu={handleContextMenu}
+                  className="group relative bg-neutral-900 border-[2px] border-black shadow-[4px_4px_0px_#000000] overflow-hidden cursor-pointer transition-all duration-[350ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-x-1 hover:-translate-y-2 hover:-rotate-1 hover:shadow-[8px_8px_0px_#000000] hover:z-40"
+                >
+                  <div className="relative aspect-[4/5] w-full overflow-hidden bg-neutral-900">
+                    <Image
+                      src="/assets/artworks/artwork_samples/Book cover/WhatsApp Image 2026-10-25 at 10.17.58 AM (1).jpeg"
+                      alt="Editorial graphic novel cover by Emilia"
+                      fill
+                      sizes="(max-width: 640px) 42vw, 24vw"
+                      className="object-cover object-center filter contrast-[1.02] transition-transform duration-500 ease-out group-hover:scale-105"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* 2. PRIMARY FOCAL ARTWORK (Dominant Center-Right): Character 28 (CHARACTER-ART-29: Blue-haired girl with blue top hat, 1/1 Aspect) */}
+              <div
+                className="absolute top-4 sm:top-6 right-0 sm:right-2 w-[65%] sm:w-[66%] z-20 transition-transform duration-500 ease-out"
+                style={{
+                  transform: `translate3d(${tilt.x * -6}px, ${tilt.y * -6}px, 0)`,
+                }}
+              >
+                {/* Solid Cyan Offset Anchor Slab */}
+                <div
+                  className="absolute inset-0 bg-[#00E5FF] translate-x-2.5 translate-y-2.5 sm:translate-x-3.5 sm:translate-y-3.5 -z-10 border-2 border-black"
+                  aria-hidden="true"
+                />
+
+                <div
+                  onContextMenu={handleContextMenu}
+                  className="group relative bg-white border-[2.5px] sm:border-[3px] border-black shadow-[6px_6px_0px_#000000] overflow-hidden cursor-pointer transition-all duration-[350ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-x-1 hover:-translate-y-2 hover:rotate-1 hover:shadow-[8px_8px_0px_#000000] hover:z-40"
+                >
+                  <div className="relative aspect-square w-full overflow-hidden bg-neutral-950">
+                    <Image
+                      src="/assets/artworks/artwork_samples/Character_art/28.jpg"
+                      alt="Featured character illustration by Emilia"
+                      fill
+                      priority
+                      sizes="(max-width: 640px) 66vw, (max-width: 1024px) 50vw, 38vw"
+                      className="object-cover object-top filter contrast-[1.03] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* 3. TERTIARY ACCENT LAYER (Bottom Left): Character 10 Reaper (1/1 Aspect) */}
+              <div
+                className="absolute bottom-3 sm:bottom-5 left-5 sm:left-8 w-[36%] sm:w-[34%] z-30 transition-transform duration-700 ease-out"
+                style={{
+                  transform: `translate3d(${tilt.x * 10}px, ${tilt.y * 10}px, 0)`,
+                }}
+              >
+                {/* Dark Ink Offset Slab */}
+                <div
+                  className="absolute inset-0 bg-black translate-x-1.5 translate-y-1.5 -z-10"
+                  aria-hidden="true"
+                />
+                <div
+                  onContextMenu={handleContextMenu}
+                  className="group relative bg-white border-[2px] border-black shadow-[4px_4px_0px_#000000] overflow-hidden cursor-pointer transition-all duration-[350ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-x-1 hover:-translate-y-2 hover:-rotate-1 hover:shadow-[8px_8px_0px_#000000] hover:z-40"
+                >
+                  <div className="relative aspect-square w-full overflow-hidden bg-neutral-900">
+                    <Image
+                      src="/assets/artworks/artwork_samples/Character_art/10.jpg"
+                      alt="Kinetic cel character illustration by Emilia"
+                      fill
+                      sizes="(max-width: 640px) 36vw, 20vw"
+                      className="object-cover object-top filter contrast-[1.02] transition-transform duration-500 ease-out group-hover:scale-105"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* 4. PLAYFUL DECATHLAND-INSPIRED DIE-CUT EMOTE STICKERS */}
+              {EMOTE_STICKERS.map((sticker) => (
+                <div
+                  key={sticker.id}
+                  className={`absolute ${sticker.positionClass} z-30 pointer-events-auto select-none`}
+                >
+                  <div className={`group relative ${sticker.animationClass}`}>
+                    {/* Tooltip Pill */}
+                    <div className="absolute -top-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 z-50 whitespace-nowrap bg-black text-[#FFE600] border border-black text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 shadow-[2px_2px_0px_#FFE600]">
+                      {sticker.tooltip}
+                    </div>
+
+                    {/* Physical Die-Cut Vinyl Sticker Image */}
+                    <div
+                      onContextMenu={handleContextMenu}
+                      className={`relative ${sticker.sizeClass} cursor-pointer die-cut-sticker ${sticker.initialRotate} active:scale-95`}
+                    >
+                      <Image
+                        src={sticker.src}
+                        alt={sticker.alt}
+                        fill
+                        sizes="80px"
+                        className="object-contain no-drag"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              {/* Editorial Studio Watermark Stamp */}
+              <div
+                className="hidden sm:inline-flex items-center gap-2 absolute -bottom-1 right-2 z-30 bg-white/95 backdrop-blur-sm border border-black/80 px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-widest text-neutral-600 shadow-[2px_2px_0px_#000000]"
+                aria-hidden="true"
+              >
+                <span className="w-1.5 h-1.5 bg-[#00E5FF] rounded-none inline-block" />
+                <span>ATELIER EMILIA // COMPOSITION</span>
+              </div>
+
+            </div>
           </div>
+        </div>
+      </div>
+
+      {/* 4. NEO-BRUTALIST BOTTOM MARQUEE TICKER (Directly at the bottom edge of Hero) */}
+      <div className="w-full border-y-[3px] border-black bg-[#FFE600] text-black font-nav font-bold uppercase tracking-wider py-2.5 overflow-hidden select-none pause-hover cursor-default">
+        <div className="animate-marquee flex items-center gap-6 whitespace-nowrap text-xs sm:text-sm">
+          {/* Duplicate set for seamless continuous marquee loop */}
+          {[...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS].map((item, idx) => (
+            <span key={idx} className="inline-flex items-center gap-6">
+              <span className="tracking-wide">{item}</span>
+              <span className="inline-flex items-center text-black">
+                {idx % 2 === 0 ? (
+                  <Star className="w-3.5 h-3.5 fill-black stroke-none" />
+                ) : (
+                  <Zap className="w-3.5 h-3.5 fill-black stroke-none" />
+                )}
+              </span>
+            </span>
+          ))}
         </div>
       </div>
     </section>

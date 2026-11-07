@@ -33,6 +33,7 @@ const config: Config = {
       fontFamily: {
         heading: ['var(--font-bebas-neue)', 'Impact', 'sans-serif'],
         comic: ['var(--font-bebas-neue)', 'Impact', 'sans-serif'],
+        display: ['var(--font-righteous)', 'Impact', 'sans-serif'],
         nav: ['var(--font-space-grotesk)', 'sans-serif'],
         btn: ['var(--font-space-grotesk)', 'sans-serif'],
         sans: ['var(--font-inter)', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],

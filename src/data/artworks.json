@@ -7,7 +7,7 @@
     "status": "OPEN",
     "statusText": "COMMISSIONS OPEN // Q4 SLOTS",
     "discordTag": "ame_01921",
-    "email": "commissions@emilia-art.com",
+    "email": "contact@emiliaart.studio",
     "bio": "2D illustrator specializing in high-energy cel-shaded character design, graphic novel covers, and dynamic action keyframes.",
     "avatarUrl": "/assets/artworks/artwork_samples/Character_art/11.jpg",
     "heroCharacterImage": "/assets/artworks/artwork_samples/Character_art/24.jpg",
@@ -30,7 +30,7 @@
       {
         "platform": "email",
         "label": "Direct Inquiry // Email Brief",
-        "url": "mailto:commissions@emilia-art.com?subject=Commission%20Inquiry%20-%20Emilia%20Portfolio"
+        "url": "mailto:contact@emiliaart.studio?subject=Commission%20Inquiry%20-%20Emilia%20Portfolio"
       }
     ]
   },
@@ -1441,19 +1441,19 @@
         "id": "scope-headshot",
         "name": "HEADSHOT / BUST",
         "subtitle": "High-impact character portrait to shoulders",
-        "basePrice": 60
+        "basePrice": 85
       },
       {
         "id": "scope-halfbody",
         "name": "HALF BODY",
         "subtitle": "Waist-up character with dynamic pose / hands",
-        "basePrice": 120
+        "basePrice": 160
       },
       {
         "id": "scope-fullbody",
         "name": "FULL CHARACTER",
         "subtitle": "Complete head-to-toe hero figure / action stance",
-        "basePrice": 220
+        "basePrice": 280
       }
     ],
     "addons": [
@@ -1490,7 +1490,7 @@
   "queue": {
     "title": "LIVE COMMISSION QUEUE",
     "subtitle": "Real-time production pipeline status. Lock your slot before the queue closes.",
-    "quarterLabel": "OCT / Q4 SLOTS",
+    "quarterLabel": "ACTIVE QUEUE // LIVE PIPELINE",
     "slots": [
       {
         "id": 1,
@@ -1498,7 +1498,7 @@
         "status": "IN_PROGRESS",
         "stage": "Clean Inks // Cel-Shading Pass",
         "clientMask": "Client #A*** (Discord)",
-        "eta": "Oct 30",
+        "eta": "Final Rendering (2-3 Days)",
         "claimable": false
       },
       {
@@ -1507,7 +1507,7 @@
         "status": "IN_PROGRESS",
         "stage": "Rough Sketch Review // Pose Adjustments",
         "clientMask": "Client #V*** (Twitter/X)",
-        "eta": "Nov 03",
+        "eta": "In Client Review (3-5 Days)",
         "claimable": false
       },
       {
@@ -1516,7 +1516,7 @@
         "status": "RESERVED",
         "stage": "Deposit Verified // Brief Intake Queued",
         "clientMask": "Client #K*** (Email)",
-        "eta": "Nov 07",
+        "eta": "Next in Line (5-7 Days)",
         "claimable": false
       },
       {
@@ -1525,7 +1525,7 @@
         "status": "OPEN",
         "stage": "Available for Immediate Intake",
         "clientMask": "Awaiting Commission Brief",
-        "eta": "Ready to Start",
+        "eta": "Immediate Start",
         "claimable": true
       }
     ]

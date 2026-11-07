@@ -84,14 +84,14 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
       {/* Top 2 Neo-Brutalist Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch mb-12">
         {/* Card 1: General Terms */}
-        <div className="bg-white border-[4px] border-black p-6 sm:p-8 shadow-neo flex flex-col justify-between">
+        <div className="bg-white border-[3px] border-black rounded-2xl p-6 sm:p-8 shadow-[5px_5px_0px_#000] flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between gap-2 mb-4">
-              <span className="inline-flex items-center gap-2 bg-black text-white px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider">
+              <span className="inline-flex items-center gap-2 bg-black text-white px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider rounded-full">
                 <FileText className="w-3.5 h-3.5 text-comic-yellow" />
                 {tosData.generalTerms.badge}
               </span>
-              <span className="font-comic text-xs tracking-widest text-neutral-500 uppercase">
+              <span className="font-mono text-xs font-bold tracking-widest text-neutral-500 uppercase">
                 SEC. 01 // RULES
               </span>
             </div>
@@ -105,7 +105,9 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
             <ul className="space-y-3.5">
               {tosData.generalTerms.rules.map((rule, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <span className="w-2 h-2 bg-black mt-2 flex-shrink-0" />
+                  <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-comic-yellow border border-black font-mono text-[10px] font-black text-black mt-0.5 flex-shrink-0 shadow-[1px_1px_0px_#000]">
+                    {idx + 1}
+                  </span>
                   <p className="font-sans text-xs sm:text-sm text-neutral-800 leading-relaxed">
                     {rule}
                   </p>
@@ -116,14 +118,14 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
         </div>
 
         {/* Card 2: Payment & Invoicing */}
-        <div className="bg-white border-[4px] border-black p-6 sm:p-8 shadow-neo flex flex-col justify-between">
+        <div className="bg-white border-[3px] border-black rounded-2xl p-6 sm:p-8 shadow-[5px_5px_0px_#000] flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between gap-2 mb-4">
-              <span className="inline-flex items-center gap-2 bg-black text-white px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider">
+              <span className="inline-flex items-center gap-2 bg-black text-white px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider rounded-full">
                 <CreditCard className="w-3.5 h-3.5 text-comic-cyan" />
                 {tosData.paymentInvoicing.badge}
               </span>
-              <span className="font-comic text-xs tracking-widest text-neutral-500 uppercase">
+              <span className="font-mono text-xs font-bold tracking-widest text-neutral-500 uppercase">
                 SEC. 02 // BILLING
               </span>
             </div>
@@ -137,7 +139,9 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
             <ul className="space-y-3.5">
               {tosData.paymentInvoicing.rules.map((rule, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <span className="w-2 h-2 bg-comic-pink mt-2 flex-shrink-0 border border-black" />
+                  <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-comic-cyan border border-black font-mono text-[10px] font-black text-black mt-0.5 flex-shrink-0 shadow-[1px_1px_0px_#000]">
+                    {idx + 1}
+                  </span>
                   <p className="font-sans text-xs sm:text-sm text-neutral-800 leading-relaxed">
                     {rule}
                   </p>
@@ -149,7 +153,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
       </div>
 
       {/* Bottom Collapsible Section: Client & Artist Guidelines */}
-      <div className="border-[4px] border-black bg-white p-6 sm:p-8 shadow-neo-lg">
+      <div className="border-[3px] border-black bg-white rounded-3xl p-6 sm:p-8 shadow-[6px_6px_0px_#000]">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b-[3px] border-black">
           <div>
             <h3 className="font-comic text-3xl sm:text-4xl uppercase text-black tracking-wide leading-none">
@@ -159,7 +163,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
               TRANSPARENT RIGHTS, RESPONSIBILITIES &amp; CODE OF ETHICS
             </p>
           </div>
-          <span className="bg-comic-cyan border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider text-black w-fit">
+          <span className="bg-comic-cyan border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider text-black rounded-full shadow-[2px_2px_0px_#000] w-fit">
             4 OPERATIONAL PANELS
           </span>
         </div>
@@ -171,7 +175,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
             return (
               <div
                 key={item.id}
-                className="border-[3px] border-black bg-neutral-50 overflow-hidden shadow-neo-sm transition-all"
+                className="border-2 border-black rounded-2xl bg-neutral-50 overflow-hidden shadow-[3px_3px_0px_#000] transition-all"
               >
                 {/* Accordion Trigger Header */}
                 <button
@@ -180,12 +184,12 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
                   aria-expanded={isOpen}
                   className="
                     w-full flex items-center justify-between p-4 bg-white
-                    border-b-[3px] border-black text-left select-none
+                    border-b-2 border-black text-left select-none
                     hover:bg-neutral-100 transition-colors
                   "
                 >
                   <div className="flex items-center gap-3">
-                    <div className={`p-1.5 border-2 border-black shadow-[2px_2px_0px_#000] ${getBadgeStyle(item.colorVariant)}`}>
+                    <div className={`p-1.5 border-2 border-black rounded-lg shadow-[2px_2px_0px_#000] ${getBadgeStyle(item.colorVariant)}`}>
                       {getGuidelineIcon(item.iconType)}
                     </div>
                     <span className="font-comic text-xl sm:text-2xl uppercase tracking-wide text-black">
@@ -193,7 +197,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
                     </span>
                   </div>
 
-                  <div className={`transform transition-transform duration-100 p-1 border border-black bg-comic-yellow ${isOpen ? "rotate-180" : ""}`}>
+                  <div className={`transform transition-transform duration-100 p-1 border-2 border-black rounded-md bg-comic-yellow ${isOpen ? "rotate-180" : ""}`}>
                     <ChevronDown className="w-4 h-4 stroke-[3]" />
                   </div>
                 </button>
@@ -204,7 +208,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
                     <ul className="space-y-3">
                       {item.points.map((pt, pIdx) => (
                         <li key={pIdx} className="flex items-start gap-2.5">
-                          <span className="w-1.5 h-1.5 bg-black mt-2 flex-shrink-0" />
+                          <span className="w-2 h-2 rounded-full bg-black mt-2 flex-shrink-0" />
                           <p className="font-sans text-xs sm:text-sm text-neutral-800 leading-relaxed">
                             {pt}
                           </p>

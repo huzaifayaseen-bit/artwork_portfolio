@@ -1,58 +1,24 @@
 "use client";
 
-import React, { useRef, useState, useCallback } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { Sparkles } from "lucide-react";
 import { triggerArtworkProtectedToast } from "@/components/ui/ArtworkProtectionToast";
+import { Sparkles, Play, Image as ImageIcon } from "lucide-react";
 
 export interface HeroComicCardProps {
-  imageSrc: string;
+  imageSrc?: string;
+  videoSrc?: string;
   characterTitle?: string;
   badgeTag?: string;
 }
 
 export const HeroComicCard: React.FC<HeroComicCardProps> = ({
-  imageSrc,
-  characterTitle = "CYBER RONIN // REKKA",
-  badgeTag = "ISSUE #01",
+  imageSrc = "/assets/artworks/artwork_samples/Character_art/24.jpg",
+  videoSrc = "/hero-walk-cycle.mp4",
+  characterTitle = "ORIGINAL CHARACTER // CEL MASTER",
+  badgeTag = "FEATURED 2D ART",
 }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [transformStyle, setTransformStyle] = useState<string>(
-    "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)"
-  );
-  const [isHovered, setIsHovered] = useState<boolean>(false);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-
-    // Calculate cursor position relative to card center (-0.5 to 0.5)
-    const mouseX = (e.clientX - rect.left) / width - 0.5;
-    const mouseY = (e.clientY - rect.top) / height - 0.5;
-
-    // Max rotation angles (degrees)
-    const maxRotate = 10;
-    const rotateX = -mouseY * maxRotate; // Inverted so moving up tilts backwards
-    const rotateY = mouseX * maxRotate;
-
-    setTransformStyle(
-      `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.025, 1.025, 1.025)`
-    );
-  }, []);
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    // Smoothly snap back to origin
-    setTransformStyle(
-      "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)"
-    );
-  };
+  const [activeMedia, setActiveMedia] = useState<"art" | "animation">("art");
 
   const handleContextMenu = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -60,90 +26,107 @@ export const HeroComicCard: React.FC<HeroComicCardProps> = ({
   };
 
   return (
-    <div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onContextMenu={handleContextMenu}
-      style={{
-        transform: transformStyle,
-        transition: isHovered
-          ? "transform 0.08s ease-out"
-          : "transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-        transformStyle: "preserve-3d",
-      }}
-      className="relative w-full max-w-md select-none will-change-transform cursor-pointer"
-    >
-      {/* 2.5D Comic Frame Backdrop Offset with slight negative depth */}
-      <div
-        style={{
-          transform: "translateZ(-15px) translate(12px, 12px)",
-        }}
-        className="absolute inset-0 bg-comic-cyan border-[3px] border-black z-0 pointer-events-none"
-      />
+    <div className="relative w-full max-w-lg select-none">
+      {/* Neo-brutalist Cyan & Violet Layered Comic Backdrops */}
+      <div className="absolute -top-3 -right-3 w-full h-full bg-[#00E5FF] border-[3px] border-black z-0 pointer-events-none" />
+      <div className="absolute -bottom-3 -left-3 w-full h-full bg-[#9933FF] border-[3px] border-black z-0 pointer-events-none" />
 
-      {/* Main Showcase Panel (Z-layer 0) */}
-      <div
-        style={{
-          transformStyle: "preserve-3d",
-          transform: "translateZ(0px)",
-        }}
-        className="relative z-10 bg-white border-[4px] border-black shadow-neo-lg overflow-hidden flex flex-col"
-      >
-        {/* Top Banner Ribbon - Parallax depth floating forward */}
-        <div
-          style={{
-            transform: "translateZ(25px)",
-            transformStyle: "preserve-3d",
-          }}
-          className="flex items-center justify-between border-b-[3px] border-black bg-comic-yellow px-4 py-2"
-        >
-          <span className="font-comic text-base tracking-wide text-black uppercase flex items-center gap-1.5 drop-shadow-[1px_1px_0px_#000]">
-            <Sparkles className="w-4 h-4 fill-black text-black" />
-            FEATURED KEYFRAME
-          </span>
-          <span className="bg-black text-white font-nav text-xs px-2.5 py-0.5 font-bold uppercase tracking-wider border border-black shadow-neo-sm">
-            {badgeTag}
-          </span>
+      {/* Main Illustration Panel */}
+      <div className="relative z-10 bg-white border-[4px] border-black shadow-[8px_8px_0px_#000000] overflow-hidden flex flex-col">
+        {/* Top Comic Banner & Mode Switcher */}
+        <div className="flex items-center justify-between border-b-[3px] border-black bg-comic-yellow px-4 py-2.5">
+          <div className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 bg-comic-pink border border-black animate-pulse" />
+            <span className="font-comic text-base tracking-wide text-black uppercase font-black">
+              {badgeTag}
+            </span>
+          </div>
+
+          {/* Quick toggle between Hi-Res Cel Illustration & 2D Animation */}
+          {videoSrc && imageSrc && (
+            <div className="flex items-center border-2 border-black bg-white shadow-[2px_2px_0px_#000]">
+              <button
+                type="button"
+                onClick={() => setActiveMedia("art")}
+                className={`flex items-center gap-1 px-2.5 py-0.5 font-nav text-[11px] font-bold uppercase tracking-wider transition-colors ${
+                  activeMedia === "art"
+                    ? "bg-black text-white"
+                    : "text-black hover:bg-neutral-100"
+                }`}
+              >
+                <ImageIcon className="w-3 h-3" />
+                <span>ILLUST</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveMedia("animation")}
+                className={`flex items-center gap-1 px-2.5 py-0.5 font-nav text-[11px] font-bold uppercase tracking-wider transition-colors border-l-2 border-black ${
+                  activeMedia === "animation"
+                    ? "bg-black text-white"
+                    : "text-black hover:bg-neutral-100"
+                }`}
+              >
+                <Play className="w-3 h-3 fill-current" />
+                <span>60 FPS</span>
+              </button>
+            </div>
+          )}
         </div>
 
-        {/* Character Visual Asset Base */}
+        {/* Featured Artwork Display Area */}
         <div
           onContextMenu={handleContextMenu}
-          className="relative aspect-[4/5] w-full bg-neutral-900 overflow-hidden select-none"
+          className="relative aspect-[4/5] w-full bg-[#111111] overflow-hidden select-none flex items-center justify-center"
         >
-          <Image
-            src={imageSrc}
-            alt={characterTitle}
-            fill
-            draggable={false}
-            className="object-cover transition-transform duration-200 pointer-events-none select-none no-drag"
-            priority
-          />
+          {activeMedia === "animation" && videoSrc ? (
+            <video
+              src={videoSrc}
+              autoPlay
+              loop
+              muted
+              playsInline
+              controls={false}
+              className="w-full h-full object-cover select-none pointer-events-none"
+            />
+          ) : (
+            <div className="relative w-full h-full p-2">
+              <Image
+                src={imageSrc}
+                alt="Emilia Featured 2D Cel-Shaded Artwork"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 550px"
+                className="object-contain pointer-events-none select-none no-drag"
+              />
+            </div>
+          )}
 
-          {/* Transparent Protection Overlay: Prevents direct right-click or drag from context menu */}
+          {/* Transparent Right-Click Protection Overlay */}
           <div
             onContextMenu={handleContextMenu}
             className="absolute inset-0 z-10 select-none bg-transparent"
           />
 
-          {/* Halftone ambient depth layer */}
-          <div className="absolute inset-0 bg-comic-dots opacity-20 pointer-events-none" />
-
-          {/* Floating Comic Badge Overlay with prominent Parallax Depth */}
-          <div
-            style={{
-              transform: "translateZ(35px)",
-              transformStyle: "preserve-3d",
-            }}
-            className="absolute bottom-4 left-4 z-20 pointer-events-none"
-          >
-            <div className="bg-white border-[3px] border-black px-4 py-1.5 shadow-neo font-comic text-base sm:text-lg uppercase tracking-wide text-black flex items-center gap-2">
-              <span className="w-2.5 h-2.5 bg-comic-pink border border-black animate-pulse" />
+          {/* Floating Lower Comic Badges */}
+          <div className="absolute bottom-3 left-3 right-3 z-20 flex items-center justify-between pointer-events-none">
+            <div className="bg-white border-2 border-black px-3 py-1 font-comic text-xs sm:text-sm uppercase tracking-wide text-black shadow-[3px_3px_0px_#000] flex items-center gap-2">
+              <span className="w-2 h-2 bg-comic-green border border-black" />
               <span>{characterTitle}</span>
             </div>
+
+            <div className="bg-comic-cyan text-black border-2 border-black px-2.5 py-1 font-nav text-[10px] font-bold uppercase tracking-wider shadow-[2px_2px_0px_#000]">
+              VECTOR INKS // 300 DPI
+            </div>
           </div>
+        </div>
+
+        {/* Footer Sub-bar */}
+        <div className="bg-[#FAF7F2] border-t-[3px] border-black px-4 py-2 flex items-center justify-between text-xs font-nav font-bold uppercase tracking-wider">
+          <span className="text-neutral-700 flex items-center gap-1.5">
+            <Sparkles className="w-3.5 h-3.5 text-comic-purple fill-comic-purple" />
+            PURE 2D CEL-SHADED PRODUCTION ASSET
+          </span>
+          <span className="text-neutral-500 font-mono">#SAMPLE-24</span>
         </div>
       </div>
     </div>

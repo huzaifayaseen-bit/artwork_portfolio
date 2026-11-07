@@ -19,7 +19,7 @@ export default function ArtworksPage() {
       <Navbar profile={data.profile} queueData={data.queue} />
 
       {/* Main Art Gallery Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-8">
         <ArtGallery artworks={data.artworks} />
       </main>
 

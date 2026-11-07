@@ -1,23 +1,16 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ArtistProfile, QueueData } from "@/types/portfolio";
 import {
-  MessageCircle,
   Volume2,
   VolumeX,
   Menu,
   X,
-  Home,
-  Palette,
-  Zap,
-  FileText,
-  Mail,
-  ExternalLink,
-  Sparkles,
+  ChevronDown,
+  ArrowRight,
 } from "lucide-react";
 import { useSound } from "@/context/SoundContext";
 
@@ -30,7 +23,21 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
   const pathname = usePathname();
   const { sfxEnabled, toggleSFX, playClick } = useSound();
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const [pricingDropdownOpen, setPricingDropdownOpen] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const dropdownCloseTimeout = useRef<NodeJS.Timeout | null>(null);
+
   const openSlots = queueData?.slots?.filter((s) => s.status === "OPEN").length ?? 1;
+
+  // Track scroll position for compact pill morphing
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Prevent background scrolling when mobile menu is open
   useEffect(() => {
@@ -47,29 +54,39 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
   // Close on Escape key press
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && mobileMenuOpen) {
-        setMobileMenuOpen(false);
+      if (e.key === "Escape") {
+        if (mobileMenuOpen) setMobileMenuOpen(false);
+        if (pricingDropdownOpen) setPricingDropdownOpen(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, pricingDropdownOpen]);
 
-  const navLinks = [
-    { label: "HOME", href: "/", sectionId: "hero-section", emoji: "🏠" },
-    { label: "GALLERY", href: "/artworks", sectionId: "artworks-section", emoji: "🎨" },
-    { label: "PRICING & QUEUE", href: "/pricing", sectionId: "pricing-section", emoji: "⚡" },
-    { label: "TERMS OF SERVICE", href: "/tos", sectionId: "tos-section", emoji: "📜" },
-    { label: "CONTACT", href: "/contact", sectionId: "contact-section", emoji: "✉️" },
-  ];
+  const handleMouseEnterPricing = () => {
+    if (dropdownCloseTimeout.current) {
+      clearTimeout(dropdownCloseTimeout.current);
+      dropdownCloseTimeout.current = null;
+    }
+    setPricingDropdownOpen(true);
+  };
 
-  const handleNavClick = (e: React.MouseEvent, link: typeof navLinks[0]) => {
+  const handleMouseLeavePricing = () => {
+    dropdownCloseTimeout.current = setTimeout(() => {
+      setPricingDropdownOpen(false);
+    }, 150);
+  };
+
+  const handleNavClick = (
+    e: React.MouseEvent,
+    target: { href: string; sectionId?: string }
+  ) => {
     playClick();
     setMobileMenuOpen(false);
+    setPricingDropdownOpen(false);
 
-    // On mobile and on homepage, smooth scroll directly to the section if present
-    if (pathname === "/" && link.sectionId) {
-      const el = document.getElementById(link.sectionId);
+    if (pathname === "/" && target.sectionId) {
+      const el = document.getElementById(target.sectionId);
       if (el) {
         e.preventDefault();
         el.scrollIntoView({ behavior: "smooth" });
@@ -77,135 +94,289 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
     }
   };
 
+  const isPricingActive = pathname === "/pricing";
+  const isGalleryActive = pathname === "/artworks";
+  const isTosActive = pathname === "/tos";
+
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-[4px] border-b-[3px] border-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          {/* Brand / Artist Identifier */}
-          <Link href="/" onClick={playClick} className="flex items-center gap-2.5 mr-3 lg:mr-6 group">
-            <div className="relative w-9 h-9 sm:w-10 sm:h-10 border-[3px] border-black bg-comic-yellow overflow-hidden shadow-[2px_2px_0px_#000] group-hover:rotate-6 transition-transform duration-200 flex-shrink-0">
-              <Image
-                src="/assets/artworks/artwork_samples/pfp/28.jpg"
-                alt={`${profile.name} Avatar`}
-                fill
-                sizes="40px"
-                className="object-cover w-full h-full pointer-events-none select-none"
-                priority
-              />
-            </div>
-            <span className="font-comic text-2xl sm:text-3xl tracking-wider font-extrabold text-black uppercase">
-              EMILIA
-            </span>
-          </Link>
-
-          {/* Desktop Multi-page Navigation Links */}
-          <nav className="hidden md:flex items-center gap-2 lg:gap-3">
-            {navLinks.map((link) => {
-              const isActive =
-                link.href === "/"
-                  ? pathname === "/"
-                  : pathname?.startsWith(link.href);
-
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={playClick}
-                  className={`
-                    font-nav text-xs lg:text-sm font-bold uppercase tracking-wider px-3 py-1.5 transition-all
-                    ${
-                      isActive
-                        ? "bg-comic-yellow text-black border-2 border-black shadow-[2px_2px_0px_#000] -translate-y-0.5"
-                        : "text-black hover:text-comic-pink hover:bg-neutral-100 border-2 border-transparent"
-                    }
-                  `}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Action Controls & Mobile Hamburger Toggle */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Retro SFX Neo-Brutalist Toggle */}
-            <button
-              type="button"
-              onClick={toggleSFX}
-              title={sfxEnabled ? "Mute Comic SFX" : "Enable Comic SFX"}
-              aria-label={sfxEnabled ? "Mute sound effects" : "Enable sound effects"}
+      {/* Floating Neo-Brutalist Island Container with Scroll-Triggered Shrink Animation */}
+      <header
+        className={`
+          fixed left-4 right-4 z-50 mx-auto border-2 border-black flex items-center justify-between
+          transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]
+          ${
+            isScrolled
+              ? "max-w-4xl lg:max-w-5xl py-1.5 px-3.5 sm:px-4 top-2.5 shadow-[3px_3px_0px_#000] rounded-full bg-white/90 backdrop-blur-md"
+              : "max-w-7xl py-3 sm:py-3.5 px-4 sm:px-6 top-3.5 shadow-[4px_4px_0px_#000] rounded-2xl bg-white"
+          }
+        `}
+      >
+        {/* 1. LEFT: Desktop Navigation Links with Pricing Dropdown Drawer */}
+        <div className={`hidden lg:flex items-center transition-all duration-300 ${isScrolled ? "gap-0.5 xl:gap-1" : "gap-1 xl:gap-2"}`}>
+          {/* PRICING with Neo-Brutalist Dropdown Drawer */}
+          <div
+            className="relative"
+            onMouseEnter={handleMouseEnterPricing}
+            onMouseLeave={handleMouseLeavePricing}
+          >
+            <Link
+              href={pathname === "/" ? "#pricing-section" : "/pricing"}
+              onClick={(e) =>
+                handleNavClick(e, { href: "/pricing", sectionId: "pricing-section" })
+              }
               className={`
-                flex items-center gap-1.5 border-[3px] border-black px-2 sm:px-2.5 py-1 font-comic text-xs uppercase tracking-wider
-                shadow-[3px_3px_0px_#000] active:shadow-none active:translate-x-[1px] active:translate-y-[1px]
-                transition-all cursor-pointer select-none
+                font-nav font-bold uppercase tracking-wider border-2 transition-all flex items-center gap-1 select-none
+                ${pricingDropdownOpen ? "rounded-t-full rounded-b-none border-b-black" : "rounded-full"}
+                ${isScrolled ? "px-2.5 py-1 text-[11px]" : "px-3 py-1.5 text-xs"}
                 ${
-                  sfxEnabled
-                    ? "bg-comic-yellow text-black hover:bg-[#FFF033]"
-                    : "bg-neutral-200 text-neutral-600 hover:bg-neutral-300"
+                  isPricingActive || pricingDropdownOpen
+                    ? "bg-[#FFE600] text-black border-black shadow-[2px_2px_0px_#000]"
+                    : "text-black border-transparent hover:border-black hover:bg-[#FFE600] hover:shadow-[2px_2px_0px_#000]"
                 }
               `}
             >
-              {sfxEnabled ? (
-                <>
-                  <Volume2 className="w-3.5 h-3.5 stroke-[2.5]" />
-                  <span className="font-bold hidden xs:inline">SFX: ON</span>
-                </>
-              ) : (
-                <>
-                  <VolumeX className="w-3.5 h-3.5 stroke-[2]" />
-                  <span className="font-bold hidden xs:inline">SFX: OFF</span>
-                </>
-              )}
-            </button>
-
-            {/* Desktop Live Queue Indicator */}
-            <Link
-              href="/pricing"
-              onClick={playClick}
-              className="hidden md:inline-flex items-center gap-1.5 bg-comic-green/20 border-2 border-black px-2.5 py-1 text-xs font-nav font-bold uppercase tracking-wider text-black hover:bg-comic-green/40 transition-colors"
-              title="View Live Queue"
-            >
-              <span className="w-2 h-2 bg-comic-green border border-black animate-ping" />
-              <span>QUEUE: {openSlots} SLOT{openSlots === 1 ? "" : "S"} LEFT</span>
+              <span>PRICING</span>
+              <ChevronDown
+                className={`transition-transform duration-200 ${
+                  isScrolled ? "w-3 h-3" : "w-3.5 h-3.5"
+                } ${pricingDropdownOpen ? "rotate-180" : ""}`}
+              />
             </Link>
 
-            {/* Hire Artist Button (Desktop & Tablet) */}
-            <Link href="/contact" onClick={playClick} className="hidden sm:inline-block">
-              <button className="flex items-center gap-1.5 bg-comic-yellow text-black border-2 border-black px-3.5 sm:px-4 py-1.5 font-btn text-xs font-bold uppercase tracking-wider shadow-neo-sm hover:shadow-neo hover:-translate-x-[1px] hover:-translate-y-[1px] active:translate-x-[1px] active:translate-y-[1px] transition-all cursor-pointer">
-                <MessageCircle className="w-4 h-4" />
-                <span>HIRE ARTIST</span>
-              </button>
-            </Link>
+            {/* Ultra-Compact High-Contrast Comic Index Strip */}
+            {pricingDropdownOpen && (
+              <div className="absolute top-full left-0 pt-1 z-50 w-56">
+                <div className="bg-black text-white border-2 border-black rounded-xl p-1.5 shadow-[4px_4px_0px_#FFE600] flex flex-col gap-1 animate-comic-snap select-none">
+                  <Link
+                    href={pathname === "/" ? "#calculator-section" : "/pricing#calculator"}
+                    onClick={(e) =>
+                      handleNavClick(e, {
+                        href: "/pricing#calculator",
+                        sectionId: "calculator-section",
+                      })
+                    }
+                    className="group flex items-center justify-between py-2 px-3 rounded-lg text-xs font-black tracking-wider uppercase hover:bg-[#FFE600] hover:text-black transition-all cursor-pointer font-comic"
+                  >
+                    <span className="group-hover:translate-x-0.5 transition-transform">
+                      01 // CALCULATOR
+                    </span>
+                    <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-sm font-black">
+                      →
+                    </span>
+                  </Link>
 
-            {/* Neo-Brutalist Comic Hamburger Button (< 768px) */}
-            <button
-              type="button"
-              onClick={() => {
-                playClick();
-                setMobileMenuOpen((prev) => !prev);
-              }}
-              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+                  <Link
+                    href={pathname === "/" ? "#pricing-section" : "/pricing"}
+                    onClick={(e) =>
+                      handleNavClick(e, {
+                        href: "/pricing",
+                        sectionId: "pricing-section",
+                      })
+                    }
+                    className="group flex items-center justify-between py-2 px-3 rounded-lg text-xs font-black tracking-wider uppercase hover:bg-[#FFE600] hover:text-black transition-all cursor-pointer font-comic"
+                  >
+                    <span className="group-hover:translate-x-0.5 transition-transform">
+                      02 // RATES &amp; TIERS
+                    </span>
+                    <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-sm font-black">
+                      →
+                    </span>
+                  </Link>
+
+                  <Link
+                    href={pathname === "/" ? "#tos-section" : "/tos"}
+                    onClick={(e) =>
+                      handleNavClick(e, { href: "/tos", sectionId: "tos-section" })
+                    }
+                    className="group flex items-center justify-between py-2 px-3 rounded-lg text-xs font-black tracking-wider uppercase hover:bg-[#FFE600] hover:text-black transition-all cursor-pointer font-comic"
+                  >
+                    <span className="group-hover:translate-x-0.5 transition-transform">
+                      03 // COMMISSION TERMS
+                    </span>
+                    <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-sm font-black">
+                      →
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* GALLERY Link */}
+          <Link
+            href={pathname === "/" ? "#artworks-section" : "/artworks"}
+            onClick={(e) =>
+              handleNavClick(e, { href: "/artworks", sectionId: "artworks-section" })
+            }
+            className={`
+              font-nav font-bold uppercase tracking-wider rounded-full border-2 transition-all select-none
+              ${isScrolled ? "px-2.5 py-1 text-[11px]" : "px-3 py-1.5 text-xs"}
+              ${
+                isGalleryActive
+                  ? "bg-[#FFE600] text-black border-black shadow-[2px_2px_0px_#000]"
+                  : "text-black border-transparent hover:border-black hover:bg-[#FFE600] hover:shadow-[2px_2px_0px_#000]"
+              }
+            `}
+          >
+            GALLERY
+          </Link>
+
+          {/* TOS Link */}
+          <Link
+            href={pathname === "/" ? "#tos-section" : "/tos"}
+            onClick={(e) =>
+              handleNavClick(e, { href: "/tos", sectionId: "tos-section" })
+            }
+            className={`
+              font-nav font-bold uppercase tracking-wider rounded-full border-2 transition-all select-none
+              ${isScrolled ? "px-2.5 py-1 text-[11px]" : "px-3 py-1.5 text-xs"}
+              ${
+                isTosActive
+                  ? "bg-[#FFE600] text-black border-black shadow-[2px_2px_0px_#000]"
+                  : "text-black border-transparent hover:border-black hover:bg-[#FFE600] hover:shadow-[2px_2px_0px_#000]"
+              }
+            `}
+          >
+            TOS
+          </Link>
+        </div>
+
+        {/* 2. CENTER: Bored Cow Style Chunky Stacked Brand Mark */}
+        <div className="flex-1 lg:flex-initial flex justify-start lg:justify-center">
+          <Link
+            href="/"
+            onClick={playClick}
+            className="flex flex-col items-center justify-center leading-[0.85] select-none cursor-pointer group"
+            aria-label="EMILIA STUDIO - Home"
+          >
+            <span
               className={`
-                md:hidden flex items-center justify-center w-10 h-10
-                border-[3px] border-black shadow-[3px_3px_0px_#000]
-                active:shadow-none active:translate-x-[2px] active:translate-y-[2px]
-                transition-all cursor-pointer
-                ${mobileMenuOpen ? "bg-comic-pink text-white" : "bg-comic-yellow text-black hover:bg-[#FFF033]"}
+                font-black tracking-tighter uppercase font-display text-black group-hover:text-comic-pink transition-all duration-300 drop-shadow-[1px_1px_0px_#000]
+                ${isScrolled ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl"}
               `}
             >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6 stroke-[3]" />
-              ) : (
-                <Menu className="w-6 h-6 stroke-[3]" />
-              )}
-            </button>
-          </div>
+              EMILIA
+            </span>
+            <span
+              className={`
+                font-black tracking-widest uppercase font-mono bg-black text-[#FFE600] rounded-sm group-hover:bg-[#FFE600] group-hover:text-black border border-black shadow-[1px_1px_0px_#000] transition-all duration-300 -mt-0.5
+                ${isScrolled ? "text-[8px] px-1 py-0.2" : "text-[10px] px-1.5 py-0.5"}
+              `}
+            >
+              STUDIO
+            </span>
+          </Link>
+        </div>
+
+        {/* 3. RIGHT: Audio Toggle + Live Queue Pill Badge + COMMISSION ME CTA + Mobile Hamburger */}
+        <div className={`flex items-center transition-all duration-300 ${isScrolled ? "gap-1.5 sm:gap-2" : "gap-2 sm:gap-2.5"}`}>
+          {/* Retro SFX Neo-Brutalist Toggle */}
+          <button
+            type="button"
+            onClick={toggleSFX}
+            title={sfxEnabled ? "Mute Comic SFX" : "Enable Comic SFX"}
+            aria-label={sfxEnabled ? "Mute sound effects" : "Enable sound effects"}
+            className={`
+              hidden sm:flex items-center gap-1 border-2 border-black rounded-lg font-comic uppercase tracking-wider
+              shadow-[2px_2px_0px_#000] active:shadow-none active:translate-x-[1px] active:translate-y-[1px]
+              transition-all duration-300 cursor-pointer select-none
+              ${isScrolled ? "px-1.5 py-0.5 text-[10px]" : "px-2 py-1 text-xs"}
+              ${
+                sfxEnabled
+                  ? "bg-[#FFE600] text-black hover:bg-[#FFF033]"
+                  : "bg-neutral-200 text-neutral-600 hover:bg-neutral-300"
+              }
+            `}
+          >
+            {sfxEnabled ? (
+              <>
+                <Volume2 className={isScrolled ? "w-3 h-3 stroke-[2.5]" : "w-3.5 h-3.5 stroke-[2.5]"} />
+                <span className="font-bold hidden md:inline text-[10px]">SFX</span>
+              </>
+            ) : (
+              <>
+                <VolumeX className={isScrolled ? "w-3 h-3 stroke-[2]" : "w-3.5 h-3.5 stroke-[2]"} />
+                <span className="font-bold hidden md:inline text-[10px]">MUTED</span>
+              </>
+            )}
+          </button>
+
+          {/* Live Queue Pill Badge */}
+          <Link
+            href="/pricing"
+            onClick={playClick}
+            className={`
+              bg-[#A3E635] text-black border border-black font-bold rounded-full flex items-center gap-1.5 shadow-[2px_2px_0px_#000] hover:-translate-y-0.5 transition-all duration-300 select-none
+              ${isScrolled ? "px-2 py-0.5 text-[10px]" : "px-2.5 py-1 text-xs"}
+            `}
+            title="View Live Queue"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-60" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-black" />
+            </span>
+            <span className="font-nav font-black uppercase tracking-wider">
+              {openSlots} SLOT{openSlots === 1 ? "" : "S"} LEFT
+            </span>
+          </Link>
+
+          {/* Primary Action Button: COMMISSION ME */}
+          <Link
+            href={pathname === "/" ? "#contact-section" : "/contact"}
+            onClick={(e) =>
+              handleNavClick(e, { href: "/contact", sectionId: "contact-section" })
+            }
+            className="hidden sm:inline-block"
+          >
+            <span
+              className={`
+                bg-[#FFE600] text-black font-black uppercase border-2 border-black shadow-[3px_3px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all duration-300 cursor-pointer inline-flex items-center gap-1 font-btn
+                ${
+                  isScrolled
+                    ? "px-3 py-1.5 text-[11px] rounded-full"
+                    : "px-4 py-2 text-xs rounded-xl"
+                }
+              `}
+            >
+              <span>COMMISSION ME</span>
+              <ArrowRight className={isScrolled ? "w-3 h-3" : "w-3.5 h-3.5"} />
+            </span>
+          </Link>
+
+          {/* Neo-Brutalist Comic Hamburger Button (< 1024px) */}
+          <button
+            type="button"
+            onClick={() => {
+              playClick();
+              setMobileMenuOpen((prev) => !prev);
+            }}
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            className={`
+              lg:hidden flex items-center justify-center rounded-xl
+              border-2 border-black shadow-[2px_2px_0px_#000]
+              active:shadow-none active:translate-x-[1px] active:translate-y-[1px]
+              transition-all duration-300 cursor-pointer
+              ${isScrolled ? "w-8 h-8" : "w-9 h-9"}
+              ${
+                mobileMenuOpen
+                  ? "bg-comic-pink text-white"
+                  : "bg-[#FFE600] text-black hover:bg-[#FFF033]"
+              }
+            `}
+          >
+            {mobileMenuOpen ? (
+              <X className={isScrolled ? "w-4 h-4 stroke-[3]" : "w-5 h-5 stroke-[3]"} />
+            ) : (
+              <Menu className={isScrolled ? "w-4 h-4 stroke-[3]" : "w-5 h-5 stroke-[3]"} />
+            )}
+          </button>
         </div>
       </header>
 
-      {/* Full Screen Overlay Drawer (< 768px) Outside header constraints */}
+      {/* Full Screen Overlay Drawer (< 1024px) */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-50">
+        <div className="lg:hidden fixed inset-0 z-50">
           {/* Backdrop Overlay */}
           <div
             onClick={() => setMobileMenuOpen(false)}
@@ -225,28 +396,16 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
               flex flex-col justify-between
             "
           >
-            {/* Top Area: Header + Navigation Links */}
             <div>
               {/* Drawer Header */}
               <div className="flex items-center justify-between pb-5 border-b-[3px] border-black">
-                <div className="flex items-center gap-2.5">
-                  <div className="relative w-9 h-9 border-[3px] border-black bg-comic-yellow overflow-hidden shadow-[2px_2px_0px_#000] flex-shrink-0">
-                    <Image
-                      src="/assets/artworks/artwork_samples/pfp/28.jpg"
-                      alt={`${profile.name} Avatar`}
-                      fill
-                      sizes="36px"
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="font-comic text-2xl font-black text-black leading-none uppercase tracking-wide">
-                      EMILIA
-                    </span>
-                    <span className="font-nav text-[10px] font-bold text-neutral-500 uppercase tracking-widest mt-0.5">
-                      NAVIGATION MENU
-                    </span>
-                  </div>
+                <div className="flex flex-col items-start leading-[0.85]">
+                  <span className="font-display text-2xl font-black uppercase text-black tracking-tight drop-shadow-[1px_1px_0px_#000]">
+                    EMILIA
+                  </span>
+                  <span className="text-[10px] font-mono font-black bg-black text-[#FFE600] px-1.5 py-0.5 rounded-sm border border-black shadow-[1px_1px_0px_#000] -mt-0.5">
+                    STUDIO
+                  </span>
                 </div>
 
                 {/* Close Button */}
@@ -254,15 +413,46 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
                   aria-label="Close menu"
-                  className="w-9 h-9 bg-comic-pink hover:bg-comic-yellow text-white hover:text-black border-[3px] border-black shadow-[3px_3px_0px_#000] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] flex items-center justify-center font-black transition-colors cursor-pointer"
+                  className="w-9 h-9 bg-comic-pink hover:bg-[#FFE600] text-white hover:text-black border-[3px] border-black rounded-xl shadow-[3px_3px_0px_#000] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] flex items-center justify-center font-black transition-colors cursor-pointer"
                 >
                   <X className="w-5 h-5 stroke-[3]" />
                 </button>
               </div>
 
-              {/* Navigation Links List (Full-Width Neo-Brutalist Buttons) */}
+              {/* Navigation Links List */}
               <nav className="flex flex-col gap-3 my-6">
-                {navLinks.map((link) => {
+                {[
+                  {
+                    label: "GALLERY",
+                    href: "/artworks",
+                    sectionId: "artworks-section",
+                    emoji: "🎨",
+                  },
+                  {
+                    label: "PRICING",
+                    href: "/pricing",
+                    sectionId: "pricing-section",
+                    emoji: "⚡",
+                  },
+                  {
+                    label: "INTERACTIVE CALCULATOR",
+                    href: "/pricing#calculator",
+                    sectionId: "calculator-section",
+                    emoji: "🧮",
+                  },
+                  {
+                    label: "TERMS OF SERVICE",
+                    href: "/tos",
+                    sectionId: "tos-section",
+                    emoji: "📜",
+                  },
+                  {
+                    label: "CONTACT",
+                    href: "/contact",
+                    sectionId: "contact-section",
+                    emoji: "✉️",
+                  },
+                ].map((link) => {
                   const isActive =
                     link.href === "/"
                       ? pathname === "/"
@@ -270,18 +460,22 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
 
                   return (
                     <Link
-                      key={link.href}
-                      href={pathname === "/" && link.sectionId ? `#${link.sectionId}` : link.href}
+                      key={link.label}
+                      href={
+                        pathname === "/" && link.sectionId
+                          ? `#${link.sectionId}`
+                          : link.href
+                      }
                       onClick={(e) => handleNavClick(e, link)}
                       className={`
-                        w-full text-left font-black tracking-wider text-base py-3 px-4
+                        w-full text-left font-black tracking-wider text-sm py-3 px-4 rounded-xl
                         border-[3px] border-black flex items-center justify-between
                         active:translate-x-1 active:translate-y-1 shadow-[4px_4px_0px_#000] active:shadow-none
                         transition-all cursor-pointer font-comic
                         ${
                           isActive
-                            ? "bg-comic-yellow text-black -translate-x-0.5 -translate-y-0.5 shadow-[5px_5px_0px_#000]"
-                            : "bg-yellow-300 hover:bg-yellow-400 text-black"
+                            ? "bg-[#FFE600] text-black -translate-x-0.5 -translate-y-0.5 shadow-[5px_5px_0px_#000]"
+                            : "bg-neutral-100 hover:bg-[#FFE600] text-black"
                         }
                       `}
                     >
@@ -297,76 +491,32 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                 {/* Primary Commission CTA */}
                 <Link
                   href={pathname === "/" ? "#contact-section" : "/contact"}
-                  onClick={(e) => {
-                    playClick();
-                    setMobileMenuOpen(false);
-                    if (pathname === "/") {
-                      const el = document.getElementById("contact-section");
-                      if (el) {
-                        e.preventDefault();
-                        el.scrollIntoView({ behavior: "smooth" });
-                      }
-                    }
-                  }}
-                  className="
-                    mt-1 w-full text-center font-comic font-black tracking-wider text-base py-3 px-4
-                    border-[3px] border-black bg-comic-pink hover:bg-[#FF1A53] text-white
-                    flex items-center justify-center gap-2
-                    shadow-[4px_4px_0px_#000] active:shadow-none active:translate-x-1 active:translate-y-1
-                    transition-all cursor-pointer uppercase
-                  "
+                  onClick={(e) =>
+                    handleNavClick(e, {
+                      href: "/contact",
+                      sectionId: "contact-section",
+                    })
+                  }
+                  className="w-full text-center font-btn font-black text-sm uppercase py-3.5 px-4 rounded-xl bg-comic-pink text-white border-[3px] border-black shadow-[4px_4px_0px_#000] active:shadow-none active:translate-x-1 active:translate-y-1 transition-all mt-2"
                 >
-                  <Sparkles className="w-4 h-4 fill-white" />
-                  <span>START COMMISSION BRIEF</span>
+                  ⚡ COMMISSION ME NOW
                 </Link>
               </nav>
             </div>
 
-            {/* Drawer Footer with Queue, Discord & SFX */}
-            <div className="pt-4 border-t-[3px] border-black space-y-2.5">
-              {/* Queue Status Comic Pill */}
-              <div className="flex items-center justify-between bg-comic-green/20 border-2 border-black p-2.5">
-                <span className="font-nav text-xs font-bold uppercase tracking-wider text-black flex items-center gap-2">
-                  <span className="w-2 h-2 bg-comic-green border border-black animate-ping" />
-                  LIVE QUEUE:
-                </span>
-                <span className="font-mono text-xs font-black uppercase bg-black text-white px-2 py-0.5 border border-black">
-                  {openSlots} SLOT{openSlots === 1 ? "" : "S"} LEFT
-                </span>
-              </div>
-
-              {/* SFX Quick Toggle in Drawer */}
+            {/* Mobile Footer Status */}
+            <div className="pt-4 border-t-2 border-black flex items-center justify-between text-xs font-nav font-bold">
+              <span className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>SLOTS: {openSlots} LEFT</span>
+              </span>
               <button
                 type="button"
                 onClick={toggleSFX}
-                className={`
-                  w-full flex items-center justify-between border-2 border-black p-2 font-comic text-xs uppercase tracking-wider
-                  shadow-neo-sm active:shadow-none transition-all cursor-pointer
-                  ${
-                    sfxEnabled
-                      ? "bg-comic-yellow text-black"
-                      : "bg-neutral-200 text-neutral-700"
-                  }
-                `}
+                className="font-mono text-[10px] uppercase font-bold underline"
               >
-                <span className="flex items-center gap-2 font-bold font-nav text-xs">
-                  {sfxEnabled ? <Volume2 className="w-3.5 h-3.5 stroke-[2.5]" /> : <VolumeX className="w-3.5 h-3.5 stroke-[2]" />}
-                  SFX AUDIO:
-                </span>
-                <span className="font-bold font-mono">
-                  {sfxEnabled ? "[ 🔊 ON ]" : "[ 🔇 OFF ]"}
-                </span>
+                SFX: {sfxEnabled ? "ON" : "OFF"}
               </button>
-
-              {/* Discord Handle Pill */}
-              <div className="flex items-center justify-between border-2 border-black bg-neutral-100 p-2">
-                <span className="font-nav text-[11px] font-bold text-neutral-600 uppercase">
-                  DISCORD TAG:
-                </span>
-                <span className="font-mono text-xs font-black text-black">
-                  {profile.discordTag}
-                </span>
-              </div>
             </div>
           </aside>
         </div>

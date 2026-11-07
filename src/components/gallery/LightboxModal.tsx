@@ -1,16 +1,38 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Artwork } from "@/types/portfolio";
 import { ComicBadge } from "@/components/ui/ComicBadge";
-import { X, ZoomIn, ZoomOut, Calendar, Tag, Move, ShieldAlert } from "lucide-react";
+import {
+  X,
+  ZoomIn,
+  ZoomOut,
+  Calendar,
+  Tag,
+  Move,
+  ChevronLeft,
+  ChevronRight,
+  Sparkles,
+} from "lucide-react";
 import { triggerArtworkProtectedToast } from "@/components/ui/ArtworkProtectionToast";
 
 export interface LightboxModalProps {
   artwork: Artwork | null;
   onClose: () => void;
+  onPrev?: () => void;
+  onNext?: () => void;
+  hasPrev?: boolean;
+  hasNext?: boolean;
 }
 
-export const LightboxModal: React.FC<LightboxModalProps> = ({ artwork, onClose }) => {
+export const LightboxModal: React.FC<LightboxModalProps> = ({
+  artwork,
+  onClose,
+  onPrev,
+  onNext,
+  hasPrev = false,
+  hasNext = false,
+}) => {
   const [zoomLevel, setZoomLevel] = useState<number>(1);
   const [origin, setOrigin] = useState<{ x: number; y: number }>({ x: 50, y: 50 });
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -21,11 +43,15 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ artwork, onClose }
     setOrigin({ x: 50, y: 50 });
   }, [artwork]);
 
-  // Handle escape key listener
+  // Handle keyboard listener (Esc to close, ArrowLeft / ArrowRight to navigate)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         onClose();
+      } else if (e.key === "ArrowLeft" && onPrev && hasPrev) {
+        onPrev();
+      } else if (e.key === "ArrowRight" && onNext && hasNext) {
+        onNext();
       }
     };
     if (artwork) {
@@ -36,7 +62,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ artwork, onClose }
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "unset";
     };
-  }, [artwork, onClose]);
+  }, [artwork, onClose, onPrev, onNext, hasPrev, hasNext]);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!viewportRef.current) return;
@@ -99,7 +125,45 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ artwork, onClose }
           <X className="w-5 h-5 stroke-[3]" />
         </button>
 
-        {/* Image Inspection Viewport with Cursor-Tracking Pan & Zero Scrollbars */}
+        {/* Previous Artwork Button */}
+        {hasPrev && onPrev && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onPrev();
+            }}
+            aria-label="Previous artwork"
+            className="
+              absolute left-3 top-1/2 -translate-y-1/2 z-30
+              bg-white/90 hover:bg-comic-yellow text-black border-2 border-black
+              p-2 shadow-neo-sm hover:shadow-neo
+              transition-all duration-75
+            "
+          >
+            <ChevronLeft className="w-6 h-6 stroke-[3]" />
+          </button>
+        )}
+
+        {/* Next Artwork Button */}
+        {hasNext && onNext && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onNext();
+            }}
+            aria-label="Next artwork"
+            className="
+              absolute right-3 md:right-[375px] top-1/2 -translate-y-1/2 z-30
+              bg-white/90 hover:bg-comic-yellow text-black border-2 border-black
+              p-2 shadow-neo-sm hover:shadow-neo
+              transition-all duration-75
+            "
+          >
+            <ChevronRight className="w-6 h-6 stroke-[3]" />
+          </button>
+        )}
+
+        {/* Image Inspection Viewport with Cursor-Tracking Pan */}
         <div
           ref={viewportRef}
           onMouseMove={handleMouseMove}
@@ -136,7 +200,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ artwork, onClose }
             )}
           </div>
 
-          {/* Zoom Container - Smooth cursor-tracking transform-origin with zero scrollbars */}
+          {/* Zoom Container */}
           <div
             onContextMenu={handleContextMenu}
             className="relative w-full h-full flex items-center justify-center select-none"
@@ -157,7 +221,6 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ artwork, onClose }
                 priority
               />
 
-              {/* Transparent Protection Overlay: Sits directly above the image, intercepting right-clicks */}
               <div
                 onContextMenu={handleContextMenu}
                 className="absolute inset-0 z-10 select-none bg-transparent"
@@ -166,7 +229,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ artwork, onClose }
           </div>
         </div>
 
-        {/* Metadata & Narrative Panel */}
+        {/* Metadata & Conversion Action Panel */}
         <div className="w-full md:w-[360px] bg-white p-5 sm:p-6 flex flex-col justify-between overflow-y-auto">
           <div>
             <div className="flex items-center gap-2 mb-2">
@@ -186,13 +249,13 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ artwork, onClose }
             <div className="w-12 h-1 bg-comic-yellow border-y border-black my-3" />
 
             <h5 className="font-nav text-xs font-bold uppercase tracking-wider text-neutral-500 mb-1">
-              PRODUCTION NOTES & CONTEXT
+              PRODUCTION NOTES &amp; CONTEXT
             </h5>
             <p className="text-sm text-neutral-700 leading-relaxed font-sans">
               {artwork.description}
             </p>
 
-            <div className="mt-6">
+            <div className="mt-5">
               <h5 className="font-nav text-xs font-bold uppercase tracking-wider text-neutral-500 mb-2 flex items-center gap-1.5">
                 <Tag className="w-3.5 h-3.5" />
                 PIECE TAGS
@@ -210,13 +273,33 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ artwork, onClose }
             </div>
           </div>
 
-          <div className="mt-6 pt-4 border-t-[3px] border-black">
+          {/* Direct Commission CTA & Back Button */}
+          <div className="mt-6 pt-4 border-t-[3px] border-black space-y-2.5">
+            <Link
+              href="#contact-section"
+              onClick={() => {
+                onClose();
+                setTimeout(() => {
+                  const el = document.getElementById("contact-section");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }, 100);
+              }}
+              className="
+                w-full bg-comic-yellow hover:bg-[#FFF033] text-black border-2 border-black py-2.5 px-3
+                font-btn text-xs sm:text-sm font-bold uppercase tracking-wider
+                shadow-neo-sm hover:shadow-neo transition-all flex items-center justify-center gap-2
+              "
+            >
+              <Sparkles className="w-4 h-4 fill-black" />
+              <span>COMMISSION A PIECE LIKE THIS</span>
+            </Link>
+
             <button
               onClick={onClose}
               className="
-                w-full bg-black text-white border-2 border-black py-2.5
-                font-btn text-sm font-bold uppercase tracking-wider
-                shadow-neo-sm hover:bg-neutral-800 active:translate-x-[1px] active:translate-y-[1px]
+                w-full bg-black text-white border-2 border-black py-2
+                font-btn text-xs font-bold uppercase tracking-wider
+                hover:bg-neutral-800 transition-colors
               "
             >
               RETURN TO GALLERY

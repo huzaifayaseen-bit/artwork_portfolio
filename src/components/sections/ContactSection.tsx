@@ -13,16 +13,16 @@ export interface ContactSectionProps {
 export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
   return (
     <section id="contact" className="py-12 sm:py-16">
-      <div className="border-[4px] border-black bg-white p-6 sm:p-12 shadow-neo-lg relative overflow-hidden">
+      <div className="border-[3px] border-black bg-white rounded-3xl p-6 sm:p-12 shadow-[6px_6px_0px_#000] relative overflow-hidden">
         {/* Background Comic Decal Accent */}
-        <div className="absolute top-0 right-0 bg-comic-yellow border-b-[3px] border-l-[3px] border-black px-4 py-1 font-nav text-xs font-bold uppercase tracking-wider">
+        <div className="absolute top-0 right-0 bg-comic-yellow border-b-[3px] border-l-[3px] border-black px-4 py-1 font-nav text-xs font-bold uppercase tracking-wider rounded-bl-xl">
           TRANSMISSION LINE
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Direct Inquiry */}
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 bg-comic-purple text-white border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider mb-2 shadow-[2px_2px_0px_#000]">
+            <div className="inline-flex items-center gap-2 bg-comic-purple text-white border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider mb-2 rounded-full shadow-[2px_2px_0px_#000]">
               <MessageSquare className="w-4 h-4 fill-white" />
               DIRECT COMMUNICATIONS
             </div>
@@ -62,7 +62,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
           </div>
 
           {/* Right Column: Social Channels & Footnote */}
-          <div className="lg:col-span-5 bg-neutral-50 border-[3px] border-black p-6 shadow-neo-sm">
+          <div className="lg:col-span-5 bg-neutral-50 border-[3px] border-black rounded-2xl p-6 shadow-[4px_4px_0px_#000]">
             <h3 className="font-comic text-2xl uppercase text-black mb-4 flex items-center gap-2 tracking-wide">
               <Send className="w-4 h-4 text-comic-pink" />
               VERIFIED CHANNELS
@@ -92,9 +92,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
                     rel={isEmail ? undefined : "noopener noreferrer"}
                     className="
                       flex items-center justify-between
-                      bg-white border-2 border-black p-3.5
+                      bg-white border-2 border-black rounded-xl p-3.5
                       font-nav text-xs sm:text-sm font-bold uppercase text-black
-                      shadow-neo-sm hover:shadow-neo hover:bg-comic-yellow
+                      shadow-[2px_2px_0px_#000] hover:shadow-[4px_4px_0px_#000] hover:bg-comic-yellow
                       transition-all duration-75
                       hover:-translate-x-[1px] hover:-translate-y-[1px] tracking-wider cursor-pointer
                     "

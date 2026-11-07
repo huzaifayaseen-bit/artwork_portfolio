@@ -17,17 +17,30 @@ import {
 export interface CommissionCalculatorProps {
   calculatorData?: CalculatorData;
   discordTag?: string;
+  onScopeChange?: (scopeId: string) => void;
+  selectedScopeId?: string;
 }
 
 export const CommissionCalculator: React.FC<CommissionCalculatorProps> = ({
   calculatorData,
   discordTag = "emilia_art#0001",
+  onScopeChange,
+  selectedScopeId: controlledScopeId,
 }) => {
   const { playClick, playSuccess } = useSound();
   const defaultScope = calculatorData?.scopes[0]?.id || "scope-headshot";
-  const [selectedScopeId, setSelectedScopeId] = useState<string>(defaultScope);
+  const [internalScopeId, setInternalScopeId] = useState<string>(defaultScope);
+  const selectedScopeId = controlledScopeId !== undefined ? controlledScopeId : internalScopeId;
   const [selectedAddons, setSelectedAddons] = useState<Record<string, boolean>>({});
   const [copied, setCopied] = useState<boolean>(false);
+
+  const handleScopeSelect = (scopeId: string) => {
+    playClick();
+    if (controlledScopeId === undefined) {
+      setInternalScopeId(scopeId);
+    }
+    onScopeChange?.(scopeId);
+  };
 
   if (!calculatorData) return null;
 
@@ -48,7 +61,7 @@ export const CommissionCalculator: React.FC<CommissionCalculatorProps> = ({
 
   // Calculate pricing breakdown
   const pricingBreakdown = useMemo(() => {
-    const base = currentScope ? currentScope.basePrice : 60;
+    const base = currentScope ? currentScope.basePrice : 85;
     let extraCharAmount = 0;
     let flatAddonsTotal = 0;
     const activeAddonsList: { name: string; cost: number }[] = [];
@@ -131,15 +144,15 @@ export const CommissionCalculator: React.FC<CommissionCalculatorProps> = ({
   };
 
   return (
-    <div className="mt-12 bg-white border-[4px] border-black p-6 sm:p-10 shadow-neo-lg relative overflow-hidden">
+    <div className="mt-12 bg-white border-[3px] border-black rounded-3xl p-6 sm:p-10 shadow-[6px_6px_0px_#000] relative overflow-hidden">
       {/* Top Graphic Decal Accent */}
-      <div className="absolute top-0 right-0 bg-comic-yellow border-b-[3px] border-l-[3px] border-black px-4 py-1 font-nav text-xs font-bold uppercase tracking-wider">
+      <div className="absolute top-0 right-0 bg-comic-yellow border-b-[3px] border-l-[3px] border-black px-4 py-1 font-nav text-xs font-bold uppercase tracking-wider rounded-bl-xl">
         REAL-TIME ESTIMATOR
       </div>
 
       {/* Widget Header */}
       <div className="max-w-2xl mb-8">
-        <div className="inline-flex items-center gap-2 bg-comic-cyan text-black border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider mb-2 shadow-[2px_2px_0px_#000]">
+        <div className="inline-flex items-center gap-2 bg-comic-cyan text-black border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider mb-2 rounded-full shadow-[2px_2px_0px_#000]">
           <Calculator className="w-4 h-4 fill-black" />
           COST CALCULATOR
         </div>
@@ -157,7 +170,7 @@ export const CommissionCalculator: React.FC<CommissionCalculatorProps> = ({
           {/* Step 1: Select Scope Tier */}
           <div>
             <label className="block font-nav text-xs font-bold uppercase tracking-wider text-neutral-600 mb-3 flex items-center gap-2">
-              <span className="w-2 h-2 bg-comic-pink border border-black inline-block" />
+              <span className="w-2.5 h-2.5 bg-comic-pink border border-black rounded-sm inline-block" />
               1. CHOOSE BASE SCOPE
             </label>
 
@@ -168,16 +181,13 @@ export const CommissionCalculator: React.FC<CommissionCalculatorProps> = ({
                   <button
                     key={scope.id}
                     type="button"
-                    onClick={() => {
-                      playClick();
-                      setSelectedScopeId(scope.id);
-                    }}
+                    onClick={() => handleScopeSelect(scope.id)}
                     className={`
-                      border-[3px] border-black p-4 text-left transition-all duration-75 select-none cursor-pointer flex flex-col justify-between
+                      border-[3px] border-black rounded-2xl p-4 text-left transition-all duration-75 select-none cursor-pointer flex flex-col justify-between
                       ${
                         isSelected
-                          ? "bg-comic-yellow shadow-neo -translate-x-[2px] -translate-y-[2px]"
-                          : "bg-white hover:bg-neutral-50 shadow-neo-sm active:translate-x-[1px] active:translate-y-[1px]"
+                          ? "bg-comic-yellow shadow-[4px_4px_0px_#000] -translate-x-[1px] -translate-y-[1px]"
+                          : "bg-white hover:bg-neutral-50 shadow-[2px_2px_0px_#000] active:translate-x-[1px] active:translate-y-[1px]"
                       }
                     `}
                   >
@@ -187,7 +197,7 @@ export const CommissionCalculator: React.FC<CommissionCalculatorProps> = ({
                           {scope.name}
                         </span>
                         {isSelected && (
-                          <span className="w-2 h-2 bg-black rounded-none" />
+                          <span className="w-2 h-2 bg-black rounded-full" />
                         )}
                       </div>
                       <p className="text-[11px] text-neutral-600 font-sans leading-tight">
@@ -211,7 +221,7 @@ export const CommissionCalculator: React.FC<CommissionCalculatorProps> = ({
           {/* Step 2: Select Add-ons */}
           <div>
             <label className="block font-nav text-xs font-bold uppercase tracking-wider text-neutral-600 mb-3 flex items-center gap-2">
-              <span className="w-2 h-2 bg-comic-cyan border border-black inline-block" />
+              <span className="w-2.5 h-2.5 bg-comic-cyan border border-black rounded-sm inline-block" />
               2. OPTIONAL ADD-ONS &amp; LICENSING
             </label>
 
@@ -228,18 +238,18 @@ export const CommissionCalculator: React.FC<CommissionCalculatorProps> = ({
                     key={addon.id}
                     onClick={() => toggleAddon(addon.id)}
                     className={`
-                      border-[3px] border-black p-3.5 flex items-start justify-between gap-4 cursor-pointer select-none transition-all duration-75
+                      border-2 border-black rounded-xl p-3.5 flex items-start justify-between gap-4 cursor-pointer select-none transition-all duration-75 hover:bg-zinc-50
                       ${
                         isChecked
-                          ? "bg-neutral-100 shadow-neo-sm -translate-x-[1px] -translate-y-[1px]"
-                          : "bg-white hover:bg-neutral-50 shadow-[2px_2px_0px_#000]"
+                          ? "bg-neutral-100 shadow-[3px_3px_0px_#000] -translate-x-[1px] -translate-y-[1px]"
+                          : "bg-white shadow-[2px_2px_0px_#000]"
                       }
                     `}
                   >
                     <div className="flex items-start gap-3">
                       <div
                         className={`
-                          w-5 h-5 border-2 border-black mt-0.5 flex items-center justify-center flex-shrink-0 transition-colors
+                          w-5 h-5 border-2 border-black rounded-md mt-0.5 flex items-center justify-center flex-shrink-0 transition-colors
                           ${isChecked ? "bg-comic-pink text-white" : "bg-white"}
                         `}
                       >
@@ -255,7 +265,7 @@ export const CommissionCalculator: React.FC<CommissionCalculatorProps> = ({
                       </div>
                     </div>
 
-                    <span className="font-nav text-xs font-bold text-black uppercase tracking-wider whitespace-nowrap bg-white border border-black px-2 py-0.5 shadow-[1px_1px_0px_#000]">
+                    <span className="font-nav text-xs font-bold text-black uppercase tracking-wider whitespace-nowrap bg-white border border-black px-2 py-0.5 rounded-md shadow-[1px_1px_0px_#000]">
                       {costDisplay}
                     </span>
                   </div>
@@ -266,13 +276,13 @@ export const CommissionCalculator: React.FC<CommissionCalculatorProps> = ({
         </div>
 
         {/* Right Side: Total Summary & Discord Action Trigger (5 cols) */}
-        <div className="lg:col-span-5 bg-neutral-900 border-[4px] border-black p-6 sm:p-7 text-white shadow-neo flex flex-col justify-between">
+        <div className="lg:col-span-5 bg-neutral-900 border-[3px] border-black rounded-2xl p-6 sm:p-7 text-white shadow-[6px_6px_0px_#FFE600] flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between border-b-2 border-neutral-700 pb-3 mb-4">
               <span className="font-comic text-sm tracking-widest text-comic-yellow uppercase">
                 ESTIMATE SUMMARY
               </span>
-              <span className="bg-comic-green text-black font-nav text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider">
+              <span className="bg-comic-green text-black font-nav text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
                 PAYPAL (USD)
               </span>
             </div>
@@ -329,13 +339,13 @@ export const CommissionCalculator: React.FC<CommissionCalculatorProps> = ({
               type="button"
               onClick={handleCopyBriefAndOpenDiscord}
               className={`
-                w-full flex items-center justify-center gap-2 border-[3px] border-black py-3.5 px-4
+                w-full flex items-center justify-center gap-2 border-2 border-black py-3.5 px-4 rounded-xl
                 font-btn text-xs sm:text-sm font-bold uppercase tracking-wider
-                transition-all duration-75 select-none cursor-pointer shadow-neo
+                transition-all duration-75 select-none cursor-pointer shadow-[3px_3px_0px_#000]
                 ${
                   copied
-                    ? "bg-comic-green text-black translate-x-[2px] translate-y-[2px]"
-                    : "bg-comic-yellow text-black hover:bg-[#FFF033] hover:-translate-x-[2px] hover:-translate-y-[2px] active:translate-x-[2px] active:translate-y-[2px]"
+                    ? "bg-comic-green text-black translate-x-[1px] translate-y-[1px]"
+                    : "bg-comic-yellow text-black hover:bg-[#FFF033] hover:-translate-x-[1px] hover:-translate-y-[1px] active:translate-x-[1px] active:translate-y-[1px]"
                 }
               `}
             >

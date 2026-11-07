@@ -34,7 +34,7 @@ export const DiscordCopyButton: React.FC<DiscordCopyButtonProps> = ({ discordTag
 
   return (
     <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-      <div className="bg-neutral-100 border-[3px] border-black px-4 py-2.5 font-mono text-sm font-bold text-black select-all">
+      <div className="bg-neutral-100 border-2 border-black rounded-xl px-4 py-2.5 font-mono text-sm font-bold text-black select-all">
         {discordTag}
       </div>
 
@@ -42,13 +42,13 @@ export const DiscordCopyButton: React.FC<DiscordCopyButtonProps> = ({ discordTag
         onClick={handleCopy}
         className={`
           flex items-center justify-center gap-2
-          border-[3px] border-black px-5 py-2.5
+          border-2 border-black rounded-xl px-5 py-2.5
           font-btn text-xs sm:text-sm font-bold uppercase tracking-wider
           transition-all duration-75 select-none cursor-pointer
           ${
             copied
-              ? "bg-comic-green text-black shadow-neo-sm translate-x-[1px] translate-y-[1px]"
-              : "bg-comic-yellow text-black shadow-neo hover:shadow-neo-lg hover:-translate-x-[2px] hover:-translate-y-[2px] active:translate-x-[2px] active:translate-y-[2px]"
+              ? "bg-comic-green text-black shadow-[2px_2px_0px_#000] translate-x-[1px] translate-y-[1px]"
+              : "bg-comic-yellow text-black shadow-[3px_3px_0px_#000] hover:shadow-[4px_4px_0px_#000] hover:-translate-x-[1px] hover:-translate-y-[1px] active:translate-x-[1px] active:translate-y-[1px]"
           }
         `}
       >
