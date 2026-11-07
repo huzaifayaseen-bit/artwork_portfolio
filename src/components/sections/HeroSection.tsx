@@ -88,7 +88,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
     <section
       ref={containerRef}
       id="hero-section"
-      className="relative w-full bg-[#FF6B35] border-b-[4px] border-black pt-20 pb-10 sm:pt-24 sm:pb-14 lg:py-24 px-4 sm:px-6 min-h-0 lg:min-h-[calc(100vh-80px)] flex flex-col justify-center overflow-hidden scroll-mt-20"
+      className="relative w-full bg-[#FF6B35] border-b-[4px] border-black pt-20 pb-10 sm:pt-24 sm:pb-12 lg:py-24 px-4 sm:px-6 min-h-0 lg:min-h-[calc(100vh-80px)] flex flex-col justify-center overflow-hidden scroll-mt-20"
     >
       {/* 1. COMIC / ARCADE GEOMETRIC PATTERN OVERLAY */}
       <div className="absolute inset-0 pointer-events-none select-none -z-10" aria-hidden="true">
@@ -199,8 +199,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
 
         {/* RIGHT / COLLAGE STAGE */}
         <div className="order-2 mt-6 lg:mt-0 w-full flex justify-center">
-          {/* Collage Stage Container */}
-          <div className="relative w-[280px] sm:w-[340px] lg:w-full lg:max-w-none aspect-[4/3] sm:aspect-square lg:aspect-auto mx-auto overflow-visible pt-2 pb-4 sm:pb-6 px-2 sm:px-4">
+          {/* Locked Proportions Collage Container */}
+          <div className="relative w-[300px] sm:w-[350px] lg:w-[460px] h-[360px] sm:h-[400px] lg:h-[480px] mx-auto mt-4 lg:mt-0 select-none">
             {/* BRAND ACCENT GLOW BEHIND 3-IMAGE COLLAGE */}
             <div
               className="absolute inset-2 -z-20 pointer-events-none select-none blur-3xl opacity-10 transition-transform duration-700 ease-out"
@@ -211,133 +211,141 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
               aria-hidden="true"
             />
 
-            {/* ARTWORK COLLAGE COMPOSITION WITH INTENTIONAL STAGGER & CLEAR OVERLAPS */}
-            <div className="relative w-full h-[380px] sm:h-[440px] lg:h-[clamp(420px,52vh,500px)] max-h-[calc(100svh-4.5rem-80px)]">
-
-              {/* 1. SECONDARY BACK LAYER (Top Left): Book Cover (Issue 10) - Tilted -2deg, top position adjusted for clean crop */}
+            {/* 1. SECONDARY BACK LAYER (Top Left): Book Cover (Issue 10) - Tilted -2deg */}
+            <div
+              className="absolute top-0 left-2 w-[150px] sm:w-[180px] lg:w-[220px] z-10 transition-transform duration-500 ease-out"
+              style={{
+                transform: `translate3d(${tilt.x * 6}px, ${tilt.y * 6}px, 0)`,
+              }}
+            >
+              {/* Violet Accent Underlay */}
               <div
-                className="absolute top-0 left-0 w-[42%] sm:w-[40%] z-10 transition-transform duration-500 ease-out"
-                style={{
-                  transform: `translate3d(${tilt.x * 6}px, ${tilt.y * 6}px, 0)`,
-                }}
-              >
-                {/* Violet Accent Underlay */}
-                <div
-                  className="absolute inset-0 bg-[#9933FF] translate-x-2 translate-y-2 -z-10 border border-black/80 -rotate-2"
-                  aria-hidden="true"
-                />
-                <div
-                  onContextMenu={handleContextMenu}
-                  className="group relative bg-neutral-900 border-[3px] border-black -rotate-2 shadow-[6px_6px_0px_#000000] overflow-hidden cursor-pointer transition-all duration-[350ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-x-1 hover:-translate-y-2 hover:-rotate-3 hover:shadow-[8px_8px_0px_#000000] hover:z-40"
-                >
-                  <div className="relative aspect-[4/5] w-full overflow-hidden bg-neutral-900">
-                    <Image
-                      src="/assets/artworks/artwork_samples/Book cover/WhatsApp Image 2026-10-25 at 10.17.58 AM (1).jpeg"
-                      alt="Editorial graphic novel cover artwork by Emilia"
-                      fill
-                      sizes="(max-width: 640px) 42vw, 24vw"
-                      className="object-cover object-bottom filter contrast-[1.02] transition-transform duration-500 ease-out group-hover:scale-105"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* 2. PRIMARY FOCAL ARTWORK (Dominant Center-Right): Character 28 - Tilted +1.5deg with crisp Cyan backing */}
-              <div
-                className="absolute top-2 sm:top-3 right-0 sm:right-2 w-[64%] sm:w-[63%] z-20 transition-transform duration-500 ease-out"
-                style={{
-                  transform: `translate3d(${tilt.x * -6}px, ${tilt.y * -6}px, 0)`,
-                }}
-              >
-                {/* Solid Cyan Offset Anchor Slab */}
-                <div
-                  className="absolute inset-0 bg-[#00E5FF] translate-x-3 translate-y-3 sm:translate-x-3.5 sm:translate-y-3.5 -z-10 border-2 border-black rotate-[1.5deg]"
-                  aria-hidden="true"
-                />
-
-                <div
-                  onContextMenu={handleContextMenu}
-                  className="group relative bg-white border-[3px] border-black rotate-[1.5deg] shadow-[6px_6px_0px_#000000] overflow-hidden cursor-pointer transition-all duration-[350ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-x-1 hover:-translate-y-2 hover:rotate-1 hover:shadow-[8px_8px_0px_#000000] hover:z-40"
-                >
-                  <div className="relative aspect-square w-full overflow-hidden bg-neutral-950">
-                    <Image
-                      src="/assets/artworks/artwork_samples/Character_art/28.jpg"
-                      alt="Featured character illustration of blue-haired girl by Emilia"
-                      fill
-                      priority
-                      sizes="(max-width: 640px) 66vw, (max-width: 1024px) 50vw, 38vw"
-                      className="object-cover object-top filter contrast-[1.03] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* 3. TERTIARY ACCENT LAYER (Bottom Left): Character 10 Reaper - Overlaps only bottom corner of Book Cover, face unobstructed */}
-              <div
-                className="absolute bottom-1 sm:bottom-2 left-2 sm:left-4 w-[35%] sm:w-[33%] z-30 transition-transform duration-700 ease-out"
-                style={{
-                  transform: `translate3d(${tilt.x * 10}px, ${tilt.y * 10}px, 0)`,
-                }}
-              >
-                {/* Dark Ink Offset Slab */}
-                <div
-                  className="absolute inset-0 bg-black translate-x-2 translate-y-2 -z-10 -rotate-1"
-                  aria-hidden="true"
-                />
-                <div
-                  onContextMenu={handleContextMenu}
-                  className="group relative bg-white border-[3px] border-black -rotate-1 shadow-[5px_5px_0px_#000000] overflow-hidden cursor-pointer transition-all duration-[350ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-x-1 hover:-translate-y-2 hover:rotate-0 hover:shadow-[8px_8px_0px_#000000] hover:z-40"
-                >
-                  <div className="relative aspect-square w-full overflow-hidden bg-neutral-900">
-                    <Image
-                      src="/assets/artworks/artwork_samples/Character_art/10.jpg"
-                      alt="Kinetic reaper character illustration by Emilia"
-                      fill
-                      sizes="(max-width: 640px) 36vw, 20vw"
-                      className="object-cover object-top filter contrast-[1.02] transition-transform duration-500 ease-out group-hover:scale-105"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* 4. PLAYFUL DECATHLAND-INSPIRED DIE-CUT EMOTE STICKERS */}
-              {EMOTE_STICKERS.map((sticker) => (
-                <div
-                  key={sticker.id}
-                  className={`absolute ${sticker.positionClass} z-30 pointer-events-auto select-none`}
-                >
-                  <div className={`group relative ${sticker.animationClass}`}>
-                    {/* Tooltip Pill */}
-                    <div className="absolute -top-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 z-50 whitespace-nowrap bg-black text-[#FFE600] border border-black text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 shadow-[2px_2px_0px_#FFE600]">
-                      {sticker.tooltip}
-                    </div>
-
-                    {/* Physical Die-Cut Vinyl Sticker Image */}
-                    <div
-                      onContextMenu={handleContextMenu}
-                      className={`relative ${sticker.sizeClass} cursor-pointer die-cut-sticker ${sticker.initialRotate} active:scale-95`}
-                    >
-                      <Image
-                        src={sticker.src}
-                        alt={sticker.alt}
-                        fill
-                        sizes="80px"
-                        className="object-contain no-drag"
-                      />
-                    </div>
-                  </div>
-                </div>
-              ))}
-
-              {/* Editorial Studio Watermark Stamp: aligned to bottom-right edge of focal card */}
-              <div
-                className="hidden sm:inline-flex items-center gap-2 absolute bottom-0 right-0 z-30 bg-white/95 backdrop-blur-sm border-2 border-black px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-widest text-neutral-800 shadow-[2px_2px_0px_#000000]"
+                className="absolute inset-0 bg-[#9933FF] translate-x-2 translate-y-2 -z-10 border border-black/80 -rotate-2 rounded-xl"
                 aria-hidden="true"
+              />
+              <div
+                onContextMenu={handleContextMenu}
+                className="group relative bg-neutral-900 border-[3px] border-black rounded-xl -rotate-2 shadow-[4px_4px_0px_#000000] overflow-hidden cursor-pointer transition-all duration-[350ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-x-1 hover:-translate-y-2 hover:-rotate-3 hover:shadow-[8px_8px_0px_#000000] hover:z-40"
               >
-                <span className="w-1.5 h-1.5 bg-[#00E5FF] rounded-none inline-block" />
-                <span>ATELIER EMILIA // COMPOSITION</span>
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-neutral-900">
+                  <Image
+                    src="/assets/artworks/artwork_samples/Book cover/WhatsApp Image 2026-10-25 at 10.17.58 AM (1).jpeg"
+                    alt="Editorial graphic novel cover artwork by Emilia"
+                    fill
+                    sizes="(max-width: 640px) 150px, (max-width: 1024px) 180px, 220px"
+                    className="object-cover object-bottom filter contrast-[1.02] transition-transform duration-500 ease-out group-hover:scale-105"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* 2. PRIMARY FOCAL ARTWORK (Dominant Center-Right): Character 28 - Tilted +1.5deg with crisp Cyan backing */}
+            <div
+              className="absolute top-3 right-0 w-[190px] sm:w-[230px] lg:w-[300px] z-20 transition-transform duration-500 ease-out"
+              style={{
+                transform: `translate3d(${tilt.x * -6}px, ${tilt.y * -6}px, 0)`,
+              }}
+            >
+              {/* Solid Cyan Offset Anchor Slab */}
+              <div
+                className="absolute inset-0 bg-[#00E5FF] translate-x-2.5 translate-y-2.5 sm:translate-x-3 sm:translate-y-3 -z-10 border-2 border-black rotate-1 rounded-2xl"
+                aria-hidden="true"
+              />
+
+              <div
+                onContextMenu={handleContextMenu}
+                className="group relative bg-white border-[3px] border-black rounded-2xl rotate-1 shadow-[5px_5px_0px_#000000] overflow-hidden cursor-pointer transition-all duration-[350ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-x-1 hover:-translate-y-2 hover:rotate-1 hover:shadow-[8px_8px_0px_#000000] hover:z-40"
+              >
+                <div className="relative aspect-square w-full overflow-hidden bg-neutral-950">
+                  <Image
+                    src="/assets/artworks/artwork_samples/Character_art/28.jpg"
+                    alt="Featured character illustration of blue-haired girl by Emilia"
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 190px, (max-width: 1024px) 230px, 300px"
+                    className="object-cover object-top filter contrast-[1.03] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* 3. TERTIARY ACCENT LAYER: Character 10 Reaper - Tucked directly underneath family portrait */}
+            <div
+              className="absolute top-[170px] sm:top-[190px] lg:top-[240px] left-4 lg:left-8 w-[130px] sm:w-[150px] lg:w-[190px] z-30 transition-transform duration-700 ease-out"
+              style={{
+                transform: `translate3d(${tilt.x * 10}px, ${tilt.y * 10}px, 0)`,
+              }}
+            >
+              {/* Dark Ink Offset Slab */}
+              <div
+                className="absolute inset-0 bg-black translate-x-1.5 translate-y-1.5 -z-10 -rotate-1 rounded-xl"
+                aria-hidden="true"
+              />
+              <div
+                onContextMenu={handleContextMenu}
+                className="group relative bg-white border-[3px] border-black rounded-xl -rotate-1 shadow-[4px_4px_0px_#000000] overflow-hidden cursor-pointer transition-all duration-[350ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-x-1 hover:-translate-y-2 hover:rotate-0 hover:shadow-[8px_8px_0px_#000000] hover:z-40"
+              >
+                <div className="relative aspect-square w-full overflow-hidden bg-neutral-900">
+                  <Image
+                    src="/assets/artworks/artwork_samples/Character_art/10.jpg"
+                    alt="Kinetic reaper character illustration by Emilia"
+                    fill
+                    sizes="(max-width: 640px) 130px, (max-width: 1024px) 150px, 190px"
+                    className="object-cover object-top filter contrast-[1.02] transition-transform duration-500 ease-out group-hover:scale-105"
+                  />
+                </div>
               </div>
 
+              {/* Chibi Love Emote sticker pinned right to bottom edge of Reaper card */}
+              <div className="absolute -bottom-3 -left-3 z-40 pointer-events-auto select-none">
+                <div className="group relative animate-sticker-2">
+                  <div className="absolute -top-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 z-50 whitespace-nowrap bg-black text-[#FFE600] border border-black text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 shadow-[2px_2px_0px_#FFE600]">
+                    TWITCH &amp; DISCORD // READY
+                  </div>
+                  <div
+                    onContextMenu={handleContextMenu}
+                    className="relative w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 cursor-pointer die-cut-sticker -rotate-12 active:scale-95"
+                  >
+                    <Image
+                      src="/assets/artworks/artwork_samples/emotes/3.png"
+                      alt="Cel-shaded love mascot emote sticker"
+                      fill
+                      sizes="64px"
+                      className="object-contain no-drag"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Happy Emote Sticker pinned near top-right of main hero artwork */}
+            <div className="absolute -top-3 right-0 sm:right-2 z-40 pointer-events-auto select-none">
+              <div className="group relative animate-sticker-1">
+                <div className="absolute -top-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 z-50 whitespace-nowrap bg-black text-[#FFE600] border border-black text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 shadow-[2px_2px_0px_#FFE600]">
+                  CUSTOM EMOTES // HAND-DRAWN
+                </div>
+                <div
+                  onContextMenu={handleContextMenu}
+                  className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-22 lg:h-22 cursor-pointer die-cut-sticker rotate-6 active:scale-95"
+                >
+                  <Image
+                    src="/assets/artworks/artwork_samples/emotes/1.png"
+                    alt="Hand-drawn happy mascot emote sticker"
+                    fill
+                    sizes="88px"
+                    className="object-contain no-drag"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Editorial Studio Watermark Stamp pinned to bottom edge of collage container */}
+            <div
+              className="inline-flex items-center gap-1.5 absolute bottom-1 right-2 z-40 bg-white/95 backdrop-blur-sm border-2 border-black px-2 py-0.5 font-mono text-[8px] sm:text-[9px] uppercase tracking-widest text-neutral-800 shadow-[2px_2px_0px_#000000]"
+              aria-hidden="true"
+            >
+              <span className="w-1.5 h-1.5 bg-[#00E5FF] rounded-none inline-block" />
+              <span>ATELIER EMILIA // COMPOSITION</span>
             </div>
           </div>
         </div>
