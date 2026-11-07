@@ -239,103 +239,9 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
         </div>
       </div>
 
-      {/* Balanced 3-Column Bento Grid Row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto w-full my-8">
-        {/* Card 1: Core Arsenal / Pipeline */}
-        <div className="bg-white border-[3px] border-black rounded-2xl p-5 shadow-[4px_4px_0px_#000] flex flex-col justify-between">
-          <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-3">
-            PIPELINE // TOOLS
-          </span>
-          <div className="flex items-center justify-between sm:justify-start sm:gap-3 py-1">
-            {/* Clip Studio Paint */}
-            <div className="flex flex-col items-center gap-1 group">
-              <div
-                title="Clip Studio Paint"
-                className="w-12 h-12 rounded-xl border-2 border-black bg-[#23354E] flex items-center justify-center shadow-[2px_2px_0px_#000] group-hover:-translate-y-1 transition-transform cursor-pointer"
-              >
-                <span className="font-mono font-black text-sm text-white tracking-tighter">
-                  CSP
-                </span>
-              </div>
-              <span className="font-mono font-bold text-[10px] text-neutral-700 tracking-tight">
-                CSP
-              </span>
-            </div>
-
-            {/* Adobe Photoshop */}
-            <div className="flex flex-col items-center gap-1 group">
-              <div
-                title="Adobe Photoshop"
-                className="w-12 h-12 rounded-xl border-2 border-black bg-[#001E36] flex items-center justify-center shadow-[2px_2px_0px_#000] group-hover:-translate-y-1 transition-transform cursor-pointer"
-              >
-                <span className="font-mono font-black text-base text-[#31A8FF] tracking-tight">
-                  Ps
-                </span>
-              </div>
-              <span className="font-mono font-bold text-[10px] text-neutral-700 tracking-tight">
-                Ps
-              </span>
-            </div>
-
-            {/* Adobe Illustrator */}
-            <div className="flex flex-col items-center gap-1 group">
-              <div
-                title="Adobe Illustrator"
-                className="w-12 h-12 rounded-xl border-2 border-black bg-[#330000] flex items-center justify-center shadow-[2px_2px_0px_#000] group-hover:-translate-y-1 transition-transform cursor-pointer"
-              >
-                <span className="font-mono font-black text-base text-[#FF9A00] tracking-tight">
-                  Ai
-                </span>
-              </div>
-              <span className="font-mono font-bold text-[10px] text-neutral-700 tracking-tight">
-                Ai
-              </span>
-            </div>
-
-            {/* Procreate */}
-            <div className="flex flex-col items-center gap-1 group">
-              <div
-                title="Procreate"
-                className="w-12 h-12 rounded-xl border-2 border-black bg-black flex items-center justify-center shadow-[2px_2px_0px_#000] group-hover:-translate-y-1 transition-transform cursor-pointer relative overflow-hidden"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  className="w-6 h-6"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M19.4 5.6C17.6 3.8 14.5 3.5 12.3 4.9L6.1 9.1C4.3 10.3 3.6 12.7 4.5 14.7C5.4 16.7 7.7 17.8 9.9 17.2L15.3 15.7C16.8 15.3 18.2 16.3 18.3 17.9C18.4 19.3 17.3 20.5 15.9 20.5H10.5"
-                    stroke="url(#procreate-grad)"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <defs>
-                    <linearGradient
-                      id="procreate-grad"
-                      x1="4"
-                      y1="4"
-                      x2="20"
-                      y2="20"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop offset="0%" stopColor="#FF3366" />
-                      <stop offset="35%" stopColor="#FFAA00" />
-                      <stop offset="70%" stopColor="#00E5FF" />
-                      <stop offset="100%" stopColor="#9933FF" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-              <span className="font-mono font-bold text-[10px] text-neutral-700 tracking-tight">
-                Procreate
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Card 2: Master Deliverables */}
+      {/* Balanced 2-Column Bento Grid Row */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl mx-auto w-full my-8">
+        {/* Card 1: Master Deliverables */}
         <div className="bg-[#FEF08A] border-[3px] border-black rounded-2xl p-5 shadow-[4px_4px_0px_#000] flex flex-col justify-between">
           <span className="text-[10px] font-black uppercase tracking-widest text-zinc-800 mb-3">
             STANDARD // ASSETS
@@ -353,7 +259,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
           </div>
         </div>
 
-        {/* Card 3: Fast Response Transmission */}
+        {/* Card 2: Fast Response Transmission */}
         <div className="bg-[#E0F2FE] border-[3px] border-black rounded-2xl p-5 shadow-[4px_4px_0px_#000] flex flex-col justify-between">
           <span className="text-[10px] font-black uppercase tracking-widest text-zinc-800 mb-3">
             PRIMARY // CHANNEL

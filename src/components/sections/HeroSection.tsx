@@ -36,13 +36,80 @@ const EMOTE_STICKERS = [
   },
 ];
 
-const TICKER_ITEMS = [
-  "2D CEL-SHADED ILLUSTRATIONS",
-  "CUSTOM EMOTE PACKS",
-  "WEBCOMIC ADAPTATIONS",
-  "RAZOR-SHARP VECTOR INKING",
-  "CHARACTER SHEETS",
-  "STORYBOARDS",
+interface TickerEntry {
+  text: string;
+  tool: {
+    name: string;
+    bg: string;
+    textColor: string;
+    rotateClass: string;
+    label: string;
+    isSvg?: boolean;
+  };
+}
+
+const TICKER_ENTRIES: TickerEntry[] = [
+  {
+    text: "2D CEL-SHADED ILLUSTRATIONS",
+    tool: {
+      name: "Clip Studio Paint",
+      bg: "#2B6BFF",
+      textColor: "text-white",
+      rotateClass: "-rotate-[4deg]",
+      label: "CSP",
+    },
+  },
+  {
+    text: "CUSTOM EMOTE PACKS",
+    tool: {
+      name: "Photoshop",
+      bg: "#00C8FF",
+      textColor: "text-black",
+      rotateClass: "rotate-[3deg]",
+      label: "Ps",
+    },
+  },
+  {
+    text: "WEBCOMIC ADAPTATIONS",
+    tool: {
+      name: "Illustrator",
+      bg: "#FF7A00",
+      textColor: "text-white",
+      rotateClass: "-rotate-[4deg]",
+      label: "Ai",
+    },
+  },
+  {
+    text: "RAZOR-SHARP VECTOR INKING",
+    tool: {
+      name: "Procreate",
+      bg: "#FF2E63",
+      textColor: "text-white",
+      rotateClass: "rotate-[3deg]",
+      label: "Procreate",
+      isSvg: true,
+    },
+  },
+  {
+    text: "CHARACTER SHEETS",
+    tool: {
+      name: "Clip Studio Paint",
+      bg: "#2B6BFF",
+      textColor: "text-white",
+      rotateClass: "-rotate-[4deg]",
+      label: "CSP",
+    },
+  },
+  {
+    text: "STORYBOARDS",
+    tool: {
+      name: "Photoshop",
+      bg: "#00C8FF",
+      textColor: "text-black",
+      rotateClass: "rotate-[3deg]",
+      label: "Ps",
+    },
+  },
 ];
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
@@ -398,12 +465,45 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
       </div>
 
       {/* 4. NEO-BRUTALIST BOTTOM MARQUEE TICKER (Directly at the bottom edge of Hero) */}
-      <div className="w-full border-y-[3px] border-black bg-[#FFE600] text-black font-nav font-bold uppercase tracking-wider py-2.5 overflow-hidden select-none pause-hover cursor-default">
+      <div className="w-full border-y-[3px] border-black bg-[#FFE600] text-black font-nav font-bold uppercase tracking-wider py-2 overflow-hidden select-none pause-hover cursor-default">
         <div className="animate-marquee flex items-center gap-6 whitespace-nowrap text-xs sm:text-sm">
           {/* Duplicate set for seamless continuous marquee loop */}
-          {[...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS].map((item, idx) => (
+          {[...TICKER_ENTRIES, ...TICKER_ENTRIES].map((entry, idx) => (
             <span key={idx} className="inline-flex items-center gap-6">
-              <span className="tracking-wide">{item}</span>
+              <span className="tracking-wide font-black">{entry.text}</span>
+              <span
+                title={entry.tool.name}
+                style={{
+                  backgroundColor: entry.tool.bg,
+                  boxShadow: "3px 3px 0 #000",
+                }}
+                className={`
+                  marquee-badge w-10 h-10 min-w-[40px] rounded-lg border-[2.5px] border-black
+                  flex items-center justify-center cursor-pointer select-none
+                  ${entry.tool.rotateClass} ${entry.tool.textColor}
+                `}
+              >
+                {entry.tool.isSvg ? (
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="w-5 h-5"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M19.4 5.6C17.6 3.8 14.5 3.5 12.3 4.9L6.1 9.1C4.3 10.3 3.6 12.7 4.5 14.7C5.4 16.7 7.7 17.8 9.9 17.2L15.3 15.7C16.8 15.3 18.2 16.3 18.3 17.9C18.4 19.3 17.3 20.5 15.9 20.5H10.5"
+                      stroke="#FFFFFF"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                ) : (
+                  <span className="font-mono font-black text-sm tracking-tight leading-none">
+                    {entry.tool.label}
+                  </span>
+                )}
+              </span>
               <span className="inline-flex items-center text-black">
                 {idx % 2 === 0 ? (
                   <Star className="w-3.5 h-3.5 fill-black stroke-none" />
