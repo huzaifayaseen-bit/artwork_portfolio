@@ -143,7 +143,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
         className="fixed top-0 left-0 w-full z-50 border-b-[3px] border-black transition-colors duration-200"
         style={{ backgroundColor: isScrolled ? "#FFFFFF" : "#FF6B35" }}
       >
-        <div className="max-w-6xl mx-auto h-16 md:h-20 px-6 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto h-14 sm:h-16 md:h-20 px-4 sm:px-6 flex items-center justify-between">
           {/* LEFT: EMILIA STUDIO logo in black */}
           <Link
             href="/"
@@ -366,15 +366,15 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
             aria-hidden="true"
           />
 
-          {/* Right-Aligned Drawer Panel */}
+          {/* Right-Aligned Drawer Panel with Neo-Brutalist Styling */}
           <aside
             role="dialog"
             aria-modal="true"
             aria-label="Mobile Navigation Menu"
             className="
               fixed top-0 right-0 bottom-0 z-50 w-[85vw] max-w-xs h-full
-              bg-white border-l-[4px] border-black p-6
-              shadow-[-8px_0px_0px_#000] overflow-y-auto select-none
+              bg-[#FFFDF9] border-l-4 border-black p-6
+              shadow-[4px_4px_0px_#000] overflow-y-auto select-none
               flex flex-col justify-between
             "
           >

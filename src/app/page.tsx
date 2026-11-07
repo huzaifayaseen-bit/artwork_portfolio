@@ -72,17 +72,17 @@ export default function Home() {
         {/* Section 2: Curated Artworks / Gallery (Clean Off-White) */}
         <section
           id="gallery"
-          className="w-full bg-[#FAF8F5] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
+          className="w-full bg-[#FAF8F5] border-b-[3px] border-black px-4 sm:px-6 py-12 sm:py-16 scroll-mt-20"
         >
           <div className="max-w-6xl mx-auto">
             <ArtGallery artworks={data.artworks} limit={12} showViewAllLink={true} />
           </div>
         </section>
 
-        {/* Section 3: Tools of the Trade / Studio Pipeline (Transitional Shelf - Compact py-10) */}
+        {/* Section 3: Tools of the Trade / Studio Pipeline (Transitional Shelf) */}
         <section
           id="tools"
-          className="w-full border-b-[3px] border-black bg-[#FFFDF7] py-10 px-6 scroll-mt-20"
+          className="w-full border-b-[3px] border-black bg-[#FFFDF7] px-4 sm:px-6 py-10 sm:py-12 scroll-mt-20"
         >
           <ToolsOfTheTrade />
         </section>
@@ -90,7 +90,7 @@ export default function Home() {
         {/* Section 4: Client Transmissions / Reviews (Soft Neo-Yellow / Butter) */}
         <section
           id="reviews"
-          className="w-full bg-[#FEF9C3] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
+          className="w-full bg-[#FEF9C3] border-b-[3px] border-black px-4 sm:px-6 py-12 sm:py-16 scroll-mt-20"
         >
           <div className="max-w-6xl mx-auto">
             <ClientReviews reviewsData={data.reviews} />
@@ -100,7 +100,7 @@ export default function Home() {
         {/* Section 5: Commission Pricing & Services (Pure White Bento) */}
         <section
           id="pricing"
-          className="w-full bg-[#FFFFFF] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
+          className="w-full bg-[#FFFFFF] border-b-[3px] border-black px-4 sm:px-6 py-12 sm:py-16 scroll-mt-20"
         >
           <div className="max-w-6xl mx-auto">
             {/* Pricing Header */}
@@ -109,7 +109,7 @@ export default function Home() {
                 <Sparkles className="w-4 h-4 fill-white" />
                 AVAILABLE TIERS
               </div>
-              <h2 className="font-comic text-5xl sm:text-7xl uppercase text-black tracking-wide leading-none">
+              <h2 className="font-comic text-4xl sm:text-6xl md:text-7xl uppercase text-black tracking-wide leading-none">
                 COMMISSION PRICING &amp; SERVICES
               </h2>
               <p className="mt-3 text-sm sm:text-base text-neutral-700 font-sans">
@@ -118,7 +118,7 @@ export default function Home() {
             </div>
 
             {/* Pricing Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch pt-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch pt-2">
               {data.commissionTiers.map((tier) => (
                 <PricingTierCard
                   key={tier.id}
@@ -155,7 +155,7 @@ export default function Home() {
         {/* Section 6: Interactive Commission Calculator (Soft Neo-Brutalist Lavender) */}
         <section
           id="calculator"
-          className="w-full bg-[#EDE9FE] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
+          className="w-full bg-[#EDE9FE] border-b-[3px] border-black px-4 sm:px-6 py-12 sm:py-16 scroll-mt-20"
         >
           <div className="max-w-6xl mx-auto">
             <CommissionCalculator
@@ -170,7 +170,7 @@ export default function Home() {
         {/* Section 7: Terms of Service // Codex (Soft Sage / Mint) */}
         <section
           id="tos"
-          className="w-full bg-[#ECFDF5] border-b-[3px] border-black pt-14 md:pt-18 pb-32 px-6 scroll-mt-20"
+          className="w-full bg-[#ECFDF5] border-b-[3px] border-black px-4 sm:px-6 pt-12 sm:pt-16 pb-24 sm:pb-32 scroll-mt-20"
         >
           <div className="max-w-6xl mx-auto">
             <TermsOfService tosData={data.termsOfService} />
@@ -180,7 +180,7 @@ export default function Home() {
         {/* Section 8: Start a Project / Commission Brief & Contact (Crisp Neo-Cyan) */}
         <section
           id="contact"
-          className="w-full bg-[#E0F2FE] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
+          className="w-full bg-[#E0F2FE] border-b-[3px] border-black px-4 sm:px-6 py-12 sm:py-16 scroll-mt-20"
         >
           <div className="max-w-6xl mx-auto space-y-12">
             <ContactSection profile={data.profile} />

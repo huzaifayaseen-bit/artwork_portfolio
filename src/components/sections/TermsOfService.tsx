@@ -31,10 +31,10 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
         </div>
       </div>
 
-      {/* Right Column: Henrietta-Style Native Sticky Card Stack */}
-      <div className="lg:col-span-7 flex flex-col gap-10 relative pb-16">
+      {/* Right Column: Henrietta-Style Native Sticky Card Stack on Desktop / Non-Sticky Consecutive Flow on Mobile */}
+      <div className="lg:col-span-7 flex flex-col gap-5 lg:gap-10 relative pb-16">
         {/* Card 01: Legal Codex // Rules */}
-        <div className="sticky top-20 md:top-24 z-10 bg-[#FFFDF9] border-[4px] border-black rounded-3xl p-5 md:p-6 shadow-[8px_8px_0px_#000] rotate-[-1deg] transition-transform select-none max-h-[78vh] overflow-y-auto">
+        <div className="relative top-auto lg:sticky lg:top-20 md:top-24 z-10 bg-[#FFFDF9] border-[4px] border-black rounded-3xl p-5 md:p-6 shadow-[8px_8px_0px_#000] rotate-[-1deg] transition-transform select-none max-h-[78vh] overflow-y-auto">
           <div className="flex items-center justify-between gap-3 mb-4 pb-2.5 border-b-2 border-black/15">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-[#FFE600] text-black border-2 border-dashed border-black font-black text-xs uppercase rounded-lg shadow-[2px_2px_0px_#000]">
               <Scale className="w-3.5 h-3.5" />
@@ -62,7 +62,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
         </div>
 
         {/* Card 02: PayPal Exclusive // Billing */}
-        <div className="sticky top-24 md:top-28 z-20 bg-[#DCFCE7] border-[4px] border-black rounded-3xl p-5 md:p-6 shadow-[8px_8px_0px_#000] rotate-[1.5deg] transition-transform select-none max-h-[78vh] overflow-y-auto">
+        <div className="relative top-auto lg:sticky lg:top-24 md:top-28 z-20 bg-[#DCFCE7] border-[4px] border-black rounded-3xl p-5 md:p-6 shadow-[8px_8px_0px_#000] rotate-[1.5deg] transition-transform select-none max-h-[78vh] overflow-y-auto">
           <div className="flex items-center justify-between gap-3 mb-4 pb-2.5 border-b-2 border-black/15">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-[#4ADE80] text-black border-2 border-dashed border-black font-black text-xs uppercase rounded-lg shadow-[2px_2px_0px_#000]">
               <CreditCard className="w-3.5 h-3.5" />
@@ -90,7 +90,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
         </div>
 
         {/* Card 03: Client & Artist Code // Anti-AI */}
-        <div className="sticky top-28 md:top-32 z-30 bg-[#FEF08A] border-[4px] border-black rounded-3xl p-5 md:p-6 shadow-[8px_8px_0px_#000] rotate-[-0.5deg] transition-transform select-none max-h-[78vh] overflow-y-auto">
+        <div className="relative top-auto lg:sticky lg:top-28 md:top-32 z-30 bg-[#FEF08A] border-[4px] border-black rounded-3xl p-5 md:p-6 shadow-[8px_8px_0px_#000] rotate-[-0.5deg] transition-transform select-none max-h-[78vh] overflow-y-auto">
           <div className="flex items-center justify-between gap-3 mb-4 pb-2.5 border-b-2 border-black/15">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-black text-[#FFE600] border-2 border-dashed border-black font-black text-xs uppercase rounded-lg shadow-[2px_2px_0px_#000]">
               <ShieldAlert className="w-3.5 h-3.5 text-[#FFE600]" />

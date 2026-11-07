@@ -41,9 +41,9 @@ export const DiscordCopyButton: React.FC<DiscordCopyButtonProps> = ({ discordTag
       <button
         onClick={handleCopy}
         className={`
-          flex items-center justify-center gap-2
-          border-2 border-black rounded-xl px-5 py-2.5
-          font-btn text-xs sm:text-sm font-bold uppercase tracking-wider
+          w-full sm:w-auto flex items-center justify-center gap-2
+          border-2 border-black rounded-xl px-5 py-3 text-xs sm:text-sm
+          font-btn font-bold uppercase tracking-wider
           transition-all duration-75 select-none cursor-pointer
           ${
             copied

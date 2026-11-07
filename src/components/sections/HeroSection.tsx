@@ -128,9 +128,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
       </div>
 
       {/* Main Editorial Studio Grid: 2-Column Responsive Layout */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.15fr)] gap-8 sm:gap-10 lg:gap-[clamp(32px,4.5vw,68px)] items-center">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.15fr)] gap-8 sm:gap-10 lg:gap-[clamp(32px,4.5vw,68px)] items-center">
         {/* LEFT / INTRO COLUMN */}
-        <div className="flex flex-col justify-center order-2 lg:order-1 min-w-0 max-w-[min(100%,38rem)]">
+        <div className="flex flex-col justify-center order-1 min-w-0 max-w-[min(100%,38rem)]">
           {/* Studio Meta Badges (Single Row: INDEPENDENT STUDIO + COMMISSIONS OPEN) */}
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <span className="inline-flex items-center gap-1.5 bg-white text-black border-2 border-black font-black text-[11px] uppercase tracking-wider rounded-lg px-2.5 py-0.5 shadow-[2px_2px_0px_#000]">
@@ -144,11 +144,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
           </div>
 
           {/* Clean 2-Line Poster Headline */}
-          <h1 className="mb-4 select-none leading-[1.05] font-archivo [text-wrap:balance] !normal-case" style={{ textTransform: "none" }}>
-            <span className="block text-4xl md:text-5xl font-black text-black tracking-tight !normal-case" style={{ textTransform: "none" }}>
+          <h1 className="mb-4 select-none leading-tight font-archivo [text-wrap:balance] !normal-case text-3xl sm:text-4xl md:text-5xl font-black text-black tracking-tight" style={{ textTransform: "none" }}>
+            <span className="block !normal-case" style={{ textTransform: "none" }}>
               Characters with
             </span>
-            <span className="inline-block bg-[#DFF0FF] text-black border-[3px] border-black rounded-xl px-4 py-1 shadow-[4px_4px_0px_#000] -rotate-1 mt-2 whitespace-nowrap !normal-case text-4xl md:text-5xl font-black tracking-tight" style={{ textTransform: "none" }}>
+            <span className="inline-block bg-[#DFF0FF] text-black border-[3px] border-black rounded-xl px-3 sm:px-4 py-1 shadow-[4px_4px_0px_#000] -rotate-1 mt-2 whitespace-nowrap !normal-case text-3xl sm:text-4xl md:text-5xl font-black tracking-tight" style={{ textTransform: "none" }}>
               attitude &amp; soul.
             </span>
           </h1>
@@ -159,11 +159,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
           </p>
 
           {/* Commission Conversion Triggers */}
-          <div className="flex flex-wrap items-center gap-3.5 mb-6 sm:mb-7">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto mb-6 sm:mb-7">
             <Link
               href="#contact"
               onClick={(e) => handleSmoothScroll(e, "contact")}
-              className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-[#FFE600] text-black border-[3px] border-black rounded-xl font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all active:bg-black active:text-[#FFE600]"
+              className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-[#FFE600] text-black border-[3px] border-black rounded-xl font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all active:bg-black active:text-[#FFE600]"
             >
               <Zap className="w-4 h-4 fill-black stroke-black" />
               <span>COMMISSION ME</span>
@@ -172,7 +172,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             <Link
               href="#gallery"
               onClick={(e) => handleSmoothScroll(e, "gallery")}
-              className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-white text-black border-[3px] border-black rounded-xl font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all"
+              className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-white text-black border-[3px] border-black rounded-xl font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all"
             >
               <Compass className="w-4 h-4 text-black" />
               <span>EXPLORE ARTWORK</span>
@@ -198,9 +198,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
         </div>
 
         {/* RIGHT / COLLAGE STAGE */}
-        <div className="order-1 lg:order-2 w-full">
+        <div className="order-2 mt-8 lg:mt-0 w-full">
           {/* Collage Stage Container */}
-          <div className="relative w-full max-w-[540px] lg:max-w-none mx-auto pt-2 pb-4 sm:pb-6 px-2 sm:px-4">
+          <div className="relative w-full max-w-[320px] sm:max-w-sm lg:max-w-none mx-auto scale-90 sm:scale-100 origin-top overflow-visible pt-2 pb-4 sm:pb-6 px-2 sm:px-4">
             {/* BRAND ACCENT GLOW BEHIND 3-IMAGE COLLAGE */}
             <div
               className="absolute inset-2 -z-20 pointer-events-none select-none blur-3xl opacity-10 transition-transform duration-700 ease-out"

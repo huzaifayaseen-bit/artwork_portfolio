@@ -42,11 +42,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
             </label>
             <a
               href={`mailto:${profile.email}?subject=Commission%20Inquiry%20-%20Emilia%20Art`}
-              className="inline-block"
+              className="block sm:inline-block w-full sm:w-auto"
             >
               <ComicButton
                 variant="secondary"
                 size="md"
+                className="w-full sm:w-auto flex items-center justify-center py-3 text-xs sm:text-sm"
                 icon={<Mail className="w-4 h-4" />}
               >
                 SEND EMAIL TO {profile.email.toUpperCase()}

@@ -42,7 +42,7 @@ export const PricingTierCard: React.FC<PricingTierCardProps> = ({
   return (
     <div
       className={`
-        relative border-[3px] border-black rounded-2xl shadow-[5px_5px_0px_#000] p-6
+        relative border-[3px] border-black rounded-2xl shadow-[5px_5px_0px_#000] p-5 sm:p-7
         flex flex-col justify-between transition-all duration-150 select-none
         hover:-translate-y-1 hover:shadow-[7px_7px_0px_#000] ${bgClass}
       `}

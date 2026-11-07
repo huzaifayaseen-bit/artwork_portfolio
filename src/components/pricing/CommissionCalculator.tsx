@@ -164,17 +164,17 @@ export const CommissionCalculator: React.FC<CommissionCalculatorProps> = ({
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 sm:gap-8 items-start">
         {/* Left Side: Scope & Addon Selectors (7 cols) */}
-        <div className="lg:col-span-7 space-y-6">
+        <div className="w-full lg:col-span-7 space-y-6">
           {/* Step 1: Select Scope Tier */}
           <div>
-            <label className="block font-nav text-xs font-bold uppercase tracking-wider text-neutral-600 mb-3 flex items-center gap-2">
+            <label className="font-nav text-xs font-bold uppercase tracking-wider text-neutral-600 mb-3 flex items-center gap-2">
               <span className="w-2.5 h-2.5 bg-comic-pink border border-black rounded-sm inline-block" />
               1. CHOOSE BASE SCOPE
             </label>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
               {calculatorData.scopes.map((scope) => {
                 const isSelected = selectedScopeId === scope.id;
                 return (
@@ -238,7 +238,7 @@ export const CommissionCalculator: React.FC<CommissionCalculatorProps> = ({
                     key={addon.id}
                     onClick={() => toggleAddon(addon.id)}
                     className={`
-                      border-2 border-black rounded-xl p-3.5 flex items-start justify-between gap-4 cursor-pointer select-none transition-all duration-75 hover:bg-zinc-50
+                      border-2 border-black rounded-xl py-3 px-4 flex items-start justify-between gap-4 cursor-pointer select-none transition-all duration-75 hover:bg-zinc-50 w-full
                       ${
                         isChecked
                           ? "bg-neutral-100 shadow-[3px_3px_0px_#000] -translate-x-[1px] -translate-y-[1px]"
@@ -276,7 +276,7 @@ export const CommissionCalculator: React.FC<CommissionCalculatorProps> = ({
         </div>
 
         {/* Right Side: Total Summary & Discord Action Trigger (5 cols) */}
-        <div className="lg:col-span-5 bg-neutral-900 border-[3px] border-black rounded-2xl p-6 sm:p-7 text-white shadow-[6px_6px_0px_#FFE600] flex flex-col justify-between">
+        <div className="w-full lg:col-span-5 bg-neutral-900 border-[3px] border-black rounded-2xl p-5 sm:p-7 text-white shadow-[6px_6px_0px_#FFE600] flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between border-b-2 border-neutral-700 pb-3 mb-4">
               <span className="font-comic text-sm tracking-widest text-comic-yellow uppercase">
