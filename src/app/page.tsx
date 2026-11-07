@@ -72,9 +72,9 @@ export default function Home() {
         {/* Section 2: Curated Artworks / Gallery (Clean Off-White) */}
         <section
           id="gallery"
-          className="w-full bg-[#FAF8F5] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
+          className="w-full bg-[#FAF8F5] border-b-[3px] border-black py-20 md:py-24 px-6 scroll-mt-20"
         >
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <ArtGallery artworks={data.artworks} limit={12} showViewAllLink={true} />
           </div>
         </section>
@@ -84,15 +84,17 @@ export default function Home() {
           id="tools"
           className="w-full border-b-[3px] border-black bg-[#FFFDF7] py-10 px-6 scroll-mt-20"
         >
-          <ToolsOfTheTrade />
+          <div className="max-w-5xl mx-auto">
+            <ToolsOfTheTrade />
+          </div>
         </section>
 
         {/* Section 4: Client Transmissions / Reviews (Soft Neo-Yellow / Butter) */}
         <section
           id="reviews"
-          className="w-full bg-[#FEF9C3] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
+          className="w-full bg-[#FEF9C3] border-b-[3px] border-black py-20 md:py-24 px-6 scroll-mt-20"
         >
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <ClientReviews reviewsData={data.reviews} />
           </div>
         </section>
@@ -100,11 +102,11 @@ export default function Home() {
         {/* Section 5: Commission Pricing & Services (Pure White Bento) */}
         <section
           id="pricing"
-          className="w-full bg-[#FFFFFF] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
+          className="w-full bg-[#FFFFFF] border-b-[3px] border-black py-20 md:py-24 px-6 scroll-mt-20"
         >
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             {/* Pricing Header */}
-            <div className="max-w-3xl mb-8 md:mb-12">
+            <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-10 md:mb-12">
               <div className="inline-flex items-center gap-2 bg-comic-pink text-white border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider mb-2 rounded-full shadow-[2px_2px_0px_#000]">
                 <Sparkles className="w-4 h-4 fill-white" />
                 AVAILABLE TIERS
@@ -112,7 +114,7 @@ export default function Home() {
               <h2 className="font-comic text-5xl sm:text-7xl uppercase text-black tracking-wide leading-none">
                 COMMISSION PRICING &amp; SERVICES
               </h2>
-              <p className="mt-3 text-sm sm:text-base text-neutral-700 font-sans">
+              <p className="mt-3 text-sm sm:text-base text-neutral-700 font-sans max-w-xl">
                 Standardized rates for personal &amp; commercial cel-shaded art commissions. All tiers include full-resolution master files and milestone progress updates.
               </p>
             </div>
@@ -155,9 +157,9 @@ export default function Home() {
         {/* Section 6: Interactive Commission Calculator (Soft Neo-Brutalist Lavender) */}
         <section
           id="calculator"
-          className="w-full bg-[#EDE9FE] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
+          className="w-full bg-[#EDE9FE] border-b-[3px] border-black py-20 md:py-24 px-6 scroll-mt-20"
         >
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <CommissionCalculator
               calculatorData={data.calculator}
               discordTag={data.profile.discordTag}
@@ -170,9 +172,9 @@ export default function Home() {
         {/* Section 7: Terms of Service // Codex (Soft Sage / Mint) */}
         <section
           id="tos"
-          className="w-full bg-[#ECFDF5] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
+          className="w-full bg-[#ECFDF5] border-b-[3px] border-black py-20 md:py-24 px-6 scroll-mt-20"
         >
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <TermsOfService tosData={data.termsOfService} />
           </div>
         </section>
@@ -180,9 +182,9 @@ export default function Home() {
         {/* Section 8: Start a Project / Commission Brief & Contact (Crisp Neo-Cyan) */}
         <section
           id="contact"
-          className="w-full bg-[#E0F2FE] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
+          className="w-full bg-[#E0F2FE] border-b-[3px] border-black py-20 md:py-24 px-6 scroll-mt-20"
         >
-          <div className="max-w-6xl mx-auto space-y-12">
+          <div className="max-w-5xl mx-auto space-y-12">
             <ContactSection profile={data.profile} />
             <CommissionBriefBuilder
               discordTag={data.profile.discordTag}

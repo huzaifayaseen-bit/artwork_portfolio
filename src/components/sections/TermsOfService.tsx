@@ -12,29 +12,29 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
   if (!tosData) return null;
 
   return (
-    <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-      {/* Left Column: Pinned Sticky Overview Header */}
-      <div className="lg:col-span-5 lg:sticky lg:top-28 select-none">
+    <div className="w-full">
+      {/* Top: Centered Section Header */}
+      <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-12 select-none">
         <span className="text-[11px] sm:text-xs font-black uppercase tracking-widest bg-[#FFE600] border-2 border-black px-3.5 py-1 rounded-full shadow-[2px_2px_0px_#000] inline-block mb-3">
           BINDING CLIENT-ARTIST AGREEMENT
         </span>
         <h2 className="text-4xl sm:text-5xl md:text-6xl font-comic uppercase tracking-tight text-black leading-none">
           TERMS OF SERVICE // CODEX
         </h2>
-        <p className="mt-4 text-xs sm:text-sm font-mono uppercase tracking-widest text-neutral-700 leading-relaxed max-w-md">
+        <p className="mt-3 text-xs sm:text-sm font-mono uppercase tracking-widest text-neutral-700 leading-relaxed max-w-xl">
           {tosData.subtitle ||
             "Please review the binding operational standards below before commissioning. Transparent deliverables, milestone approvals, and copyright clarity."}
         </p>
-        <div className="mt-6 hidden lg:flex items-center gap-2 text-xs font-bold font-nav text-neutral-500 uppercase tracking-wider">
+        <div className="mt-5 inline-flex items-center gap-2 text-xs font-bold font-nav text-neutral-600 uppercase tracking-wider">
           <span className="w-2 h-2 rounded-full bg-[#FF6B35] animate-ping" />
-          <span>Scroll to inspect operational codex cards ↓</span>
+          <span>Scroll down to inspect operational codex cards ↓</span>
         </div>
       </div>
 
-      {/* Right Column: Henrietta-Style Native Sticky Card Stack */}
-      <div className="lg:col-span-7 flex flex-col gap-12 relative pb-12">
+      {/* Centered Vertical Sticky Stack Container */}
+      <div className="max-w-3xl mx-auto flex flex-col gap-10 relative pb-8">
         {/* Card 01: Legal Codex // Rules */}
-        <div className="sticky top-28 z-10 bg-[#FFFDF9] border-[4px] border-black rounded-3xl p-6 sm:p-8 shadow-[8px_8px_0px_#000] rotate-[-1deg] transition-transform select-none">
+        <div className="sticky top-28 z-10 w-full bg-[#FFFDF9] border-[4px] border-black rounded-3xl p-6 sm:p-8 shadow-[8px_8px_0px_#000] rotate-[-1deg] transition-transform select-none">
           <div className="flex items-center justify-between gap-3 mb-5 pb-3 border-b-2 border-black/15">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#FFE600] text-black border-2 border-dashed border-black font-black text-xs uppercase rounded-lg shadow-[2px_2px_0px_#000]">
               <Scale className="w-4 h-4" />
@@ -62,7 +62,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
         </div>
 
         {/* Card 02: PayPal Exclusive // Billing */}
-        <div className="sticky top-36 z-20 bg-[#DCFCE7] border-[4px] border-black rounded-3xl p-6 sm:p-8 shadow-[8px_8px_0px_#000] rotate-[1.5deg] transition-transform select-none">
+        <div className="sticky top-36 z-20 w-full bg-[#DCFCE7] border-[4px] border-black rounded-3xl p-6 sm:p-8 shadow-[8px_8px_0px_#000] rotate-[1.5deg] transition-transform select-none">
           <div className="flex items-center justify-between gap-3 mb-5 pb-3 border-b-2 border-black/15">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#4ADE80] text-black border-2 border-dashed border-black font-black text-xs uppercase rounded-lg shadow-[2px_2px_0px_#000]">
               <CreditCard className="w-4 h-4" />
@@ -90,7 +90,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
         </div>
 
         {/* Card 03: Client & Artist Code // Anti-AI */}
-        <div className="sticky top-44 z-30 bg-[#FEF08A] border-[4px] border-black rounded-3xl p-6 sm:p-8 shadow-[8px_8px_0px_#000] rotate-[-0.5deg] transition-transform select-none">
+        <div className="sticky top-44 z-30 w-full bg-[#FEF08A] border-[4px] border-black rounded-3xl p-6 sm:p-8 shadow-[8px_8px_0px_#000] rotate-[-0.5deg] transition-transform select-none">
           <div className="flex items-center justify-between gap-3 mb-5 pb-3 border-b-2 border-black/15">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-black text-[#FFE600] border-2 border-dashed border-black font-black text-xs uppercase rounded-lg shadow-[2px_2px_0px_#000]">
               <ShieldAlert className="w-4 h-4 text-[#FFE600]" />

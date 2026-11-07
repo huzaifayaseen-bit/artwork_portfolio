@@ -39,9 +39,9 @@ const TOOLS: ToolItem[] = [
 export const ToolsOfTheTrade: React.FC = () => {
   return (
     <div id="tools-section" className="py-2">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+        <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-8 sm:mb-10">
           <div className="inline-flex items-center gap-2 bg-[#FFE600] text-black border-2 border-black px-3.5 py-1 font-nav text-xs font-black uppercase tracking-wider mb-3 shadow-[2px_2px_0px_#000]">
             <Wrench className="w-3.5 h-3.5 stroke-[2.5]" />
             STUDIO PIPELINE

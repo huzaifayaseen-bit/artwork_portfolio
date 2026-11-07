@@ -103,24 +103,22 @@ export const ArtGallery: React.FC<ArtGalleryProps> = ({
       {/* Section Header & Stacked Filter Bar */}
       <div className="flex flex-col gap-6 mb-10">
         {/* Title, Badge & Subtitle */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div>
-            <div className="inline-flex items-center gap-2 bg-comic-cyan border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider mb-2.5 shadow-[2px_2px_0px_#000]">
-              <Layers className="w-4 h-4" />
-              PANEL ARCHIVE
-            </div>
-            <h2 className="font-comic text-5xl sm:text-7xl uppercase text-black tracking-wide leading-none">
-              CURATED ARTWORKS
-            </h2>
-            <p className="mt-2 text-sm sm:text-base text-neutral-700 max-w-2xl font-sans">
-              Explore sequential frames, high-octane character designs, and full-bleed cel-shaded comic illustrations.
-            </p>
+        <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-2">
+          <div className="inline-flex items-center gap-2 bg-comic-cyan border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider mb-2.5 shadow-[2px_2px_0px_#000]">
+            <Layers className="w-4 h-4" />
+            PANEL ARCHIVE
           </div>
+          <h2 className="font-comic text-5xl sm:text-7xl uppercase text-black tracking-wide leading-none">
+            CURATED ARTWORKS
+          </h2>
+          <p className="mt-2 text-sm sm:text-base text-neutral-700 max-w-2xl font-sans">
+            Explore sequential frames, high-octane character designs, and full-bleed cel-shaded comic illustrations.
+          </p>
 
           {showViewAllLink && (
             <Link
               href="/artworks"
-              className="self-start md:self-end inline-flex items-center gap-2 font-btn text-xs font-bold uppercase tracking-wider bg-black hover:bg-neutral-800 text-white border-2 border-black px-4 py-2 shadow-neo-sm hover:shadow-neo transition-all"
+              className="mt-4 inline-flex items-center gap-2 font-btn text-xs font-bold uppercase tracking-wider bg-black hover:bg-neutral-800 text-white border-2 border-black px-4 py-2 shadow-neo-sm hover:shadow-neo transition-all"
             >
               <span>VIEW FULL ARCHIVE ({artworks.length}+)</span>
               <ArrowRight className="w-4 h-4 text-comic-yellow" />

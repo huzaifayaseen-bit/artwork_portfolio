@@ -13,22 +13,25 @@ export interface ContactSectionProps {
 export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
   return (
     <div id="contact" className="relative">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Direct Inquiry */}
-        <div className="lg:col-span-7">
-          <div className="inline-flex items-center gap-2 bg-comic-purple text-white border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider mb-2 rounded-full shadow-[2px_2px_0px_#000]">
-            <MessageSquare className="w-4 h-4 fill-white" />
-            DIRECT COMMUNICATIONS
-          </div>
-          <h2 className="font-comic text-5xl sm:text-7xl uppercase text-black tracking-wide leading-none">
-            START A PROJECT
-          </h2>
-          <p className="mt-3 text-sm sm:text-base text-neutral-700 font-sans max-w-xl">
-            Ready to commission a character, book cover, or sequence? Copy my direct Discord handle or launch an inquiry email with your project brief.
-          </p>
+      {/* Centered Section Header */}
+      <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-10">
+        <div className="inline-flex items-center gap-2 bg-comic-purple text-white border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider mb-2 rounded-full shadow-[2px_2px_0px_#000]">
+          <MessageSquare className="w-4 h-4 fill-white" />
+          DIRECT COMMUNICATIONS
+        </div>
+        <h2 className="font-comic text-5xl sm:text-7xl uppercase text-black tracking-wide leading-none">
+          START A PROJECT
+        </h2>
+        <p className="mt-3 text-sm sm:text-base text-neutral-700 font-sans max-w-xl">
+          Ready to commission a character, book cover, or sequence? Copy my direct Discord handle or launch an inquiry email with your project brief.
+        </p>
+      </div>
 
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Left Column: Direct Inquiry Channels */}
+        <div className="lg:col-span-7 bg-white border-[3px] border-black rounded-2xl p-6 sm:p-8 shadow-[5px_5px_0px_#000]">
           {/* Discord Copy Module */}
-          <div className="mt-6">
+          <div>
             <label className="block font-nav text-xs font-bold uppercase tracking-wider text-neutral-500 mb-2">
               FASTEST RESPONSE // DISCORD DIRECT MESSAGE
             </label>
@@ -36,7 +39,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
           </div>
 
           {/* Email Inquiry Action */}
-          <div className="mt-6">
+          <div className="mt-6 pt-6 border-t-2 border-dashed border-black/20">
             <label className="block font-nav text-xs font-bold uppercase tracking-wider text-neutral-500 mb-2">
               OFFICIAL COMMISSION MAILBOX
             </label>
@@ -56,7 +59,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
         </div>
 
         {/* Right Column: Social Channels & Footnote */}
-        <div className="lg:col-span-5 bg-white border-[3px] border-black rounded-2xl p-6 shadow-[5px_5px_0px_#000]">
+        <div className="lg:col-span-5 bg-white border-[3px] border-black rounded-2xl p-6 sm:p-8 shadow-[5px_5px_0px_#000]">
           <h3 className="font-comic text-2xl uppercase text-black mb-4 flex items-center gap-2 tracking-wide">
             <Send className="w-4 h-4 text-comic-pink" />
             VERIFIED CHANNELS

@@ -128,7 +128,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
       </div>
 
       {/* Main Editorial Studio Grid: 2-Column Responsive Layout */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.15fr)] gap-8 sm:gap-10 lg:gap-[clamp(32px,4.5vw,68px)] items-center">
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.15fr)] gap-8 sm:gap-10 lg:gap-[clamp(32px,4.5vw,68px)] items-center">
         {/* LEFT / INTRO COLUMN */}
         <div className="flex flex-col justify-center order-2 lg:order-1 min-w-0 max-w-[min(100%,38rem)]">
           {/* Studio Meta Badges (Single Row: INDEPENDENT STUDIO + COMMISSIONS OPEN) */}
