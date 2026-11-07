@@ -19,20 +19,20 @@ const EMOTE_STICKERS = [
     src: "/assets/artworks/artwork_samples/emotes/1.png",
     alt: "Hand-drawn happy mascot emote sticker",
     tooltip: "CUSTOM EMOTES // HAND-DRAWN",
-    positionClass: "-top-6 -right-6 sm:-top-8 sm:-right-8",
+    positionClass: "-top-[24px] -right-[16px]",
     animationClass: "animate-sticker-1",
     initialRotate: "rotate-6",
-    sizeClass: "w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28",
+    sizeClass: "w-18 h-18 sm:w-22 sm:h-22 lg:w-24 lg:h-24",
   },
   {
     id: "emote-love",
     src: "/assets/artworks/artwork_samples/emotes/3.png",
     alt: "Cel-shaded love mascot emote sticker",
     tooltip: "TWITCH & DISCORD // READY",
-    positionClass: "-bottom-6 sm:-bottom-8 -left-4 sm:-left-7",
+    positionClass: "-bottom-[28px] -left-[20px]",
     animationClass: "animate-sticker-2",
     initialRotate: "-rotate-12",
-    sizeClass: "w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20",
+    sizeClass: "w-14 h-14 sm:w-16 sm:h-16 lg:w-18 lg:h-18",
   },
 ];
 
@@ -138,10 +138,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
         </div>
       </div>
 
-      {/* Main Editorial Studio Grid: 12 Columns */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-        {/* LEFT / INTRO COLUMN (5 cols on lg) */}
-        <div className="lg:col-span-5 flex flex-col justify-center order-2 lg:order-1">
+      {/* Main Editorial Studio Grid: 2-Column Responsive Layout */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-8 sm:gap-10 lg:gap-[clamp(32px,5vw,72px)] items-center">
+        {/* LEFT / INTRO COLUMN */}
+        <div className="flex flex-col justify-center order-2 lg:order-1 min-w-0">
           {/* Studio Meta Badges (Single Row) */}
           <div className="flex flex-wrap items-center gap-2.5 mb-5">
             <span className="inline-flex items-center gap-1.5 bg-white text-black border-2 border-black font-black text-[11px] uppercase tracking-wider rounded-lg px-2.5 py-0.5 shadow-[2px_2px_0px_#000]">
@@ -154,12 +154,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             </span>
           </div>
 
-          {/* Heavy ALL CAPS Poster Headline with Soft Blue Highlight Box on "SOUL." */}
-          <h1 className="mb-4 select-none leading-[0.95] font-archivo">
-            <span className="text-[clamp(2.5rem,6.5vw,4.5rem)] font-black text-black tracking-tight block uppercase">
+          {/* Heavy ALL CAPS Poster Headline with Controlled Balanced Breaks */}
+          <h1 className="mb-4 select-none leading-[0.95] font-archivo [text-wrap:balance]">
+            <span className="text-[clamp(2.5rem,5.2vw,5rem)] font-black text-black tracking-tight block uppercase">
               CHARACTERS WITH
             </span>
-            <span className="text-[clamp(2.5rem,6.5vw,4.5rem)] font-black text-black tracking-tight inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 uppercase">
+            <span className="text-[clamp(2.5rem,5.2vw,5rem)] font-black text-black tracking-tight inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 uppercase">
               <span>ATTITUDE &amp;</span>
               <span className="inline-block bg-[#DFF0FF] text-black border-[3px] border-black rounded-xl px-3 sm:px-4 py-0.5 shadow-[4px_4px_0px_#000] -rotate-2">
                 SOUL.
@@ -168,7 +168,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
           </h1>
 
           {/* Crisp 1-2 Line Editorial Subtitle */}
-          <p className="text-black/90 text-sm sm:text-base leading-relaxed max-w-lg mb-8 font-medium">
+          <p className="text-black/90 text-sm sm:text-base leading-relaxed max-w-lg mb-8 font-medium [text-wrap:balance]">
             Original 2D cel-shaded illustrations for authors, indie game directors, and collectors.
           </p>
 
@@ -194,28 +194,27 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             </Link>
           </div>
 
-          {/* Studio Craft Badges */}
-          <div className="pt-5 border-t-2 border-black/20 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-nav font-bold text-black/85">
-            <span className="inline-flex items-center gap-1.5">
+          {/* Studio Craft Badges (Strict 1-Row on Desktop) */}
+          <div className="pt-5 border-t-2 border-black/20 flex flex-wrap lg:flex-nowrap items-center gap-x-5 lg:gap-x-6 gap-y-2 text-xs font-nav font-bold text-black/85">
+            <span className="inline-flex items-center gap-1.5 shrink-0 whitespace-nowrap">
               <CheckCircle2 className="w-4 h-4 text-black stroke-[2.5]" />
               300 DPI Print Masters
             </span>
-            <span className="inline-flex items-center gap-1.5">
+            <span className="inline-flex items-center gap-1.5 shrink-0 whitespace-nowrap">
               <CheckCircle2 className="w-4 h-4 text-black stroke-[2.5]" />
               Stepped Cel Values
             </span>
-            <span className="inline-flex items-center gap-1.5">
+            <span className="inline-flex items-center gap-1.5 shrink-0 whitespace-nowrap">
               <CheckCircle2 className="w-4 h-4 text-black stroke-[2.5]" />
               Layered PSD + Vector Inks
             </span>
           </div>
         </div>
 
-        {/* RIGHT / 3. ARTWORK COLLAGE WITH SPRING PHYSICS & DIE-CUT EMOTE STICKERS (7 cols on lg) */}
-        <div className="lg:col-span-7 order-1 lg:order-2">
+        {/* RIGHT / COLLAGE STAGE */}
+        <div className="order-1 lg:order-2 w-full">
           {/* Collage Stage Container */}
-          <div className="relative w-full max-w-[580px] lg:max-w-none mx-auto pt-2 pb-6 sm:pb-8 px-2 sm:px-4">
-
+          <div className="relative w-full max-w-[580px] lg:max-w-none mx-auto pt-4 pb-6 sm:pb-8 px-2 sm:px-4">
             {/* BRAND ACCENT GLOW BEHIND 3-IMAGE COLLAGE */}
             <div
               className="absolute inset-2 -z-20 pointer-events-none select-none blur-3xl opacity-10 transition-transform duration-700 ease-out"
@@ -223,18 +222,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 background: "radial-gradient(circle at 60% 45%, #FFE600 0%, #FF2A6D 50%, #9933FF 85%)",
                 transform: `translate3d(${tilt.x * -10}px, ${tilt.y * -10}px, 0)`,
               }}
-              aria-hidden="true"
-            />
-
-            {/* Integrated Framing Underlays */}
-            <div
-              className="absolute inset-x-6 top-6 bottom-6 bg-gradient-to-br from-[#00E5FF]/15 via-transparent to-[#9933FF]/15 border border-black/10 -z-20 pointer-events-none"
-              aria-hidden="true"
-            />
-            {/* Violet geometric grounding block */}
-            <div
-              className="absolute bottom-6 sm:bottom-8 left-6 sm:left-12 w-44 sm:w-56 h-40 sm:h-52 bg-[#9933FF]/15 border border-black/20 -z-10 pointer-events-none transition-transform duration-700 ease-out"
-              style={{ transform: `translate3d(${tilt.x * 10}px, ${tilt.y * 10}px, 0)` }}
               aria-hidden="true"
             />
 
@@ -356,9 +343,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 </div>
               ))}
 
-              {/* Editorial Studio Watermark Stamp */}
+              {/* Editorial Studio Watermark Stamp: aligned to bottom-right edge of focal card */}
               <div
-                className="hidden sm:inline-flex items-center gap-2 absolute -bottom-1 right-2 z-30 bg-white/95 backdrop-blur-sm border border-black/80 px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-widest text-neutral-600 shadow-[2px_2px_0px_#000000]"
+                className="hidden sm:inline-flex items-center gap-2 absolute bottom-0 right-0 z-30 bg-white/95 backdrop-blur-sm border-2 border-black px-2.5 py-0.5 font-mono text-[9px] uppercase tracking-widest text-neutral-800 shadow-[2px_2px_0px_#000000]"
                 aria-hidden="true"
               >
                 <span className="w-1.5 h-1.5 bg-[#00E5FF] rounded-none inline-block" />
