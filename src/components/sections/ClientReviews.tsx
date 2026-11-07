@@ -77,8 +77,8 @@ export const ClientReviews: React.FC<ClientReviewsProps> = ({ reviewsData }) => 
       {/* Infinite Auto-Scrolling Comic Marquee Strip */}
       <div className="relative w-full overflow-hidden py-4 px-2 sm:px-4 group">
         {/* Subtle Left & Right Comic Edge Fades */}
-        <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 z-10 pointer-events-none bg-gradient-to-r from-[#FAFAFA] to-transparent" />
-        <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 z-10 pointer-events-none bg-gradient-to-l from-[#FAFAFA] to-transparent" />
+        <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 z-10 pointer-events-none bg-gradient-to-r from-[#FEF9C3] to-transparent" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 z-10 pointer-events-none bg-gradient-to-l from-[#FEF9C3] to-transparent" />
 
         {/* Seamless Scrolling Track (Duplicated items for flawless loop) */}
         <div className="animate-marquee group-hover:[animation-play-state:paused] flex gap-6 sm:gap-8 items-stretch will-change-transform pr-6">

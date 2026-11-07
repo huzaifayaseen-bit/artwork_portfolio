@@ -271,17 +271,17 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
   }, [email, selectedCategory, selectedScope, formattedBrief]);
 
   return (
-    <div id="brief-builder" className="mt-12 bg-white border-[3px] border-black rounded-3xl p-6 sm:p-10 shadow-[6px_6px_0px_#000] relative overflow-hidden">
-      {/* Top Graphic Decal Accent */}
-      <div className="absolute top-0 right-0 bg-comic-cyan border-b-[3px] border-l-[3px] border-black px-4 py-1 font-nav text-xs font-bold uppercase tracking-wider text-black rounded-bl-xl">
-        TRANSMISSION CODER
-      </div>
-
+    <div id="brief-builder" className="mt-8 pt-8 border-t-2 border-black/15 relative">
       {/* Builder Header */}
       <div className="max-w-2xl mb-8">
-        <div className="inline-flex items-center gap-2 bg-comic-yellow text-black border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider mb-2 rounded-full shadow-[2px_2px_0px_#000]">
-          <FileText className="w-4 h-4 fill-black" />
-          INTERACTIVE BRIEF BUILDER
+        <div className="flex flex-wrap items-center gap-2.5 mb-2">
+          <div className="inline-flex items-center gap-2 bg-comic-yellow text-black border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider rounded-full shadow-[2px_2px_0px_#000]">
+            <FileText className="w-4 h-4 fill-black" />
+            INTERACTIVE BRIEF BUILDER
+          </div>
+          <div className="inline-flex items-center bg-comic-cyan text-black border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider rounded-full shadow-[2px_2px_0px_#000]">
+            TRANSMISSION CODER
+          </div>
         </div>
         <h3 className="font-comic text-3xl sm:text-5xl uppercase text-black tracking-wide leading-none">
           CONFIGURE YOUR COMMISSION BRIEF

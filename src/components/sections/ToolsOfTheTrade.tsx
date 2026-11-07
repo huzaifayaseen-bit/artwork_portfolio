@@ -38,11 +38,8 @@ const TOOLS: ToolItem[] = [
 
 export const ToolsOfTheTrade: React.FC = () => {
   return (
-    <section
-      id="tools-section"
-      className="py-8 md:py-10 border-t-4 border-black bg-white"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div id="tools-section" className="py-2">
+      <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           <div className="inline-flex items-center gap-2 bg-[#FFE600] text-black border-2 border-black px-3.5 py-1 font-nav text-xs font-black uppercase tracking-wider mb-3 shadow-[2px_2px_0px_#000]">
@@ -83,6 +80,6 @@ export const ToolsOfTheTrade: React.FC = () => {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };

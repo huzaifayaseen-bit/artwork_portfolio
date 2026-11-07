@@ -12,7 +12,7 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
   if (!tosData) return null;
 
   return (
-    <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 py-16 px-6 items-start">
+    <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
       {/* Left Column: Pinned Sticky Overview Header */}
       <div className="lg:col-span-5 lg:sticky lg:top-28 select-none">
         <span className="text-[11px] sm:text-xs font-black uppercase tracking-widest bg-[#FFE600] border-2 border-black px-3.5 py-1 rounded-full shadow-[2px_2px_0px_#000] inline-block mb-3">
