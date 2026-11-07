@@ -29,7 +29,7 @@ const EMOTE_STICKERS = [
     src: "/assets/artworks/artwork_samples/emotes/3.png",
     alt: "Cel-shaded love mascot emote sticker",
     tooltip: "TWITCH & DISCORD // READY",
-    positionClass: "-bottom-[28px] -left-[20px]",
+    positionClass: "-bottom-2 -left-2 sm:-bottom-3 sm:-left-3",
     animationClass: "animate-sticker-2",
     initialRotate: "-rotate-12",
     sizeClass: "w-14 h-14 sm:w-16 sm:h-16 lg:w-18 lg:h-18",
@@ -119,13 +119,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
         />
       </div>
 
-      {/* 2. TECHNICAL VECTOR ACCENTS (Crosshairs & Watermarks - Positioned away from text) */}
+      {/* 2. TECHNICAL VECTOR ACCENTS (Crosshairs - Clean) */}
       <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-        {/* Top-Right Watermark */}
-        <div className="absolute top-6 right-4 sm:right-6 font-mono text-[9px] tracking-widest text-black/40 uppercase hidden sm:block">
-          SYS.INK_V2 // 2026.STUDIO
-        </div>
-
         {/* Center-Grid Crosshair Accent */}
         <div className="absolute top-12 left-[48%] font-mono text-[13px] font-bold text-black/30 hidden md:block">
           +
@@ -133,27 +128,31 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
       </div>
 
       {/* Main Editorial Studio Grid: 2-Column Responsive Layout */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] gap-8 sm:gap-10 lg:gap-[clamp(32px,4vw,64px)] items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.15fr)] gap-8 sm:gap-10 lg:gap-[clamp(32px,4.5vw,68px)] items-center">
         {/* LEFT / INTRO COLUMN */}
         <div className="flex flex-col justify-center order-2 lg:order-1 min-w-0 max-w-[min(100%,38rem)]">
-          {/* Studio Meta Badge (Single Pill) */}
-          <div className="flex items-center gap-2 mb-4">
-            <span className="inline-flex items-center gap-1.5 bg-white text-black border-2 border-black rounded-full px-3 py-0.5 text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_#000]">
+          {/* Studio Meta Badges (Single Row: INDEPENDENT STUDIO + COMMISSIONS OPEN) */}
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            <span className="inline-flex items-center gap-1.5 bg-white text-black border-2 border-black font-black text-[11px] uppercase tracking-wider rounded-lg px-2.5 py-0.5 shadow-[2px_2px_0px_#000]">
+              <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
+              INDEPENDENT STUDIO
+            </span>
+            <span className="inline-flex items-center gap-1.5 bg-white text-black border-2 border-black rounded-full px-3 py-0.5 text-[11px] font-black uppercase tracking-wider shadow-[2px_2px_0px_#000]">
               <span className="w-2 h-2 rounded-full bg-emerald-600 ring-2 ring-emerald-600/30" />
               COMMISSIONS OPEN
             </span>
           </div>
 
-          {/* 2-Line Sentence Case Poster Headline */}
-          <h1
-            style={{ textTransform: "none" }}
-            className="mb-4 select-none leading-[1.05] font-archivo font-black text-4xl lg:text-5xl text-black tracking-tight"
-          >
-            <span className="block">
-              Characters with
+          {/* Heavy ALL CAPS Poster Headline */}
+          <h1 className="mb-4 select-none leading-[0.95] font-archivo [text-wrap:balance]">
+            <span className="text-[clamp(2.5rem,5vw,4.75rem)] font-black text-black tracking-tight block uppercase">
+              CHARACTERS WITH
             </span>
-            <span className="inline-block bg-[#FFE600] border-[3px] border-black rounded-xl px-4 py-1 shadow-[4px_4px_0px_#000] -rotate-1 mt-2 whitespace-nowrap">
-              attitude &amp; soul.
+            <span className="text-[clamp(2.5rem,5vw,4.75rem)] font-black text-black tracking-tight inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 uppercase">
+              <span>ATTITUDE &amp;</span>
+              <span className="inline-block bg-[#DFF0FF] text-black border-[3px] border-black rounded-xl px-3 sm:px-4 py-0.5 shadow-[4px_4px_0px_#000] -rotate-2">
+                SOUL.
+              </span>
             </span>
           </h1>
 

@@ -152,8 +152,8 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
           transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]
           ${
             isScrolled
-              ? "max-w-3xl !bg-white py-1.5 px-5 top-2.5 shadow-[3px_3px_0px_#000] rounded-full"
-              : "max-w-6xl bg-[#FF6B35] py-3 px-6 top-3.5 shadow-[4px_4px_0px_#000] rounded-2xl"
+              ? "max-w-4xl !bg-white py-1.5 px-5 top-2.5 shadow-[3px_3px_0px_#000] rounded-full"
+              : "max-w-7xl bg-[#FF6B35] py-3 sm:py-3.5 px-4 sm:px-6 lg:px-8 top-3.5 shadow-[4px_4px_0px_#000] rounded-2xl"
           }
         `}
       >
