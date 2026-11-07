@@ -81,7 +81,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${bebasNeue.variable} ${spaceGrotesk.variable} ${inter.variable} ${righteous.variable}`}>
-      <body className="font-sans antialiased min-h-screen selection:bg-comic-yellow selection:text-black text-neutral-900">
+      <body className="font-sans antialiased min-h-screen selection:bg-comic-yellow selection:text-black text-neutral-900 overflow-x-hidden">
         <SoundProvider>
           {children}
           <ArtworkProtectionToast />
