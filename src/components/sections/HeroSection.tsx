@@ -144,7 +144,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
         <div className="lg:col-span-5 flex flex-col justify-center order-2 lg:order-1">
           {/* Studio Meta Eyebrow & Status */}
           <div className="flex flex-wrap items-center gap-3 mb-5">
-            <span className="inline-flex items-center gap-1.5 bg-[#FFE600] text-black border-2 border-black font-black text-[11px] uppercase tracking-wider rounded-lg px-2.5 py-0.5 shadow-[2px_2px_0px_#000]">
+            <span className="inline-flex items-center gap-1.5 bg-white text-black border-2 border-black font-black text-[11px] uppercase tracking-wider rounded-lg px-2.5 py-0.5 shadow-[2px_2px_0px_#000]">
               <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
               INDEPENDENT STUDIO
             </span>
@@ -154,12 +154,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             </span>
           </div>
 
-          {/* Artist Moniker */}
-          <h1
-            className="font-comic text-7xl sm:text-8xl lg:text-8xl xl:text-9xl text-[#FFFDF9] font-black tracking-wide leading-[0.88] select-none mb-3 [-webkit-text-stroke:3px_#000000] [text-shadow:6px_6px_0px_#000000]"
-          >
-            EMILIA
-          </h1>
+          {/* Artist Moniker in Xotoe-Style Highlight Box */}
+          <div className="inline-block bg-[#FFE600] border-[4px] border-black rounded-2xl px-5 sm:px-6 py-2 shadow-[6px_6px_0px_#000] -rotate-1 mb-4 select-none self-start">
+            <h1 className="text-black font-archivo text-5xl sm:text-7xl lg:text-8xl tracking-normal uppercase leading-none">
+              EMILIA
+            </h1>
+          </div>
 
           {/* Short Evocative Headline */}
           <p className="font-nav text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-black mb-4 flex items-center gap-2">

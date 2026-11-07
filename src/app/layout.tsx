@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Space_Grotesk, Inter, Righteous } from "next/font/google";
+import { Bebas_Neue, Space_Grotesk, Inter, Righteous, Archivo_Black } from "next/font/google";
 import "./globals.css";
 import { SoundProvider } from "@/context/SoundContext";
 import { ArtworkProtectionToast } from "@/components/ui/ArtworkProtectionToast";
@@ -8,6 +8,13 @@ const bebasNeue = Bebas_Neue({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-bebas-neue",
+  display: "swap",
+});
+
+const archivoBlack = Archivo_Black({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-archivo-black",
   display: "swap",
 });
 
@@ -80,7 +87,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${bebasNeue.variable} ${spaceGrotesk.variable} ${inter.variable} ${righteous.variable}`}>
+    <html lang="en" className={`${bebasNeue.variable} ${archivoBlack.variable} ${spaceGrotesk.variable} ${inter.variable} ${righteous.variable}`}>
       <body className="font-sans antialiased min-h-screen selection:bg-comic-yellow selection:text-black text-neutral-900">
         <SoundProvider>
           {children}
