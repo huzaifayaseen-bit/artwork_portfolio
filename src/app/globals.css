@@ -357,6 +357,26 @@ body {
   filter: drop-shadow(6px 6px 0 #000) !important;
 }
 
+/* Scroll Animation Transitions */
+.tos-slide-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.tos-slide-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.tos-visible {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
 /* Custom Scrollbar for Lightbox */
 ::-webkit-scrollbar {
   width: 10px;

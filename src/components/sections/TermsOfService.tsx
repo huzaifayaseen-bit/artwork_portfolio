@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { TermsOfServiceData, TosGuidelineItem } from "@/types/portfolio";
 import {
   FileText,
@@ -18,35 +18,42 @@ export interface TermsOfServiceProps {
 }
 
 export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
-  // All accordion items open by default for immediate transparency
-  const [openItems, setOpenItems] = useState<Record<string, boolean>>({
-    "your-rights": true,
-    "your-responsibilities": true,
-    "artist-rights": true,
-    "artist-responsibilities": true,
-  });
+  const [activeTabId, setActiveTabId] = useState<string>("your-rights");
+  const card1Ref = useRef<HTMLDivElement>(null);
+  const card2Ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("tos-visible");
+          }
+        });
+      },
+      { threshold: 0.25, rootMargin: "0px 0px -50px 0px" }
+    );
+
+    if (card1Ref.current) observer.observe(card1Ref.current);
+    if (card2Ref.current) observer.observe(card2Ref.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   if (!tosData) return null;
-
-  const toggleAccordion = (id: string) => {
-    setOpenItems((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
 
   const getGuidelineIcon = (type: TosGuidelineItem["iconType"]) => {
     switch (type) {
       case "rights":
-        return <ShieldCheck className="w-5 h-5 text-comic-green stroke-[2.5]" />;
+        return <ShieldCheck className="w-5 h-5 stroke-[2.5]" />;
       case "responsibilities":
-        return <AlertCircle className="w-5 h-5 text-comic-pink stroke-[2.5]" />;
+        return <AlertCircle className="w-5 h-5 stroke-[2.5]" />;
       case "artist-rights":
-        return <ShieldAlert className="w-5 h-5 text-comic-purple stroke-[2.5]" />;
+        return <ShieldAlert className="w-5 h-5 stroke-[2.5]" />;
       case "artist-responsibilities":
-        return <CheckCircle2 className="w-5 h-5 text-comic-yellow stroke-[2.5]" />;
+        return <CheckCircle2 className="w-5 h-5 stroke-[2.5]" />;
       default:
-        return <Scale className="w-5 h-5 text-black" />;
+        return <FileText className="w-5 h-5 stroke-[2.5]" />;
     }
   };
 
@@ -65,10 +72,38 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
     }
   };
 
+  const highlightKeyPhrases = (text: string) => {
+    const phrases = [
+      "50% Upfront Deposit",
+      "50% upfront non-refundable deposit",
+      "2 Free Revision Rounds",
+      "2 free revision rounds",
+      "Strict Anti-AI Clause",
+      "Strict Anti-AI Protection",
+      "No Chargeback Clause",
+      "100% full payment upfront",
+      "Rough Sketch & Lineart phase",
+      "exclusive PayPal",
+      "non-profit personal use",
+      "300 DPI master files",
+    ];
+
+    let replaced = text;
+    phrases.forEach((phrase) => {
+      const regex = new RegExp(`(${phrase})`, "gi");
+      replaced = replaced.replace(regex, "<strong>$1</strong>");
+    });
+
+    return <span dangerouslySetInnerHTML={{ __html: replaced }} />;
+  };
+
+  const activeGuideline =
+    tosData.guidelines.find((g) => g.id === activeTabId) || tosData.guidelines[0];
+
   return (
     <section id="tos" className="py-2 sm:py-4">
       {/* Section Header */}
-      <div className="max-w-3xl mb-6 md:mb-8">
+      <div className="max-w-3xl mb-8 md:mb-12">
         <div className="inline-flex items-center gap-2 bg-comic-yellow text-black border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider mb-2 shadow-[2px_2px_0px_#000]">
           <Scale className="w-4 h-4 fill-black" />
           COMMISSION CONTRACT
@@ -81,15 +116,18 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
         </p>
       </div>
 
-      {/* Top 2 Neo-Brutalist Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch mb-8 sm:mb-10">
-        {/* Card 1: General Terms */}
-        <div className="bg-white border-[3px] border-black rounded-2xl p-6 sm:p-8 shadow-[5px_5px_0px_#000] flex flex-col justify-between">
+      {/* Alternating Zig-Zag Cards */}
+      <div className="space-y-8 md:space-y-12 mb-12 sm:mb-16">
+        {/* Card 1: Legal Codex / General Terms (Left-Aligned) */}
+        <div
+          ref={card1Ref}
+          className="tos-slide-left max-w-2xl mr-auto bg-[#FFFBEB] border-[3px] border-black rounded-3xl p-6 md:p-8 shadow-[6px_6px_0px_#000] transition-transform hover:-translate-y-1"
+        >
           <div>
             <div className="flex items-center justify-between gap-2 mb-4">
-              <span className="inline-flex items-center gap-2 bg-black text-white px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider rounded-full">
-                <FileText className="w-3.5 h-3.5 text-comic-yellow" />
-                {tosData.generalTerms.badge}
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-black text-[#FFE600] font-black text-xs uppercase rounded-lg shadow-[2px_2px_0px_#FFE600]">
+                <Scale className="w-3.5 h-3.5" />
+                LEGAL CODEX // RULES
               </span>
               <span className="font-mono text-xs font-bold tracking-widest text-neutral-500 uppercase">
                 SEC. 01 // RULES
@@ -100,16 +138,16 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
               {tosData.generalTerms.title}
             </h3>
 
-            <div className="w-12 h-1 bg-comic-yellow border-y border-black mb-5" />
+            <div className="w-12 h-1 bg-comic-yellow border-y border-black mb-6" />
 
-            <ul className="space-y-3.5">
+            <ul className="space-y-4">
               {tosData.generalTerms.rules.map((rule, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-comic-yellow border border-black font-mono text-[10px] font-black text-black mt-0.5 flex-shrink-0 shadow-[1px_1px_0px_#000]">
+                  <span className="w-7 h-7 rounded-full bg-black text-white font-black text-xs flex items-center justify-center shrink-0 border-2 border-black shadow-[1.5px_1.5px_0px_#000] mt-0.5">
                     {idx + 1}
                   </span>
-                  <p className="font-sans text-xs sm:text-sm text-neutral-800 leading-relaxed">
-                    {rule}
+                  <p className="font-sans text-xs sm:text-sm text-neutral-900 leading-relaxed font-medium">
+                    {highlightKeyPhrases(rule)}
                   </p>
                 </li>
               ))}
@@ -117,13 +155,16 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
           </div>
         </div>
 
-        {/* Card 2: Payment & Invoicing */}
-        <div className="bg-white border-[3px] border-black rounded-2xl p-6 sm:p-8 shadow-[5px_5px_0px_#000] flex flex-col justify-between">
+        {/* Card 2: PayPal Exclusive / Payment & Invoicing (Right-Aligned & Offset) */}
+        <div
+          ref={card2Ref}
+          className="tos-slide-right max-w-2xl ml-auto mt-8 md:mt-12 bg-[#F0FDF4] border-[3px] border-black rounded-3xl p-6 md:p-8 shadow-[6px_6px_0px_#000] transition-transform hover:-translate-y-1"
+        >
           <div>
             <div className="flex items-center justify-between gap-2 mb-4">
-              <span className="inline-flex items-center gap-2 bg-black text-white px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider rounded-full">
-                <CreditCard className="w-3.5 h-3.5 text-comic-cyan" />
-                {tosData.paymentInvoicing.badge}
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-black text-[#4ADE80] font-black text-xs uppercase rounded-lg shadow-[2px_2px_0px_#4ADE80]">
+                <CreditCard className="w-3.5 h-3.5" />
+                PAYPAL EXCLUSIVE // BILLING
               </span>
               <span className="font-mono text-xs font-bold tracking-widest text-neutral-500 uppercase">
                 SEC. 02 // BILLING
@@ -134,16 +175,16 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
               {tosData.paymentInvoicing.title}
             </h3>
 
-            <div className="w-12 h-1 bg-comic-cyan border-y border-black mb-5" />
+            <div className="w-12 h-1 bg-[#4ADE80] border-y border-black mb-6" />
 
-            <ul className="space-y-3.5">
+            <ul className="space-y-4">
               {tosData.paymentInvoicing.rules.map((rule, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-comic-cyan border border-black font-mono text-[10px] font-black text-black mt-0.5 flex-shrink-0 shadow-[1px_1px_0px_#000]">
+                  <span className="w-7 h-7 rounded-full bg-black text-white font-black text-xs flex items-center justify-center shrink-0 border-2 border-black shadow-[1.5px_1.5px_0px_#000] mt-0.5">
                     {idx + 1}
                   </span>
-                  <p className="font-sans text-xs sm:text-sm text-neutral-800 leading-relaxed">
-                    {rule}
+                  <p className="font-sans text-xs sm:text-sm text-neutral-900 leading-relaxed font-medium">
+                    {highlightKeyPhrases(rule)}
                   </p>
                 </li>
               ))}
@@ -152,75 +193,80 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ tosData }) => {
         </div>
       </div>
 
-      {/* Bottom Collapsible Section: Client & Artist Guidelines */}
+      {/* Streamlined Compact Guidelines Drawer / Tabs */}
       <div className="border-[3px] border-black bg-white rounded-3xl p-6 sm:p-8 shadow-[6px_6px_0px_#000]">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b-[3px] border-black">
           <div>
-            <h3 className="font-comic text-3xl sm:text-4xl uppercase text-black tracking-wide leading-none">
+            <h3 className="font-comic text-2xl sm:text-3xl uppercase text-black tracking-wide leading-none">
               {tosData.guidelinesTitle}
             </h3>
             <p className="font-nav text-xs uppercase tracking-wider text-neutral-500 mt-1 font-semibold">
-              TRANSPARENT RIGHTS, RESPONSIBILITIES &amp; CODE OF ETHICS
+              CODE OF ETHICS, OPERATIONAL RIGHTS &amp; RESPONSIBILITIES
             </p>
           </div>
           <span className="bg-comic-cyan border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider text-black rounded-full shadow-[2px_2px_0px_#000] w-fit">
-            4 OPERATIONAL PANELS
+            INTERACTIVE DRAWER
           </span>
         </div>
 
-        {/* 4 Collapsible Guideline Accordion Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Tab Buttons */}
+        <div className="flex flex-wrap gap-2.5 mb-6">
           {tosData.guidelines.map((item) => {
-            const isOpen = openItems[item.id] ?? false;
+            const isActive = item.id === activeTabId;
             return (
-              <div
+              <button
                 key={item.id}
-                className="border-2 border-black rounded-2xl bg-neutral-50 overflow-hidden shadow-[3px_3px_0px_#000] transition-all"
+                type="button"
+                onClick={() => setActiveTabId(item.id)}
+                className={`
+                  inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border-2 border-black font-nav text-xs font-black uppercase tracking-wider cursor-pointer transition-all
+                  ${
+                    isActive
+                      ? `${getBadgeStyle(item.colorVariant)} shadow-[3px_3px_0px_#000] -translate-y-0.5`
+                      : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200 shadow-[1.5px_1.5px_0px_#000]"
+                  }
+                `}
               >
-                {/* Accordion Trigger Header */}
-                <button
-                  type="button"
-                  onClick={() => toggleAccordion(item.id)}
-                  aria-expanded={isOpen}
-                  className="
-                    w-full flex items-center justify-between p-4 bg-white
-                    border-b-2 border-black text-left select-none
-                    hover:bg-neutral-100 transition-colors
-                  "
-                >
-                  <div className="flex items-center gap-3">
-                    <div className={`p-1.5 border-2 border-black rounded-lg shadow-[2px_2px_0px_#000] ${getBadgeStyle(item.colorVariant)}`}>
-                      {getGuidelineIcon(item.iconType)}
-                    </div>
-                    <span className="font-comic text-xl sm:text-2xl uppercase tracking-wide text-black">
-                      {item.title}
-                    </span>
-                  </div>
-
-                  <div className={`transform transition-transform duration-100 p-1 border-2 border-black rounded-md bg-comic-yellow ${isOpen ? "rotate-180" : ""}`}>
-                    <ChevronDown className="w-4 h-4 stroke-[3]" />
-                  </div>
-                </button>
-
-                {/* Collapsible Content Body */}
-                {isOpen && (
-                  <div className="p-4 sm:p-5 bg-neutral-50">
-                    <ul className="space-y-3">
-                      {item.points.map((pt, pIdx) => (
-                        <li key={pIdx} className="flex items-start gap-2.5">
-                          <span className="w-2 h-2 rounded-full bg-black mt-2 flex-shrink-0" />
-                          <p className="font-sans text-xs sm:text-sm text-neutral-800 leading-relaxed">
-                            {pt}
-                          </p>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
+                {getGuidelineIcon(item.iconType)}
+                <span>{item.title}</span>
+              </button>
             );
           })}
         </div>
+
+        {/* Active Panel Content */}
+        {activeGuideline && (
+          <div className="bg-neutral-50 border-2 border-black rounded-2xl p-5 sm:p-6 shadow-[3px_3px_0px_#000] animate-fadeIn">
+            <div className="flex items-center gap-3 mb-4">
+              <div
+                className={`p-2 border-2 border-black rounded-lg shadow-[2px_2px_0px_#000] ${getBadgeStyle(
+                  activeGuideline.colorVariant
+                )}`}
+              >
+                {getGuidelineIcon(activeGuideline.iconType)}
+              </div>
+              <h4 className="font-comic text-xl sm:text-2xl uppercase tracking-wide text-black">
+                {activeGuideline.title}
+              </h4>
+            </div>
+
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3.5 pt-2 border-t-2 border-dashed border-black/20">
+              {activeGuideline.points.map((pt, pIdx) => (
+                <li
+                  key={pIdx}
+                  className="flex items-start gap-3 bg-white border border-black/30 rounded-xl p-3 shadow-[1.5px_1.5px_0px_#000]"
+                >
+                  <span className="w-5 h-5 rounded-full bg-black text-white font-mono text-[10px] font-black flex items-center justify-center shrink-0 mt-0.5">
+                    {pIdx + 1}
+                  </span>
+                  <p className="font-sans text-xs sm:text-sm text-neutral-800 leading-relaxed font-medium">
+                    {pt}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </section>
   );
