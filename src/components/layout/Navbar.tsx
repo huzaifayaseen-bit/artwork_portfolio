@@ -302,25 +302,6 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
             )}
           </button>
 
-          {/* Live Queue Pill Badge */}
-          <Link
-            href="/pricing"
-            onClick={playClick}
-            className={`
-              bg-[#A3E635] text-black border border-black font-bold rounded-full flex items-center gap-1.5 shadow-[2px_2px_0px_#000] hover:-translate-y-0.5 transition-all duration-300 select-none
-              ${isScrolled ? "px-2 py-0.5 text-[10px]" : "px-2.5 py-1 text-xs"}
-            `}
-            title="View Live Queue"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-60" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-black" />
-            </span>
-            <span className="font-nav font-black uppercase tracking-wider">
-              {openSlots} SLOT{openSlots === 1 ? "" : "S"} LEFT
-            </span>
-          </Link>
-
           {/* Primary Action Button: COMMISSION ME */}
           <Link
             href={pathname === "/" ? "#contact-section" : "/contact"}
