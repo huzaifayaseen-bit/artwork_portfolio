@@ -29,19 +29,49 @@ export interface CommissionBriefBuilderProps {
   onScopeChange?: (scope: string) => void;
 }
 
-const CATEGORIES = [
-  "Character Design",
-  "Manga / Comic Page",
-  "Book Cover",
-  "Twitch / YT Banner",
-  "Emotes Set",
-  "Mascot Logo",
-];
+export interface ScopeOption {
+  id: string;
+  label: string;
+  desc: string;
+}
 
-const SCOPES = [
-  { id: "bust", label: "Headshot / Bust", desc: "Focus on face, hair & expression" },
-  { id: "half", label: "Half Body", desc: "Waist-up with hand pose & weapons" },
-  { id: "full", label: "Full Character / Splash", desc: "Full stance with dynamic background" },
+export const CATEGORY_SCOPES: Record<string, ScopeOption[]> = {
+  "CHARACTER DESIGN": [
+    { id: "bust", label: "Headshot / Bust ($40)", desc: "Focus on face, hair & expression" },
+    { id: "half", label: "Half Body ($80)", desc: "Waist-up with hand pose & weapons" },
+    { id: "full", label: "Full Character ($120)", desc: "Full stance with dynamic background" },
+  ],
+  "BOOK COVER": [
+    { id: "ebook", label: "E-Book Front Cover ($80)", desc: "Digital front cover art & focal composition" },
+    { id: "wrap", label: "Full Paperback Wrap (Front + Spine + Back) ($140)", desc: "Print-ready continuous spread jacket" },
+    { id: "dustjacket", label: "Typographic Title + Illustrated Dust Jacket ($180)", desc: "Custom stylized typography + full wrap" },
+  ],
+  "MANGA / COMIC PAGE": [
+    { id: "single-page", label: "Single Comic Page ($90)", desc: "Multi-panel ink & toned narrative page" },
+    { id: "splash-spread", label: "Action Splash Spread ($150)", desc: "Double-page or climactic impact splash" },
+    { id: "storyboard", label: "Storyboard / Draft Only ($50)", desc: "Pencil thumbnail layouts & pacing drafts" },
+  ],
+  "TWITCH / YT BANNER": [
+    { id: "banner-header", label: "Standard Header Banner ($50)", desc: "Standard header banner for Twitch or YouTube" },
+    { id: "social-pack", label: "Complete Social Media Pack ($90)", desc: "Header banner + avatar + offline screen assets" },
+  ],
+  "EMOTES SET": [
+    { id: "emotes-3x", label: "3x Emotes Pack ($45)", desc: "3 custom expressive emote icons with all sizes" },
+    { id: "emotes-6x", label: "6x Emotes Pack ($80)", desc: "6 custom expressive emote icons with all sizes" },
+  ],
+  "MASCOT LOGO": [
+    { id: "mascot-cel", label: "Standard Cel Mascot ($70)", desc: "Clean cel-shaded mascot character icon" },
+    { id: "mascot-vector", label: "Full Branding Vector Suite ($130)", desc: "Mascot mark + vector logos + usage guide" },
+  ],
+};
+
+const CATEGORIES = [
+  "CHARACTER DESIGN",
+  "BOOK COVER",
+  "MANGA / COMIC PAGE",
+  "TWITCH / YT BANNER",
+  "EMOTES SET",
+  "MASCOT LOGO",
 ];
 
 const TIMELINES = [
@@ -59,10 +89,14 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
   onScopeChange,
 }) => {
   const { playSuccess, playClick } = useSound();
-  const [internalCategory, setInternalCategory] = useState<string>("Character Design");
+  const [internalCategory, setInternalCategory] = useState<string>("CHARACTER DESIGN");
   const selectedCategory = controlledCategory !== undefined ? controlledCategory : internalCategory;
 
-  const [internalScope, setInternalScope] = useState<string>("Full Character / Splash");
+  const currentScopeOptions = useMemo(() => {
+    return CATEGORY_SCOPES[selectedCategory] || CATEGORY_SCOPES["CHARACTER DESIGN"];
+  }, [selectedCategory]);
+
+  const [internalScope, setInternalScope] = useState<string>(CATEGORY_SCOPES["CHARACTER DESIGN"][2].label);
   const selectedScope = controlledScope !== undefined ? controlledScope : internalScope;
 
   const handleCategorySelect = (cat: string) => {
@@ -71,6 +105,13 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
       setInternalCategory(cat);
     }
     onCategoryChange?.(cat);
+
+    const scopesForCat = CATEGORY_SCOPES[cat] || CATEGORY_SCOPES["CHARACTER DESIGN"];
+    const fallbackScope = scopesForCat[0]?.label || "Standard";
+    if (controlledScope === undefined) {
+      setInternalScope(fallbackScope);
+    }
+    onScopeChange?.(fallbackScope);
   };
 
   const handleScopeSelect = (scope: string) => {
@@ -94,8 +135,7 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const resetForm = () => {
-    handleCategorySelect("Character Design");
-    handleScopeSelect("Full Character / Splash");
+    handleCategorySelect("CHARACTER DESIGN");
     setRefLink("");
     setNotes("");
     setTimeline("Standard (1-2 Weeks)");
@@ -291,7 +331,7 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
               STEP 2: PROJECT SCOPE &amp; DETAILS
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-4">
-              {SCOPES.map((sc) => {
+              {currentScopeOptions.map((sc) => {
                 const isSelected = selectedScope === sc.label;
                 return (
                   <button

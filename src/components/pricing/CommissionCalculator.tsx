@@ -61,7 +61,7 @@ export const CommissionCalculator: React.FC<CommissionCalculatorProps> = ({
 
   // Calculate pricing breakdown
   const pricingBreakdown = useMemo(() => {
-    const base = currentScope ? currentScope.basePrice : 85;
+    const base = currentScope ? currentScope.basePrice : 40;
     let extraCharAmount = 0;
     let flatAddonsTotal = 0;
     const activeAddonsList: { name: string; cost: number }[] = [];

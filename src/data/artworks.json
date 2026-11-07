@@ -1311,7 +1311,7 @@
       "id": "tier-bust",
       "name": "HEADSHOT / BUST",
       "subtitle": "High-impact comic character portrait",
-      "price": 85,
+      "price": 40,
       "currency": "USD",
       "turnaroundTime": "3-5 Business Days",
       "deliverables": [
@@ -1326,7 +1326,7 @@
       "id": "tier-half",
       "name": "HALF BODY ACTION",
       "subtitle": "Dynamic waist-up character with weapon / prop",
-      "price": 160,
+      "price": 80,
       "currency": "USD",
       "turnaroundTime": "7-10 Business Days",
       "popular": true,
@@ -1343,7 +1343,7 @@
       "id": "tier-full",
       "name": "FULL CHARACTER / COMIC SPLASH",
       "subtitle": "Complete full-body hero or cinematic comic page",
-      "price": 280,
+      "price": 120,
       "currency": "USD",
       "turnaroundTime": "12-16 Business Days",
       "deliverables": [
@@ -1441,19 +1441,19 @@
         "id": "scope-headshot",
         "name": "HEADSHOT / BUST",
         "subtitle": "High-impact character portrait to shoulders",
-        "basePrice": 85
+        "basePrice": 40
       },
       {
         "id": "scope-halfbody",
         "name": "HALF BODY",
         "subtitle": "Waist-up character with dynamic pose / hands",
-        "basePrice": 160
+        "basePrice": 80
       },
       {
         "id": "scope-fullbody",
         "name": "FULL CHARACTER",
         "subtitle": "Complete head-to-toe hero figure / action stance",
-        "basePrice": 280
+        "basePrice": 120
       }
     ],
     "addons": [

@@ -18,20 +18,20 @@ import { Sparkles, HelpCircle } from "lucide-react";
 export default function Home() {
   const data = getPortfolioData();
   const [calculatorScopeId, setCalculatorScopeId] = React.useState<string>("scope-headshot");
-  const [briefCategory, setBriefCategory] = React.useState<string>("Character Design");
-  const [briefScope, setBriefScope] = React.useState<string>("Headshot / Bust");
+  const [briefCategory, setBriefCategory] = React.useState<string>("CHARACTER DESIGN");
+  const [briefScope, setBriefScope] = React.useState<string>("Headshot / Bust ($40)");
 
   const handleCalculatorScopeChange = (scopeId: string) => {
     setCalculatorScopeId(scopeId);
     if (scopeId === "scope-headshot") {
-      setBriefScope("Headshot / Bust");
-      setBriefCategory("Character Design");
+      setBriefScope("Headshot / Bust ($40)");
+      setBriefCategory("CHARACTER DESIGN");
     } else if (scopeId === "scope-halfbody") {
-      setBriefScope("Half Body");
-      setBriefCategory("Character Design");
+      setBriefScope("Half Body ($80)");
+      setBriefCategory("CHARACTER DESIGN");
     } else if (scopeId === "scope-fullbody") {
-      setBriefScope("Full Character / Splash");
-      setBriefCategory("Character Design");
+      setBriefScope("Full Character ($120)");
+      setBriefCategory("CHARACTER DESIGN");
     }
   };
 
