@@ -142,34 +142,28 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
         {/* LEFT / INTRO COLUMN (5 cols on lg) */}
         <div className="lg:col-span-5 flex flex-col justify-center order-2 lg:order-1">
-          {/* Studio Meta Eyebrow & Status */}
-          <div className="flex flex-wrap items-center gap-3 mb-5">
-            <span className="inline-flex items-center gap-1.5 bg-white text-black border-2 border-black font-black text-[11px] uppercase tracking-wider rounded-lg px-2.5 py-0.5 shadow-[2px_2px_0px_#000]">
-              <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
-              INDEPENDENT STUDIO
-            </span>
-            <span className="inline-flex items-center gap-1.5 bg-white/90 text-black border-2 border-black px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_#000]">
+          {/* Studio Meta Status */}
+          <div className="flex items-center mb-5">
+            <span className="inline-flex items-center gap-1.5 bg-white text-black border-2 border-black rounded-full px-3 py-1 text-xs font-black shadow-[2px_2px_0px_#000]">
               <span className="w-2 h-2 rounded-full bg-emerald-600 ring-2 ring-emerald-600/30" />
               COMMISSIONS OPEN
             </span>
           </div>
 
-          {/* Clean Xotoe Title Lockup */}
-          <div className="mb-5 select-none">
-            <h1 className="text-4xl md:text-5xl font-black text-black tracking-tight uppercase mb-1 font-archivo">
-              EMILIA STUDIO
-            </h1>
-            <div className="flex flex-wrap items-center gap-2.5">
-              <span className="text-3xl md:text-5xl font-black text-black tracking-tight uppercase leading-tight font-archivo">
-                CHARACTERS WITH
-              </span>
-              <div className="inline-block bg-[#E0F2FE] border-[3px] border-black rounded-xl px-4 py-1 shadow-[4px_4px_0px_#000] -rotate-1">
-                <span className="text-3xl md:text-5xl font-black text-black tracking-tight uppercase leading-tight font-archivo">
-                  ATTITUDE.
-                </span>
-              </div>
-            </div>
-          </div>
+          {/* Xotoe 2-Line Sentence-Case Title Lockup */}
+          <h1 className="mb-2 select-none">
+            <span className="text-5xl md:text-6xl font-black text-black tracking-tight leading-[1.08] block font-nav">
+              Characters with
+            </span>
+            <span className="inline-block bg-[#FFE600] text-black border-[3px] border-black rounded-2xl px-4 py-1 pb-2 shadow-[5px_5px_0px_#000] -rotate-1 mt-1.5 font-black text-5xl md:text-6xl tracking-tight leading-none font-nav">
+              attitude &amp; soul.
+            </span>
+          </h1>
+
+          {/* Xotoe Sub-Kicker */}
+          <p className="text-xs md:text-sm font-black uppercase tracking-[0.15em] text-black mt-6 mb-3">
+            2D CEL-SHADED ILLUSTRATION • STORYBOARDS &amp; COVERS
+          </p>
 
           {/* Editorial Style Narrative Introduction */}
           <p className="text-black/90 text-sm sm:text-base leading-relaxed max-w-lg mb-7 font-medium">
