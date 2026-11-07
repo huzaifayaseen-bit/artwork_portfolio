@@ -88,37 +88,29 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
     <section
       ref={containerRef}
       id="hero-section"
-      className="relative pt-16 sm:pt-20 lg:pt-24 pb-0 overflow-hidden bg-[#FAFAFA]"
+      className="relative pt-16 sm:pt-20 lg:pt-24 pb-0 overflow-hidden bg-[#FF6B35] border-b-[4px] border-black"
     >
-      {/* 1. COMIC HALFTONE BACKGROUND MATRIX & ATMOSPHERIC WASH */}
+      {/* 1. COMIC / ARCADE GEOMETRIC PATTERN OVERLAY */}
       <div className="absolute inset-0 pointer-events-none select-none -z-10" aria-hidden="true">
-        {/* Comic halftone dot matrix overlay with radial mask over left text column */}
+        {/* Subtle black dot matrix grid */}
         <div
-          className="absolute inset-0 opacity-[0.12]"
-          style={{
-            backgroundImage: "radial-gradient(#000 1.25px, transparent 1.25px)",
-            backgroundSize: "24px 24px",
-            maskImage:
-              "radial-gradient(circle at 25% 45%, transparent 0%, transparent 35%, rgba(0, 0, 0, 0.4) 60%, black 90%)",
-            WebkitMaskImage:
-              "radial-gradient(circle at 25% 45%, transparent 0%, transparent 35%, rgba(0, 0, 0, 0.4) 60%, black 90%)",
-          }}
+          className="absolute inset-0 bg-[radial-gradient(#000000_1.25px,transparent_1.25px)] [background-size:24px_24px] opacity-10"
         />
 
         {/* Ambient Cyan Wash (Top-Right focal area) */}
         <div
-          className="absolute -top-12 -right-16 w-[560px] h-[560px] rounded-full bg-[#00E5FF]/10 blur-3xl transition-transform duration-1000 ease-out"
+          className="absolute -top-12 -right-16 w-[560px] h-[560px] rounded-full bg-[#FFE600]/15 blur-3xl transition-transform duration-1000 ease-out"
           style={{ transform: `translate3d(${tilt.x * -14}px, ${tilt.y * -14}px, 0)` }}
         />
         {/* Ambient Violet Wash (Bottom-Left undercurrent) */}
         <div
-          className="absolute bottom-4 left-10 w-[420px] h-[420px] rounded-full bg-[#9933FF]/10 blur-3xl transition-transform duration-1000 ease-out"
+          className="absolute bottom-4 left-10 w-[420px] h-[420px] rounded-full bg-[#000000]/10 blur-3xl transition-transform duration-1000 ease-out"
           style={{ transform: `translate3d(${tilt.x * 12}px, ${tilt.y * 12}px, 0)` }}
         />
 
         {/* Precision Registration Studio Grid Lines */}
         <div
-          className="absolute inset-0 opacity-[0.025]"
+          className="absolute inset-0 opacity-[0.035]"
           style={{
             backgroundImage:
               "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)",
@@ -130,17 +122,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
       {/* 2. TECHNICAL VECTOR ACCENTS (Crosshairs & Watermarks - Cleanly Spaced) */}
       <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
         {/* Top-Right Watermark */}
-        <div className="absolute top-6 right-4 sm:right-6 font-mono text-[9px] tracking-widest text-black/25 uppercase hidden sm:block">
+        <div className="absolute top-6 right-4 sm:right-6 font-mono text-[9px] tracking-widest text-black/40 uppercase hidden sm:block">
           SYS.INK_V2 // 2026.STUDIO
         </div>
 
         {/* Center-Grid Crosshair Accent */}
-        <div className="absolute top-12 left-[48%] font-mono text-[13px] font-bold text-black/15 hidden md:block">
+        <div className="absolute top-12 left-[48%] font-mono text-[13px] font-bold text-black/30 hidden md:block">
           +
         </div>
 
         {/* Bottom-Left Crosshair */}
-        <div className="absolute bottom-12 left-4 sm:left-6 font-mono text-[11px] font-bold text-black/25 flex items-center gap-1.5">
+        <div className="absolute bottom-12 left-4 sm:left-6 font-mono text-[11px] font-bold text-black/40 flex items-center gap-1.5">
           <span>+</span>
           <span className="text-[9px] tracking-widest uppercase">COORD.24.X</span>
         </div>
@@ -152,29 +144,29 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
         <div className="lg:col-span-5 flex flex-col justify-center order-2 lg:order-1">
           {/* Studio Meta Eyebrow & Status */}
           <div className="flex flex-wrap items-center gap-3 mb-5">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 border border-black/80 bg-white font-nav text-[11px] font-bold uppercase tracking-wider text-black shadow-[2px_2px_0px_#000000]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00E5FF] animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 bg-[#FFE600] text-black border-2 border-black font-black text-[11px] uppercase tracking-wider rounded-lg px-2.5 py-0.5 shadow-[2px_2px_0px_#000]">
+              <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
               INDEPENDENT STUDIO
             </span>
-            <span className="inline-flex items-center gap-1.5 text-[11px] font-nav font-medium text-neutral-600 tracking-wide">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 ring-2 ring-emerald-500/20" />
+            <span className="inline-flex items-center gap-1.5 text-[11px] font-nav font-bold text-black/80 tracking-wide bg-white/40 border border-black/30 px-2 py-0.5 rounded-md">
+              <span className="w-2 h-2 rounded-full bg-emerald-600 ring-2 ring-emerald-600/30" />
               {profile.statusText || "COMMISSIONS OPEN // Q4 SLOTS"}
             </span>
           </div>
 
           {/* Artist Moniker */}
-          <h1 className="font-comic text-7xl sm:text-8xl lg:text-8xl xl:text-9xl tracking-tight text-black leading-[0.88] select-none mb-3">
+          <h1 className="font-comic text-7xl sm:text-8xl lg:text-8xl xl:text-9xl text-black font-black tracking-tighter leading-[0.88] select-none mb-3">
             EMILIA
           </h1>
 
           {/* Short Evocative Headline */}
-          <p className="font-nav text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-neutral-900 mb-4 flex items-center gap-2">
+          <p className="font-nav text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-black mb-4 flex items-center gap-2">
             <span>Characters with attitude.</span>
-            <span className="inline-block w-8 h-[3px] bg-[#00E5FF]" />
+            <span className="inline-block w-8 h-[3px] bg-black" />
           </p>
 
           {/* Editorial Style Narrative Introduction */}
-          <p className="text-neutral-700 text-sm sm:text-base leading-relaxed max-w-lg mb-7 font-sans">
+          <p className="text-black/90 text-sm sm:text-base leading-relaxed max-w-lg mb-7 font-medium">
             Original 2D cel-shaded illustrations built with razor-sharp vector inking, stepped tonal separation, and high-impact comic sensibilities. Handcrafted for authors, indie game directors, and collectors.
           </p>
 
@@ -183,41 +175,35 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             <Link
               href="#contact-section"
               onClick={(e) => handleSmoothScroll(e, "contact-section")}
-              className="group"
+              className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#FFE600] text-black border-[3px] border-black rounded-xl font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all active:bg-black active:text-[#FFE600]"
             >
-              <ComicButton
-                variant="accent"
-                size="lg"
-                icon={<Zap className="w-4 h-4 fill-white" />}
-                className="shadow-[4px_4px_0px_#000000] hover:shadow-[6px_6px_0px_#000000] transition-all"
-              >
-                COMMISSION ME
-              </ComicButton>
+              <Zap className="w-4 h-4 fill-black stroke-black" />
+              <span>COMMISSION ME</span>
             </Link>
 
             <Link
               href="#artworks-section"
               onClick={(e) => handleSmoothScroll(e, "artworks-section")}
-              className="inline-flex items-center gap-2 px-5 py-3 border-2 border-black bg-white hover:bg-neutral-100 font-nav text-xs sm:text-sm font-bold uppercase tracking-wider text-black shadow-[3px_3px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3.5 bg-white text-black border-[3px] border-black rounded-xl font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all"
             >
-              <Compass className="w-4 h-4 text-[#9933FF]" />
+              <Compass className="w-4 h-4 text-black" />
               <span>EXPLORE ARTWORK</span>
-              <ArrowUpRight className="w-4 h-4 text-black/60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRight className="w-4 h-4 text-black stroke-[2.5]" />
             </Link>
           </div>
 
           {/* Studio Craft Badges */}
-          <div className="pt-6 border-t border-black/15 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-nav text-neutral-600">
+          <div className="pt-5 border-t-2 border-black/20 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-nav font-bold text-black/85">
             <span className="inline-flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#00E5FF]" />
+              <CheckCircle2 className="w-4 h-4 text-black stroke-[2.5]" />
               300 DPI Print Masters
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#9933FF]" />
+              <CheckCircle2 className="w-4 h-4 text-black stroke-[2.5]" />
               Stepped Cel Values
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-black" />
+              <CheckCircle2 className="w-4 h-4 text-black stroke-[2.5]" />
               Layered PSD + Vector Inks
             </span>
           </div>
