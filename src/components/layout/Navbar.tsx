@@ -32,7 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
   // Track scroll position for compact pill morphing
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      setIsScrolled(window.scrollY > 30);
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -107,8 +107,8 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
           transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]
           ${
             isScrolled
-              ? "max-w-4xl lg:max-w-5xl py-1.5 px-3.5 sm:px-4 top-2.5 shadow-[3px_3px_0px_#000] rounded-full bg-white/90 backdrop-blur-md"
-              : "max-w-7xl py-3 sm:py-3.5 px-4 sm:px-6 top-3.5 shadow-[4px_4px_0px_#000] rounded-2xl bg-white"
+              ? "max-w-4xl lg:max-w-5xl py-1.5 px-3.5 sm:px-4 top-2.5 shadow-[4px_4px_0px_#000] rounded-full bg-white/95 backdrop-blur-md"
+              : "max-w-7xl py-3 sm:py-3.5 px-4 sm:px-6 top-3.5 shadow-[4px_4px_0px_#000] rounded-2xl bg-[#FF6B35]"
           }
         `}
       >
@@ -312,11 +312,11 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
           >
             <span
               className={`
-                bg-[#FFE600] text-black font-black uppercase border-2 border-black shadow-[3px_3px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all duration-300 cursor-pointer inline-flex items-center gap-1 font-btn
+                text-black font-black uppercase border-2 border-black shadow-[3px_3px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all duration-300 cursor-pointer inline-flex items-center gap-1 font-btn
                 ${
                   isScrolled
-                    ? "px-3 py-1.5 text-[11px] rounded-full"
-                    : "px-4 py-2 text-xs rounded-xl"
+                    ? "px-3 py-1.5 text-[11px] rounded-full bg-[#FFE600]"
+                    : "px-4 py-2 text-xs rounded-xl bg-white"
                 }
               `}
             >

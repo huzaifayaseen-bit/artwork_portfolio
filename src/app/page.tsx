@@ -60,104 +60,136 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] flex flex-col selection:bg-comic-yellow selection:text-black">
+    <div className="min-h-screen bg-[#FFFDF9] flex flex-col selection:bg-comic-yellow selection:text-black">
       {/* Sticky Comic Navbar */}
       <Navbar profile={data.profile} queueData={data.queue} />
 
-      {/* Main Page Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 1. Hero Section */}
+      {/* Main Full-Bleed Page Container */}
+      <main className="flex-1 w-full">
+        {/* Section 1: Hero (Electric Orange) */}
         <HeroSection profile={data.profile} />
 
-        {/* 2. Curated Artworks Gallery Section (Directly under Hero) */}
-        <section id="artworks-section" className="py-10 md:py-14 scroll-mt-20 border-t-4 border-black">
-          <ArtGallery artworks={data.artworks} limit={12} showViewAllLink={true} />
-        </section>
-
-        {/* 3. Commission Pricing Cards */}
-        <section id="pricing-section" className="py-10 md:py-14 scroll-mt-20 border-t-4 border-black">
-          {/* Pricing Header */}
-          <div className="max-w-3xl mb-6 md:mb-8">
-            <div className="inline-flex items-center gap-2 bg-comic-pink text-white border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider mb-2 rounded-full shadow-[2px_2px_0px_#000]">
-              <Sparkles className="w-4 h-4 fill-white" />
-              AVAILABLE TIERS
-            </div>
-            <h2 className="font-comic text-5xl sm:text-7xl uppercase text-black tracking-wide leading-none">
-              COMMISSION PRICING &amp; SERVICES
-            </h2>
-            <p className="mt-3 text-sm sm:text-base text-neutral-700 font-sans">
-              Standardized rates for personal &amp; commercial cel-shaded art commissions. All tiers include full-resolution master files and milestone progress updates.
-            </p>
-          </div>
-
-          {/* Pricing Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch pt-2">
-            {data.commissionTiers.map((tier) => (
-              <PricingTierCard
-                key={tier.id}
-                tier={tier}
-                onSelectTier={() => handleTierSelect(tier.id)}
-              />
-            ))}
-          </div>
-
-          {/* Custom Project Note */}
-          <div className="mt-6 sm:mt-8 bg-white border-[3px] border-black rounded-2xl p-5 sm:p-6 shadow-[4px_4px_0px_#000] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="flex items-start gap-3">
-              <HelpCircle className="w-6 h-6 text-comic-purple flex-shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-comic text-xl uppercase text-black tracking-wide">
-                  HAVE A MULTI-CHARACTER, COMIC BOOK, OR COMMERCIAL PROJECT?
-                </h4>
-                <p className="text-xs text-neutral-600 mt-0.5 font-sans">
-                  Multi-page sequences, character turnaround sheets, and commercial marketing receive custom bundled rates.
-                </p>
+        {/* Section 2: Commission Pricing Bento (Crisp Off-White) */}
+        <section
+          id="pricing-section"
+          className="w-full bg-[#FFFDF9] border-b-[3px] border-black py-14 md:py-20 scroll-mt-20"
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Pricing Header */}
+            <div className="max-w-3xl mb-8 md:mb-12">
+              <div className="inline-flex items-center gap-2 bg-comic-pink text-white border-2 border-black px-3 py-1 font-nav text-xs font-bold uppercase tracking-wider mb-2 rounded-full shadow-[2px_2px_0px_#000]">
+                <Sparkles className="w-4 h-4 fill-white" />
+                AVAILABLE TIERS
               </div>
+              <h2 className="font-comic text-5xl sm:text-7xl uppercase text-black tracking-wide leading-none">
+                COMMISSION PRICING &amp; SERVICES
+              </h2>
+              <p className="mt-3 text-sm sm:text-base text-neutral-700 font-sans">
+                Standardized rates for personal &amp; commercial cel-shaded art commissions. All tiers include full-resolution master files and milestone progress updates.
+              </p>
             </div>
 
-            <button
-              onClick={handleSelectTier}
-              className="flex-shrink-0 font-btn text-xs font-bold uppercase tracking-wider bg-comic-yellow border-2 border-black rounded-xl px-4 py-2 hover:bg-[#FFF033] shadow-[3px_3px_0px_#000] inline-block cursor-pointer transition-all"
-            >
-              REQUEST CUSTOM QUOTE
-            </button>
+            {/* Pricing Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch pt-2">
+              {data.commissionTiers.map((tier) => (
+                <PricingTierCard
+                  key={tier.id}
+                  tier={tier}
+                  onSelectTier={() => handleTierSelect(tier.id)}
+                />
+              ))}
+            </div>
+
+            {/* Custom Project Note */}
+            <div className="mt-8 sm:mt-10 bg-white border-[3px] border-black rounded-2xl p-5 sm:p-6 shadow-[4px_4px_0px_#000] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex items-start gap-3">
+                <HelpCircle className="w-6 h-6 text-comic-purple flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-comic text-xl uppercase text-black tracking-wide">
+                    HAVE A MULTI-CHARACTER, COMIC BOOK, OR COMMERCIAL PROJECT?
+                  </h4>
+                  <p className="text-xs text-neutral-600 mt-0.5 font-sans">
+                    Multi-page sequences, character turnaround sheets, and commercial marketing receive custom bundled rates.
+                  </p>
+                </div>
+              </div>
+
+              <button
+                onClick={handleSelectTier}
+                className="flex-shrink-0 font-btn text-xs font-bold uppercase tracking-wider bg-comic-yellow border-2 border-black rounded-xl px-4 py-2 hover:bg-[#FFF033] shadow-[3px_3px_0px_#000] inline-block cursor-pointer transition-all"
+              >
+                REQUEST CUSTOM QUOTE
+              </button>
+            </div>
           </div>
         </section>
 
-        {/* 4. Interactive Commission Cost Calculator */}
-        <section id="calculator-section" className="py-10 md:py-14 scroll-mt-20 border-t-4 border-black">
-          <CommissionCalculator
-            calculatorData={data.calculator}
-            discordTag={data.profile.discordTag}
-            selectedScopeId={calculatorScopeId}
-            onScopeChange={handleCalculatorScopeChange}
-          />
+        {/* Section 3: Interactive Calculator (Electric Yellow) */}
+        <section
+          id="calculator-section"
+          className="w-full bg-[#FFE600] border-b-[3px] border-black py-14 md:py-20 scroll-mt-20"
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <CommissionCalculator
+              calculatorData={data.calculator}
+              discordTag={data.profile.discordTag}
+              selectedScopeId={calculatorScopeId}
+              onScopeChange={handleCalculatorScopeChange}
+            />
+          </div>
         </section>
 
-        {/* 5. Client Reviews / Verified Social Proof */}
-        <section id="reviews-section" className="scroll-mt-20 py-10 md:py-14 border-t-4 border-black">
-          <ClientReviews reviewsData={data.reviews} />
+        {/* Section 4: Curated Artworks Gallery (Warm Sand / Paper Tint) */}
+        <section
+          id="artworks-section"
+          className="w-full bg-[#FAF6F0] border-b-[3px] border-black py-14 md:py-20 scroll-mt-20"
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ArtGallery artworks={data.artworks} limit={12} showViewAllLink={true} />
+          </div>
         </section>
 
-        {/* 6. Commission Terms of Service (TOS) Summary */}
-        <section id="tos-section" className="scroll-mt-20 border-t-4 border-black">
-          <TermsOfService tosData={data.termsOfService} />
+        {/* Section 5: Client Transmissions / Reviews (Soft Mint) */}
+        <section
+          id="reviews-section"
+          className="w-full bg-[#ECFDF5] border-b-[3px] border-black py-14 md:py-20 scroll-mt-20"
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ClientReviews reviewsData={data.reviews} />
+          </div>
         </section>
 
-        {/* 7. Tools of the Trade */}
-        <ToolsOfTheTrade />
+        {/* Section 6: Terms of Service Codex (Clean White) */}
+        <section
+          id="tos-section"
+          className="w-full bg-white border-b-[3px] border-black py-14 md:py-20 scroll-mt-20"
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <TermsOfService tosData={data.termsOfService} />
+          </div>
+        </section>
 
-        {/* 8. Contact & Commission Brief Builder */}
-        <section id="contact-section" className="py-10 md:py-14 scroll-mt-20 space-y-6 md:space-y-8 border-t-4 border-black">
-          <ContactSection profile={data.profile} />
-          <CommissionBriefBuilder
-            discordTag={data.profile.discordTag}
-            email={data.profile.email}
-            selectedCategory={briefCategory}
-            onCategoryChange={setBriefCategory}
-            selectedScope={briefScope}
-            onScopeChange={setBriefScope}
-          />
+        {/* Section 7: Tools of the Trade (Transitional Shelf) */}
+        <div className="w-full border-b-[3px] border-black bg-white">
+          <ToolsOfTheTrade />
+        </div>
+
+        {/* Section 8: Start a Project / Commission Brief (Electric Orange) */}
+        <section
+          id="contact-section"
+          className="w-full bg-[#FF6B35] border-b-[3px] border-black py-14 md:py-20 scroll-mt-20"
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <ContactSection profile={data.profile} />
+            <CommissionBriefBuilder
+              discordTag={data.profile.discordTag}
+              email={data.profile.email}
+              selectedCategory={briefCategory}
+              onCategoryChange={setBriefCategory}
+              selectedScope={briefScope}
+              onScopeChange={setBriefScope}
+            />
+          </div>
         </section>
       </main>
 

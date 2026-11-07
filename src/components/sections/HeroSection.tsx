@@ -88,7 +88,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
     <section
       ref={containerRef}
       id="hero-section"
-      className="relative pt-16 sm:pt-20 lg:pt-24 pb-0 overflow-hidden bg-[#FF6B35] border-b-[4px] border-black"
+      className="relative pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 overflow-hidden bg-[#FF6B35] border-b-[4px] border-black w-full"
     >
       {/* 1. COMIC / ARCADE GEOMETRIC PATTERN OVERLAY */}
       <div className="absolute inset-0 pointer-events-none select-none -z-10" aria-hidden="true">
@@ -139,7 +139,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
       </div>
 
       {/* Main Editorial Studio Grid: 12 Columns */}
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center pb-8 sm:pb-12 lg:pb-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
         {/* LEFT / INTRO COLUMN (5 cols on lg) */}
         <div className="lg:col-span-5 flex flex-col justify-center order-2 lg:order-1">
           {/* Studio Meta Eyebrow & Status */}
