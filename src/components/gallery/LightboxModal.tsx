@@ -276,11 +276,11 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
           {/* Direct Commission CTA & Back Button */}
           <div className="mt-6 pt-4 border-t-[3px] border-black space-y-2.5">
             <Link
-              href="#contact-section"
+              href="#contact"
               onClick={() => {
                 onClose();
                 setTimeout(() => {
-                  const el = document.getElementById("contact-section");
+                  const el = document.getElementById("contact") || document.getElementById("contact-section");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }, 100);
               }}

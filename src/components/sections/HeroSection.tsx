@@ -164,8 +164,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
           {/* Commission Conversion Triggers */}
           <div className="flex flex-wrap items-center gap-3.5 mb-6 sm:mb-7">
             <Link
-              href="#contact-section"
-              onClick={(e) => handleSmoothScroll(e, "contact-section")}
+              href="#contact"
+              onClick={(e) => handleSmoothScroll(e, "contact")}
               className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-[#FFE600] text-black border-[3px] border-black rounded-xl font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all active:bg-black active:text-[#FFE600]"
             >
               <Zap className="w-4 h-4 fill-black stroke-black" />
@@ -173,8 +173,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             </Link>
 
             <Link
-              href="#artworks-section"
-              onClick={(e) => handleSmoothScroll(e, "artworks-section")}
+              href="#gallery"
+              onClick={(e) => handleSmoothScroll(e, "gallery")}
               className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-white text-black border-[3px] border-black rounded-xl font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all"
             >
               <Compass className="w-4 h-4 text-black" />

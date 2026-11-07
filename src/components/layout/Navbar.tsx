@@ -159,6 +159,25 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
       >
         {/* 1. LEFT: Desktop Navigation Links with Pricing Dropdown Drawer */}
         <div className={`hidden lg:flex items-center transition-all duration-300 ${isScrolled ? "gap-0.5 xl:gap-1" : "gap-1 xl:gap-2"}`}>
+          {/* GALLERY Link */}
+          <Link
+            href={pathname === "/" ? "#gallery" : "/artworks"}
+            onClick={(e) =>
+              handleNavClick(e, { href: "/artworks", sectionId: "gallery" })
+            }
+            className={`
+              font-nav font-bold uppercase tracking-wider rounded-full border-2 transition-all select-none
+              ${isScrolled ? "px-2.5 py-1 text-[11px]" : "px-3 py-1.5 text-xs"}
+              ${
+                isGalleryActive
+                  ? "bg-[#FFE600] text-black border-black shadow-[2px_2px_0px_#000]"
+                  : "text-black border-transparent hover:border-black hover:bg-[#FFE600] hover:shadow-[2px_2px_0px_#000]"
+              }
+            `}
+          >
+            GALLERY
+          </Link>
+
           {/* PRICING with Neo-Brutalist Dropdown Drawer */}
           <div
             className="relative"
@@ -166,9 +185,9 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
             onMouseLeave={handleMouseLeavePricing}
           >
             <Link
-              href={pathname === "/" ? "#pricing-section" : "/pricing"}
+              href={pathname === "/" ? "#pricing" : "/pricing"}
               onClick={(e) =>
-                handleNavClick(e, { href: "/pricing", sectionId: "pricing-section" })
+                handleNavClick(e, { href: "/pricing", sectionId: "pricing" })
               }
               onKeyDown={handlePricingKeyDown}
               aria-haspopup="true"
@@ -201,11 +220,11 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
               >
                 <div className="flex flex-col divide-y-2 divide-black">
                   <Link
-                    href={pathname === "/" ? "#calculator-section" : "/pricing#calculator"}
+                    href={pathname === "/" ? "#pricing" : "/pricing"}
                     onClick={(e) =>
                       handleNavClick(e, {
-                        href: "/pricing#calculator",
-                        sectionId: "calculator-section",
+                        href: "/pricing",
+                        sectionId: "pricing",
                       })
                     }
                     className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-[14px] sm:text-[15px] uppercase tracking-[0.05em] text-black hover:bg-[#FFE600] focus-visible:bg-[#FFE600] focus-visible:outline-none transition-colors duration-120 cursor-pointer"
@@ -213,27 +232,6 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                     <span className="flex items-center gap-2.5">
                       <span className="bg-transparent text-black border-2 border-black px-1.5 py-0.5 rounded text-[10px] sm:text-xs font-mono font-black shadow-[1px_1px_0px_#000]">
                         01
-                      </span>
-                      <span>CALCULATOR</span>
-                    </span>
-                    <span className="opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 group-hover:translate-x-0.5 transition-all text-sm font-black">
-                      →
-                    </span>
-                  </Link>
-
-                  <Link
-                    href={pathname === "/" ? "#pricing-section" : "/pricing"}
-                    onClick={(e) =>
-                      handleNavClick(e, {
-                        href: "/pricing",
-                        sectionId: "pricing-section",
-                      })
-                    }
-                    className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-[14px] sm:text-[15px] uppercase tracking-[0.05em] text-black hover:bg-[#FFE600] focus-visible:bg-[#FFE600] focus-visible:outline-none transition-colors duration-120 cursor-pointer"
-                  >
-                    <span className="flex items-center gap-2.5">
-                      <span className="bg-transparent text-black border-2 border-black px-1.5 py-0.5 rounded text-[10px] sm:text-xs font-mono font-black shadow-[1px_1px_0px_#000]">
-                        02
                       </span>
                       <span>RATES &amp; TIERS</span>
                     </span>
@@ -243,9 +241,30 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                   </Link>
 
                   <Link
-                    href={pathname === "/" ? "#tos-section" : "/tos"}
+                    href={pathname === "/" ? "#calculator" : "/pricing#calculator"}
                     onClick={(e) =>
-                      handleNavClick(e, { href: "/tos", sectionId: "tos-section" })
+                      handleNavClick(e, {
+                        href: "/pricing#calculator",
+                        sectionId: "calculator",
+                      })
+                    }
+                    className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-[14px] sm:text-[15px] uppercase tracking-[0.05em] text-black hover:bg-[#FFE600] focus-visible:bg-[#FFE600] focus-visible:outline-none transition-colors duration-120 cursor-pointer"
+                  >
+                    <span className="flex items-center gap-2.5">
+                      <span className="bg-transparent text-black border-2 border-black px-1.5 py-0.5 rounded text-[10px] sm:text-xs font-mono font-black shadow-[1px_1px_0px_#000]">
+                        02
+                      </span>
+                      <span>CALCULATOR</span>
+                    </span>
+                    <span className="opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 group-hover:translate-x-0.5 transition-all text-sm font-black">
+                      →
+                    </span>
+                  </Link>
+
+                  <Link
+                    href={pathname === "/" ? "#tos" : "/tos"}
+                    onClick={(e) =>
+                      handleNavClick(e, { href: "/tos", sectionId: "tos" })
                     }
                     className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-[14px] sm:text-[15px] uppercase tracking-[0.05em] text-black hover:bg-[#FFE600] focus-visible:bg-[#FFE600] focus-visible:outline-none transition-colors duration-120 cursor-pointer"
                   >
@@ -264,30 +283,11 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
             )}
           </div>
 
-          {/* GALLERY Link */}
-          <Link
-            href={pathname === "/" ? "#artworks-section" : "/artworks"}
-            onClick={(e) =>
-              handleNavClick(e, { href: "/artworks", sectionId: "artworks-section" })
-            }
-            className={`
-              font-nav font-bold uppercase tracking-wider rounded-full border-2 transition-all select-none
-              ${isScrolled ? "px-2.5 py-1 text-[11px]" : "px-3 py-1.5 text-xs"}
-              ${
-                isGalleryActive
-                  ? "bg-[#FFE600] text-black border-black shadow-[2px_2px_0px_#000]"
-                  : "text-black border-transparent hover:border-black hover:bg-[#FFE600] hover:shadow-[2px_2px_0px_#000]"
-              }
-            `}
-          >
-            GALLERY
-          </Link>
-
           {/* TOS Link */}
           <Link
-            href={pathname === "/" ? "#tos-section" : "/tos"}
+            href={pathname === "/" ? "#tos" : "/tos"}
             onClick={(e) =>
-              handleNavClick(e, { href: "/tos", sectionId: "tos-section" })
+              handleNavClick(e, { href: "/tos", sectionId: "tos" })
             }
             className={`
               font-nav font-bold uppercase tracking-wider rounded-full border-2 transition-all select-none
@@ -467,31 +467,31 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                   {
                     label: "GALLERY",
                     href: "/artworks",
-                    sectionId: "artworks-section",
+                    sectionId: "gallery",
                     emoji: "🎨",
                   },
                   {
                     label: "PRICING",
                     href: "/pricing",
-                    sectionId: "pricing-section",
+                    sectionId: "pricing",
                     emoji: "⚡",
                   },
                   {
                     label: "INTERACTIVE CALCULATOR",
                     href: "/pricing#calculator",
-                    sectionId: "calculator-section",
+                    sectionId: "calculator",
                     emoji: "🧮",
                   },
                   {
                     label: "TERMS OF SERVICE",
                     href: "/tos",
-                    sectionId: "tos-section",
+                    sectionId: "tos",
                     emoji: "📜",
                   },
                   {
                     label: "CONTACT",
                     href: "/contact",
-                    sectionId: "contact-section",
+                    sectionId: "contact",
                     emoji: "✉️",
                   },
                 ].map((link) => {

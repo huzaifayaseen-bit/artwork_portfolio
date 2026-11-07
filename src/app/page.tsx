@@ -44,14 +44,14 @@ export default function Home() {
     } else if (tierId === "tier-full") {
       handleCalculatorScopeChange("scope-fullbody");
     }
-    const el = document.getElementById("contact-section");
+    const el = document.getElementById("contact") || document.getElementById("contact-section");
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   const handleSelectTier = () => {
-    const el = document.getElementById("contact-section");
+    const el = document.getElementById("contact") || document.getElementById("contact-section");
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     } else {
@@ -69,10 +69,38 @@ export default function Home() {
         {/* Section 1: Hero (Electric Orange) */}
         <HeroSection profile={data.profile} />
 
-        {/* Section 2: Commission Pricing Bento (Warm Cream Paper) */}
+        {/* Section 2: Curated Artworks / Gallery (Clean Off-White) */}
         <section
-          id="pricing-section"
-          className="w-full bg-[#FFFDF7] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
+          id="gallery"
+          className="w-full bg-[#FAF8F5] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
+        >
+          <div className="max-w-6xl mx-auto">
+            <ArtGallery artworks={data.artworks} limit={12} showViewAllLink={true} />
+          </div>
+        </section>
+
+        {/* Section 3: Tools of the Trade / Studio Pipeline (Transitional Shelf - Compact py-10) */}
+        <section
+          id="tools"
+          className="w-full border-b-[3px] border-black bg-[#FFFDF7] py-10 px-6 scroll-mt-20"
+        >
+          <ToolsOfTheTrade />
+        </section>
+
+        {/* Section 4: Client Transmissions / Reviews (Soft Neo-Yellow / Butter) */}
+        <section
+          id="reviews"
+          className="w-full bg-[#FEF9C3] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
+        >
+          <div className="max-w-6xl mx-auto">
+            <ClientReviews reviewsData={data.reviews} />
+          </div>
+        </section>
+
+        {/* Section 5: Commission Pricing & Services (Pure White Bento) */}
+        <section
+          id="pricing"
+          className="w-full bg-[#FFFFFF] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
         >
           <div className="max-w-6xl mx-auto">
             {/* Pricing Header */}
@@ -124,9 +152,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 3: Interactive Calculator (Soft Neo-Brutalist Lavender) */}
+        {/* Section 6: Interactive Commission Calculator (Soft Neo-Brutalist Lavender) */}
         <section
-          id="calculator-section"
+          id="calculator"
           className="w-full bg-[#EDE9FE] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
         >
           <div className="max-w-6xl mx-auto">
@@ -139,29 +167,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 4: Curated Artworks Gallery (Clean Off-White) */}
+        {/* Section 7: Terms of Service // Codex (Soft Sage / Mint) */}
         <section
-          id="artworks-section"
-          className="w-full bg-[#FAF8F5] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
-        >
-          <div className="max-w-6xl mx-auto">
-            <ArtGallery artworks={data.artworks} limit={12} showViewAllLink={true} />
-          </div>
-        </section>
-
-        {/* Section 5: Client Transmissions / Reviews (Soft Neo-Yellow / Butter) */}
-        <section
-          id="reviews-section"
-          className="w-full bg-[#FEF9C3] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
-        >
-          <div className="max-w-6xl mx-auto">
-            <ClientReviews reviewsData={data.reviews} />
-          </div>
-        </section>
-
-        {/* Section 6: Terms of Service Codex (Soft Sage / Mint) */}
-        <section
-          id="tos-section"
+          id="tos"
           className="w-full bg-[#ECFDF5] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
         >
           <div className="max-w-6xl mx-auto">
@@ -169,14 +177,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Section 7: Tools of the Trade (Transitional Shelf - Crisp Neo-Cyan) */}
-        <div className="w-full border-b-[3px] border-black bg-[#E0F2FE] py-12 md:py-16 px-6">
-          <ToolsOfTheTrade />
-        </div>
-
-        {/* Section 8: Start a Project / Commission Brief (Crisp Neo-Cyan) */}
+        {/* Section 8: Start a Project / Commission Brief & Contact (Crisp Neo-Cyan) */}
         <section
-          id="contact-section"
+          id="contact"
           className="w-full bg-[#E0F2FE] border-b-[3px] border-black py-14 md:py-18 px-6 scroll-mt-20"
         >
           <div className="max-w-6xl mx-auto space-y-12">
