@@ -88,7 +88,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
     <section
       ref={containerRef}
       id="hero-section"
-      className="relative min-h-[calc(100svh-4.5rem)] flex items-center pt-24 md:pt-28 pb-16 overflow-hidden bg-[#FF6B35] border-b-[4px] border-black w-full scroll-mt-20"
+      className="relative w-full bg-[#FF6B35] border-b-[4px] border-black pt-20 pb-10 sm:pt-24 sm:pb-14 lg:py-24 px-4 sm:px-6 min-h-0 lg:min-h-[calc(100vh-80px)] flex flex-col justify-center overflow-hidden scroll-mt-20"
     >
       {/* 1. COMIC / ARCADE GEOMETRIC PATTERN OVERLAY */}
       <div className="absolute inset-0 pointer-events-none select-none -z-10" aria-hidden="true">
@@ -159,48 +159,48 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
           </p>
 
           {/* Commission Conversion Triggers */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto mb-6 sm:mb-7">
+          <div className="flex flex-row items-center gap-2.5 w-full sm:w-auto my-4">
             <Link
               href="#contact"
               onClick={(e) => handleSmoothScroll(e, "contact")}
-              className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-[#FFE600] text-black border-[3px] border-black rounded-xl font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all active:bg-black active:text-[#FFE600]"
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-[#FFE600] text-black border-2 border-black rounded-xl font-black text-xs uppercase tracking-wider shadow-[3px_3px_0px_#000] text-center hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all active:bg-black active:text-[#FFE600]"
             >
-              <Zap className="w-4 h-4 fill-black stroke-black" />
+              <Zap className="w-3.5 h-3.5 fill-black stroke-black" />
               <span>COMMISSION ME</span>
             </Link>
 
             <Link
               href="#gallery"
               onClick={(e) => handleSmoothScroll(e, "gallery")}
-              className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-white text-black border-[3px] border-black rounded-xl font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all"
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-white text-black border-2 border-black rounded-xl font-black text-xs uppercase tracking-wider shadow-[3px_3px_0px_#000] text-center hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all"
             >
-              <Compass className="w-4 h-4 text-black" />
+              <Compass className="w-3.5 h-3.5 text-black" />
               <span>EXPLORE ARTWORK</span>
-              <ArrowUpRight className="w-4 h-4 text-black stroke-[2.5]" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-black stroke-[2.5]" />
             </Link>
           </div>
 
           {/* Studio Craft Badges (Scoped strictly to left column) */}
-          <div className="w-full pt-4 sm:pt-5 border-t-2 border-black/20 flex flex-wrap lg:flex-nowrap items-center gap-x-5 lg:gap-x-6 gap-y-2 text-xs font-nav font-bold text-black/85">
+          <div className="w-full pt-3 sm:pt-4 border-t-2 border-black/20 flex flex-wrap items-center justify-start gap-x-4 gap-y-1.5 text-[11px] sm:text-xs font-bold text-black/90 mt-2">
             <span className="inline-flex items-center gap-1.5 shrink-0 whitespace-nowrap">
-              <CheckCircle2 className="w-4 h-4 text-black stroke-[2.5]" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-black stroke-[2.5]" />
               300 DPI Print Masters
             </span>
             <span className="inline-flex items-center gap-1.5 shrink-0 whitespace-nowrap">
-              <CheckCircle2 className="w-4 h-4 text-black stroke-[2.5]" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-black stroke-[2.5]" />
               Stepped Cel Values
             </span>
             <span className="inline-flex items-center gap-1.5 shrink-0 whitespace-nowrap">
-              <CheckCircle2 className="w-4 h-4 text-black stroke-[2.5]" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-black stroke-[2.5]" />
               Layered PSD + Vector Inks
             </span>
           </div>
         </div>
 
         {/* RIGHT / COLLAGE STAGE */}
-        <div className="order-2 mt-8 lg:mt-0 w-full">
+        <div className="order-2 mt-6 lg:mt-0 w-full flex justify-center">
           {/* Collage Stage Container */}
-          <div className="relative w-full max-w-[320px] sm:max-w-sm lg:max-w-none mx-auto scale-90 sm:scale-100 origin-top overflow-visible pt-2 pb-4 sm:pb-6 px-2 sm:px-4">
+          <div className="relative w-[280px] sm:w-[340px] lg:w-full lg:max-w-none aspect-[4/3] sm:aspect-square lg:aspect-auto mx-auto overflow-visible pt-2 pb-4 sm:pb-6 px-2 sm:px-4">
             {/* BRAND ACCENT GLOW BEHIND 3-IMAGE COLLAGE */}
             <div
               className="absolute inset-2 -z-20 pointer-events-none select-none blur-3xl opacity-10 transition-transform duration-700 ease-out"
