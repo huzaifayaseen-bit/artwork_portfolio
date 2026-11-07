@@ -148,24 +148,28 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
               <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
               INDEPENDENT STUDIO
             </span>
-            <span className="inline-flex items-center gap-1.5 text-[11px] font-nav font-bold text-black/80 tracking-wide bg-white/40 border border-black/30 px-2 py-0.5 rounded-md">
+            <span className="inline-flex items-center gap-1.5 bg-white/90 text-black border-2 border-black px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_#000]">
               <span className="w-2 h-2 rounded-full bg-emerald-600 ring-2 ring-emerald-600/30" />
-              {profile.statusText || "COMMISSIONS OPEN // Q4 SLOTS"}
+              COMMISSIONS OPEN
             </span>
           </div>
 
-          {/* Artist Moniker in Xotoe-Style Highlight Box */}
-          <div className="inline-block bg-[#FFE600] border-[4px] border-black rounded-2xl px-5 sm:px-6 py-2 shadow-[6px_6px_0px_#000] -rotate-1 mb-4 select-none self-start">
-            <h1 className="text-black font-archivo text-5xl sm:text-7xl lg:text-8xl tracking-normal uppercase leading-none">
-              EMILIA
+          {/* Clean Xotoe Title Lockup */}
+          <div className="mb-5 select-none">
+            <h1 className="text-4xl md:text-5xl font-black text-black tracking-tight uppercase mb-1 font-archivo">
+              EMILIA STUDIO
             </h1>
+            <div className="flex flex-wrap items-center gap-2.5">
+              <span className="text-3xl md:text-5xl font-black text-black tracking-tight uppercase leading-tight font-archivo">
+                CHARACTERS WITH
+              </span>
+              <div className="inline-block bg-[#E0F2FE] border-[3px] border-black rounded-xl px-4 py-1 shadow-[4px_4px_0px_#000] -rotate-1">
+                <span className="text-3xl md:text-5xl font-black text-black tracking-tight uppercase leading-tight font-archivo">
+                  ATTITUDE.
+                </span>
+              </div>
+            </div>
           </div>
-
-          {/* Short Evocative Headline */}
-          <p className="font-nav text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-black mb-4 flex items-center gap-2">
-            <span>Characters with attitude.</span>
-            <span className="inline-block w-8 h-[3px] bg-black" />
-          </p>
 
           {/* Editorial Style Narrative Introduction */}
           <p className="text-black/90 text-sm sm:text-base leading-relaxed max-w-lg mb-7 font-medium">
