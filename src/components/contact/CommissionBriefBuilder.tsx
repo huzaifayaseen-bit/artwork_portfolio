@@ -324,71 +324,40 @@ export const CommissionBriefBuilder: React.FC<CommissionBriefBuilderProps> = ({
             </div>
           </div>
 
-          {/* Step 2: Project Scope & Reference URL */}
-          <div>
-            <label className="block font-nav text-xs font-bold uppercase tracking-wider text-neutral-700 mb-2.5 flex items-center gap-2">
-              <span className="w-2.5 h-2.5 bg-comic-cyan border border-black rounded-sm inline-block" />
-              STEP 2: PROJECT SCOPE &amp; DETAILS
-            </label>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-4">
-              {currentScopeOptions.map((sc) => {
-                const isSelected = selectedScope === sc.label;
-                return (
-                  <button
-                    key={sc.id}
-                    type="button"
-                    onClick={() => handleScopeSelect(sc.label)}
-                    className={`
-                      border-2 border-black rounded-xl p-3 text-left transition-all select-none cursor-pointer flex flex-col justify-between
-                      ${
-                        isSelected
-                          ? "bg-neutral-900 text-white shadow-[3px_3px_0px_#000] -translate-x-[1px] -translate-y-[1px]"
-                          : "bg-white hover:bg-neutral-50 text-neutral-800 shadow-[2px_2px_0px_#000]"
-                      }
-                    `}
-                  >
-                    <span className="font-comic text-base uppercase tracking-wide">
-                      {sc.label}
-                    </span>
-                    <span
-                      className={`text-[10px] font-sans mt-1 ${
-                        isSelected ? "text-neutral-300" : "text-neutral-500"
-                      }`}
-                    >
-                      {sc.desc}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
+          {/* Step 2: Reference Link & Notes */}
+          <div className="space-y-4">
+            <div>
+              <label className="block font-nav text-xs font-bold uppercase tracking-wider text-neutral-700 mb-2 flex items-center gap-2">
+                <span className="w-2.5 h-2.5 bg-comic-cyan border border-black rounded-sm inline-block" />
+                STEP 2: REFERENCE LINK &amp; SCENE NOTES
+              </label>
+              <div className="space-y-3">
+                <div>
+                  <span className="block text-[11px] font-nav font-bold uppercase tracking-wider text-neutral-600 mb-1">
+                    REFERENCE LINK (GDRIVE, DROPBOX, PINTEREST, IMGUR)
+                  </span>
+                  <input
+                    type="url"
+                    placeholder="https://drive.google.com/..."
+                    value={refLink}
+                    onChange={(e) => setRefLink(e.target.value)}
+                    className="w-full bg-neutral-50 border-2 border-black rounded-xl px-3.5 py-2 font-mono text-xs focus:bg-white focus:outline-none focus:ring-0 focus:shadow-[3px_3px_0px_#000] transition-shadow"
+                  />
+                </div>
 
-            {/* Reference URL Input */}
-            <div className="space-y-3">
-              <div>
-                <span className="block text-[11px] font-nav font-bold uppercase tracking-wider text-neutral-600 mb-1">
-                  REFERENCE LINK (GDRIVE, DROPBOX, PINTEREST, IMGUR)
-                </span>
-                <input
-                  type="url"
-                  placeholder="https://drive.google.com/..."
-                  value={refLink}
-                  onChange={(e) => setRefLink(e.target.value)}
-                  className="w-full bg-neutral-50 border-2 border-black rounded-xl px-3.5 py-2 font-mono text-xs focus:bg-white focus:outline-none focus:ring-0 focus:shadow-[3px_3px_0px_#000] transition-shadow"
-                />
-              </div>
-
-              {/* Character & Scene Notes */}
-              <div>
-                <span className="block text-[11px] font-nav font-bold uppercase tracking-wider text-neutral-600 mb-1">
-                  CHARACTER &amp; SCENE NOTES (POSE, EXPRESSION, PALETTE, VIBE)
-                </span>
-                <textarea
-                  rows={3}
-                  placeholder="e.g. Dynamic action stance with energy blade, cybernetic arm glow, confident smirk, neon purple/teal atmospheric lighting..."
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  className="w-full bg-neutral-50 border-2 border-black rounded-xl p-3 font-sans text-xs focus:bg-white focus:outline-none focus:ring-0 focus:shadow-[3px_3px_0px_#000] transition-shadow"
-                />
+                {/* Character & Scene Notes */}
+                <div>
+                  <span className="block text-[11px] font-nav font-bold uppercase tracking-wider text-neutral-600 mb-1">
+                    CHARACTER &amp; SCENE NOTES (POSE, EXPRESSION, PALETTE, VIBE)
+                  </span>
+                  <textarea
+                    rows={3}
+                    placeholder="e.g. Dynamic action stance with energy blade, cybernetic arm glow, confident smirk, neon purple/teal atmospheric lighting..."
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    className="w-full bg-neutral-50 border-2 border-black rounded-xl p-3 font-sans text-xs focus:bg-white focus:outline-none focus:ring-0 focus:shadow-[3px_3px_0px_#000] transition-shadow"
+                  />
+                </div>
               </div>
             </div>
           </div>

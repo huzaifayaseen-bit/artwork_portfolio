@@ -145,20 +145,17 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
 
   return (
     <>
-      {/* Floating Neo-Brutalist Island Container with Scroll-Triggered Shrink Animation */}
+      {/* Floating Neo-Brutalist Island Container */}
       <header
         className={`
-          fixed left-4 right-4 z-50 mx-auto border-2 border-black flex items-center justify-between
-          transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]
-          ${
-            isScrolled
-              ? "max-w-4xl !bg-white py-1.5 px-5 top-2.5 shadow-[3px_3px_0px_#000] rounded-full"
-              : "max-w-7xl bg-[#FF6B35] py-3 sm:py-3.5 px-4 sm:px-6 lg:px-8 top-3.5 shadow-[4px_4px_0px_#000] rounded-2xl"
-          }
+          fixed top-3.5 left-4 right-4 z-50 w-[94%] max-w-6xl mx-auto border-[3px] border-black rounded-2xl py-3 px-6
+          shadow-[4px_4px_0px_#000] flex items-center justify-between
+          transition-colors duration-200
+          ${isScrolled ? "bg-white" : "bg-[#FF6B35]"}
         `}
       >
         {/* 1. LEFT: Desktop Navigation Links with Pricing Dropdown Drawer */}
-        <div className={`hidden lg:flex items-center transition-all duration-300 ${isScrolled ? "gap-0.5 xl:gap-1" : "gap-1 xl:gap-2"}`}>
+        <div className="hidden lg:flex items-center gap-1 xl:gap-2">
           {/* GALLERY Link */}
           <Link
             href={pathname === "/" ? "#gallery" : "/artworks"}
@@ -166,8 +163,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
               handleNavClick(e, { href: "/artworks", sectionId: "gallery" })
             }
             className={`
-              font-nav font-bold uppercase tracking-wider rounded-full border-2 transition-all select-none
-              ${isScrolled ? "px-2.5 py-1 text-[11px]" : "px-3 py-1.5 text-xs"}
+              font-nav font-bold uppercase tracking-wider rounded-full border-2 transition-all select-none px-3 py-1.5 text-xs
               ${
                 isGalleryActive
                   ? "bg-[#FFE600] text-black border-black shadow-[2px_2px_0px_#000]"
@@ -193,9 +189,8 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
               aria-haspopup="true"
               aria-expanded={pricingDropdownOpen}
               className={`
-                font-nav font-bold uppercase tracking-wider border-2 transition-all flex items-center gap-1 select-none
+                font-nav font-bold uppercase tracking-wider border-2 transition-all flex items-center gap-1 select-none px-3 py-1.5 text-xs
                 ${pricingDropdownOpen ? "rounded-t-full rounded-b-none border-b-black" : "rounded-full"}
-                ${isScrolled ? "px-2.5 py-1 text-[11px]" : "px-3 py-1.5 text-xs"}
                 ${
                   isPricingActive || pricingDropdownOpen
                     ? "bg-[#FFE600] text-black border-black shadow-[2px_2px_0px_#000]"
@@ -205,9 +200,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
             >
               <span>PRICING</span>
               <ChevronDown
-                className={`transition-transform duration-150 ${
-                  isScrolled ? "w-3 h-3" : "w-3.5 h-3.5"
-                } ${pricingDropdownOpen ? "rotate-180" : ""}`}
+                className={`transition-transform duration-150 w-3.5 h-3.5 ${pricingDropdownOpen ? "rotate-180" : ""}`}
               />
             </Link>
 
@@ -290,8 +283,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
               handleNavClick(e, { href: "/tos", sectionId: "tos" })
             }
             className={`
-              font-nav font-bold uppercase tracking-wider rounded-full border-2 transition-all select-none
-              ${isScrolled ? "px-2.5 py-1 text-[11px]" : "px-3 py-1.5 text-xs"}
+              font-nav font-bold uppercase tracking-wider rounded-full border-2 transition-all select-none px-3 py-1.5 text-xs
               ${
                 isTosActive
                   ? "bg-[#FFE600] text-black border-black shadow-[2px_2px_0px_#000]"
@@ -311,27 +303,17 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
             className="flex flex-col items-center justify-center leading-[0.85] select-none cursor-pointer group"
             aria-label="EMILIA STUDIO - Home"
           >
-            <span
-              className={`
-                font-black tracking-normal uppercase font-display text-black group-hover:text-comic-pink transition-all duration-300 drop-shadow-[1px_1px_0px_#000]
-                ${isScrolled ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl"}
-              `}
-            >
+            <span className="font-black tracking-normal uppercase font-display text-black group-hover:text-comic-pink transition-colors duration-300 drop-shadow-[1px_1px_0px_#000] text-2xl sm:text-3xl">
               EMILIA
             </span>
-            <span
-              className={`
-                font-black tracking-widest uppercase font-mono bg-black text-[#FFE600] rounded-sm group-hover:bg-[#FFE600] group-hover:text-black border border-black shadow-[1px_1px_0px_#000] transition-all duration-300 -mt-0.5
-                ${isScrolled ? "text-[8px] px-1 py-0.2" : "text-[10px] px-1.5 py-0.5"}
-              `}
-            >
+            <span className="font-black tracking-widest uppercase font-mono bg-black text-[#FFE600] rounded-sm group-hover:bg-[#FFE600] group-hover:text-black border border-black shadow-[1px_1px_0px_#000] transition-colors duration-300 -mt-0.5 text-[10px] px-1.5 py-0.5">
               STUDIO
             </span>
           </Link>
         </div>
 
         {/* 3. RIGHT: Audio Toggle + Live Queue Pill Badge + COMMISSION ME CTA + Mobile Hamburger */}
-        <div className={`flex items-center transition-all duration-300 ${isScrolled ? "gap-1.5 sm:gap-2" : "gap-2 sm:gap-2.5"}`}>
+        <div className="flex items-center gap-2 sm:gap-2.5">
           {/* Retro SFX Neo-Brutalist Toggle */}
           <button
             type="button"
@@ -341,8 +323,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
             className={`
               hidden sm:flex items-center gap-1 border-2 border-black rounded-lg font-comic uppercase tracking-wider
               shadow-[2px_2px_0px_#000] active:shadow-none active:translate-x-[1px] active:translate-y-[1px]
-              transition-all duration-300 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black
-              ${isScrolled ? "px-1.5 py-0.5 text-[10px]" : "px-2 py-1 text-xs"}
+              transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black px-2 py-1 text-xs
               ${
                 sfxEnabled
                   ? "bg-[#FFE600] text-black hover:bg-[#FFF033]"
@@ -352,12 +333,12 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
           >
             {sfxEnabled ? (
               <>
-                <Volume2 className={isScrolled ? "w-3 h-3 stroke-[2.5]" : "w-3.5 h-3.5 stroke-[2.5]"} />
+                <Volume2 className="w-3.5 h-3.5 stroke-[2.5]" />
                 <span className="font-bold hidden md:inline text-[10px]">SFX</span>
               </>
             ) : (
               <>
-                <VolumeX className={isScrolled ? "w-3 h-3 stroke-[2]" : "w-3.5 h-3.5 stroke-[2]"} />
+                <VolumeX className="w-3.5 h-3.5 stroke-[2]" />
                 <span className="font-bold hidden md:inline text-[10px]">MUTED</span>
               </>
             )}
@@ -373,16 +354,16 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
           >
             <span
               className={`
-                text-black font-black uppercase border-2 border-black shadow-[3px_3px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all duration-300 cursor-pointer inline-flex items-center gap-1 font-btn
+                text-black font-black uppercase border-2 border-black shadow-[3px_3px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all duration-200 cursor-pointer inline-flex items-center gap-1 font-btn px-4 py-2 text-xs rounded-xl
                 ${
                   isScrolled
-                    ? "px-3 py-1.5 text-[11px] rounded-full bg-[#FFE600] hover:bg-[#FFF033]"
-                    : "px-4 py-2 text-xs rounded-xl bg-white hover:bg-neutral-100"
+                    ? "bg-[#FFE600] hover:bg-[#FFF033]"
+                    : "bg-white hover:bg-neutral-100"
                 }
               `}
             >
               <span>COMMISSION ME</span>
-              <ArrowRight className={isScrolled ? "w-3 h-3" : "w-3.5 h-3.5"} />
+              <ArrowRight className="w-3.5 h-3.5" />
             </span>
           </Link>
 
@@ -398,8 +379,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
               lg:hidden flex items-center justify-center rounded-xl
               border-2 border-black shadow-[2px_2px_0px_#000]
               active:shadow-none active:translate-x-[1px] active:translate-y-[1px]
-              transition-all duration-300 cursor-pointer
-              ${isScrolled ? "w-8 h-8" : "w-9 h-9"}
+              transition-all duration-200 cursor-pointer w-9 h-9
               ${
                 mobileMenuOpen
                   ? "bg-comic-pink text-white"
@@ -408,9 +388,9 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
             `}
           >
             {mobileMenuOpen ? (
-              <X className={isScrolled ? "w-4 h-4 stroke-[3]" : "w-5 h-5 stroke-[3]"} />
+              <X className="w-5 h-5 stroke-[3]" />
             ) : (
-              <Menu className={isScrolled ? "w-4 h-4 stroke-[3]" : "w-5 h-5 stroke-[3]"} />
+              <Menu className="w-5 h-5 stroke-[3]" />
             )}
           </button>
         </div>

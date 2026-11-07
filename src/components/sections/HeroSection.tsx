@@ -143,16 +143,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             </span>
           </div>
 
-          {/* Heavy ALL CAPS Poster Headline */}
-          <h1 className="mb-4 select-none leading-[0.95] font-archivo [text-wrap:balance]">
-            <span className="text-[clamp(2.5rem,5vw,4.75rem)] font-black text-black tracking-tight block uppercase">
-              CHARACTERS WITH
+          {/* Clean 2-Line Poster Headline */}
+          <h1 className="mb-4 select-none leading-[1.05] font-archivo [text-wrap:balance] !normal-case" style={{ textTransform: "none" }}>
+            <span className="block text-4xl md:text-5xl font-black text-black tracking-tight !normal-case" style={{ textTransform: "none" }}>
+              Characters with
             </span>
-            <span className="text-[clamp(2.5rem,5vw,4.75rem)] font-black text-black tracking-tight inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 uppercase">
-              <span>ATTITUDE &amp;</span>
-              <span className="inline-block bg-[#DFF0FF] text-black border-[3px] border-black rounded-xl px-3 sm:px-4 py-0.5 shadow-[4px_4px_0px_#000] -rotate-2">
-                SOUL.
-              </span>
+            <span className="inline-block bg-[#FFE600] text-black border-[3px] border-black rounded-xl px-4 py-1 shadow-[4px_4px_0px_#000] -rotate-1 mt-2 whitespace-nowrap !normal-case text-4xl md:text-5xl font-black tracking-tight" style={{ textTransform: "none" }}>
+              attitude &amp; soul.
             </span>
           </h1>
 
