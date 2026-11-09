@@ -163,7 +163,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             <Link
               href="#contact"
               onClick={(e) => handleSmoothScroll(e, "contact")}
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-[#FFE600] text-black border-2 border-black rounded-xl font-black text-xs uppercase tracking-wider shadow-[3px_3px_0px_#000] text-center hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all active:bg-black active:text-[#FFE600]"
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-[#FFE600] text-black border-2 border-black rounded-xl font-black text-xs uppercase tracking-wider brutal-card-interactive text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black active:bg-black active:text-[#FFE600]"
             >
               <Zap className="w-3.5 h-3.5 fill-black stroke-black" />
               <span>COMMISSION ME</span>
@@ -172,7 +172,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             <Link
               href="#gallery"
               onClick={(e) => handleSmoothScroll(e, "gallery")}
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-white text-black border-2 border-black rounded-xl font-black text-xs uppercase tracking-wider shadow-[3px_3px_0px_#000] text-center hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black transition-all"
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-white text-black border-2 border-black rounded-xl font-black text-xs uppercase tracking-wider brutal-card-interactive text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
             >
               <Compass className="w-3.5 h-3.5 text-black" />
               <span>EXPLORE ARTWORK</span>

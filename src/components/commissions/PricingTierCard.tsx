@@ -42,9 +42,9 @@ export const PricingTierCard: React.FC<PricingTierCardProps> = ({
   return (
     <div
       className={`
-        relative border-[3px] border-black rounded-2xl shadow-[5px_5px_0px_#000] p-5 sm:p-7
-        flex flex-col justify-between transition-all duration-150 select-none
-        hover:-translate-y-1 hover:shadow-[7px_7px_0px_#000] ${bgClass}
+        relative border-[3px] border-black rounded-2xl p-5 sm:p-7
+        flex flex-col justify-between select-none brutal-card-interactive
+        ${bgClass}
       `}
     >
       {/* Tier 2: Offset Rotated "MOST POPULAR" Badge */}
@@ -115,7 +115,7 @@ export const PricingTierCard: React.FC<PricingTierCardProps> = ({
         <button
           type="button"
           onClick={() => onSelectTier(tier)}
-          className="w-full flex items-center justify-center gap-2 bg-black text-white hover:bg-white hover:text-black font-black text-sm uppercase py-3 px-4 rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer font-btn group"
+          className="w-full flex items-center justify-center gap-2 bg-black text-white hover:bg-white hover:text-black font-black text-sm uppercase py-3 px-4 rounded-xl border-2 border-black brutal-card-interactive cursor-pointer font-btn group"
         >
           <span>ORDER THIS TIER</span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

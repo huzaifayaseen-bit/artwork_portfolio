@@ -46,12 +46,9 @@ export const ComicButton: React.FC<ComicButtonProps> = ({
       className={`
         relative inline-flex items-center justify-center gap-2
         border-[3px] border-black
-        shadow-neo active:shadow-neo-active
-        transition-all duration-75 ease-out
-        hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-neo-lg
-        active:translate-x-[2px] active:translate-y-[2px]
+        brutal-card-interactive
         cursor-pointer select-none font-btn
-        disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-neo
+        disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-[4px_4px_0px_0px_#000]
         ${variantStyles[variant]}
         ${sizeStyles[size]}
         ${className}
