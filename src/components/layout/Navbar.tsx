@@ -294,9 +294,11 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                 shadow-[2px_2px_0px_#000] active:shadow-none active:translate-x-[1px] active:translate-y-[1px]
                 transition-all cursor-pointer select-none px-2.5 py-1.5 text-xs
                 ${
-                  sfxEnabled
-                    ? "bg-[#FFE600] text-black hover:bg-[#FFF033]"
-                    : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
+                  !sfxEnabled
+                    ? "bg-neutral-100 text-neutral-600 hover:bg-neutral-200"
+                    : isScrolled
+                    ? "bg-[#FDFBF7] text-black hover:bg-neutral-100"
+                    : "bg-[#FFE600] text-black hover:bg-[#FFF033]"
                 }
               `}
             >
@@ -320,11 +322,13 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                 handleNavClick(e, { href: "/contact", sectionId: "contact" })
               }
               className={`
-                hidden sm:inline-flex items-center gap-1.5 font-black text-xs uppercase px-4 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all cursor-pointer font-btn
+                hidden sm:inline-flex items-center gap-1.5 font-black text-xs uppercase px-4 py-2 border-2 border-black rounded-lg
+                shadow-[2px_2px_0px_#000] hover:shadow-[4px_4px_0px_#000] hover:-translate-x-[2px] hover:-translate-y-[2px]
+                active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all duration-150 cursor-pointer font-btn
                 ${
                   isScrolled
-                    ? "bg-[#FFE600] hover:bg-[#FFF033] text-black"
-                    : "bg-white hover:bg-black hover:text-white text-black"
+                    ? "bg-[#FFE600] hover:bg-[#22D3EE] text-black"
+                    : "bg-white hover:bg-[#22D3EE] hover:text-black text-black"
                 }
               `}
             >
