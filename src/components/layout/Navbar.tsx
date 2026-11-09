@@ -145,7 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
     <>
       {/* Edge-to-edge Top Bar (Xotoe reference style) */}
       <header
-        className={`fixed top-0 left-0 w-full z-50 border-b-[3px] border-black transition-colors duration-200 ${
+        className={`fixed top-0 left-0 right-0 w-full z-50 border-b-[3px] border-black transition-colors duration-200 overflow-hidden ${
           isScrolled || pathname !== "/" ? "!bg-white" : "!bg-[#FF6B35]"
         }`}
       >
@@ -321,16 +321,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
               onClick={(e) =>
                 handleNavClick(e, { href: "/contact", sectionId: "contact" })
               }
-              className={`
-                hidden sm:inline-flex items-center gap-1.5 font-black text-xs uppercase px-4 py-2 border-2 border-black rounded-lg
-                shadow-[2px_2px_0px_#000] hover:shadow-[4px_4px_0px_#000] hover:-translate-x-[2px] hover:-translate-y-[2px]
-                active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all duration-150 cursor-pointer font-btn
-                ${
-                  isScrolled
-                    ? "bg-[#FFE600] hover:bg-[#22D3EE] text-black"
-                    : "bg-white hover:bg-[#22D3EE] hover:text-black text-black"
-                }
-              `}
+              className="hidden sm:inline-flex items-center gap-1.5 font-black text-xs uppercase px-4 py-2 border-2 border-black rounded-lg bg-[#FFE600] text-black shadow-[2px_2px_0px_#000] hover:shadow-[5px_5px_0px_0px_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_0px_#000] transition-all duration-150 cursor-pointer font-btn"
             >
               <span>COMMISSION ME</span>
               <ArrowRight className="w-3.5 h-3.5" />
