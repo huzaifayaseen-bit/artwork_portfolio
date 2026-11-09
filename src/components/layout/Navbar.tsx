@@ -120,25 +120,14 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
     }
   };
 
-  const handleNavClick = (
-    e: React.MouseEvent,
-    target: { href: string; sectionId?: string }
-  ) => {
+  const handleNavClick = () => {
     playClick();
     setMobileMenuOpen(false);
     setPricingDropdownOpen(false);
-
-    if (pathname === "/" && target.sectionId) {
-      const el = document.getElementById(target.sectionId);
-      if (el) {
-        e.preventDefault();
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-    }
   };
 
   const isPricingActive = pathname === "/pricing";
-  const isGalleryActive = pathname === "/artworks";
+  const isGalleryActive = pathname === "/gallery" || pathname === "/artworks";
   const isTosActive = pathname === "/tos";
 
   return (
@@ -174,10 +163,8 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
               onMouseLeave={handleMouseLeavePricing}
             >
               <Link
-                href={pathname === "/" ? "#pricing" : "/pricing"}
-                onClick={(e) =>
-                  handleNavClick(e, { href: "/pricing", sectionId: "pricing" })
-                }
+                href="/pricing"
+                onClick={handleNavClick}
                 onKeyDown={handlePricingKeyDown}
                 aria-haspopup="true"
                 aria-expanded={pricingDropdownOpen}
@@ -201,13 +188,8 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                 >
                   <div className="flex flex-col divide-y-2 divide-black">
                     <Link
-                      href={pathname === "/" ? "#pricing" : "/pricing"}
-                      onClick={(e) =>
-                        handleNavClick(e, {
-                          href: "/pricing",
-                          sectionId: "pricing",
-                        })
-                      }
+                      href="/pricing"
+                      onClick={handleNavClick}
                       className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-sm uppercase tracking-wider text-black hover:bg-[#FFE600] transition-colors cursor-pointer"
                     >
                       <span className="flex items-center gap-2">
@@ -218,13 +200,8 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                     </Link>
 
                     <Link
-                      href={pathname === "/" ? "#calculator" : "/pricing#calculator"}
-                      onClick={(e) =>
-                        handleNavClick(e, {
-                          href: "/pricing#calculator",
-                          sectionId: "calculator",
-                        })
-                      }
+                      href="/pricing#calculator"
+                      onClick={handleNavClick}
                       className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-sm uppercase tracking-wider text-black hover:bg-[#FFE600] transition-colors cursor-pointer"
                     >
                       <span className="flex items-center gap-2">
@@ -235,10 +212,8 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                     </Link>
 
                     <Link
-                      href={pathname === "/" ? "#tos" : "/tos"}
-                      onClick={(e) =>
-                        handleNavClick(e, { href: "/tos", sectionId: "tos" })
-                      }
+                      href="/tos"
+                      onClick={handleNavClick}
                       className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-sm uppercase tracking-wider text-black hover:bg-[#FFE600] transition-colors cursor-pointer"
                     >
                       <span className="flex items-center gap-2">
@@ -254,10 +229,8 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
 
             {/* GALLERY */}
             <Link
-              href={pathname === "/" ? "#gallery" : "/artworks"}
-              onClick={(e) =>
-                handleNavClick(e, { href: "/artworks", sectionId: "gallery" })
-              }
+              href="/gallery"
+              onClick={handleNavClick}
               className={`
                 font-nav font-bold text-sm uppercase tracking-wider transition-colors py-2 select-none
                 ${isGalleryActive ? "text-black underline underline-offset-4" : "text-black/80 hover:text-black"}
@@ -268,10 +241,8 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
 
             {/* TOS */}
             <Link
-              href={pathname === "/" ? "#tos" : "/tos"}
-              onClick={(e) =>
-                handleNavClick(e, { href: "/tos", sectionId: "tos" })
-              }
+              href="/tos"
+              onClick={handleNavClick}
               className={`
                 font-nav font-bold text-sm uppercase tracking-wider transition-colors py-2 select-none
                 ${isTosActive ? "text-black underline underline-offset-4" : "text-black/80 hover:text-black"}
@@ -317,10 +288,8 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
 
             {/* Primary Action Button: COMMISSION ME → */}
             <Link
-              href={pathname === "/" ? "#contact" : "/contact"}
-              onClick={(e) =>
-                handleNavClick(e, { href: "/contact", sectionId: "contact" })
-              }
+              href="/contact"
+              onClick={handleNavClick}
               className="hidden sm:inline-flex items-center gap-1.5 font-black text-xs uppercase px-4 py-2 border-2 border-black rounded-lg bg-[#FFE600] text-black shadow-[2px_2px_0px_#000] hover:shadow-[5px_5px_0px_0px_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_0px_#000] transition-all duration-150 cursor-pointer font-btn"
             >
               <span>COMMISSION ME</span>
@@ -407,32 +376,27 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                 {[
                   {
                     label: "GALLERY",
-                    href: "/artworks",
-                    sectionId: "gallery",
+                    href: "/gallery",
                     emoji: "🎨",
                   },
                   {
                     label: "PRICING",
                     href: "/pricing",
-                    sectionId: "pricing",
                     emoji: "⚡",
                   },
                   {
                     label: "INTERACTIVE CALCULATOR",
                     href: "/pricing#calculator",
-                    sectionId: "calculator",
                     emoji: "🧮",
                   },
                   {
                     label: "TERMS OF SERVICE",
                     href: "/tos",
-                    sectionId: "tos",
                     emoji: "📜",
                   },
                   {
                     label: "CONTACT",
                     href: "/contact",
-                    sectionId: "contact",
                     emoji: "✉️",
                   },
                 ].map((link) => {
@@ -444,17 +408,8 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                   return (
                     <Link
                       key={link.label}
-                      href={
-                        pathname === "/" && link.sectionId
-                          ? `#${link.sectionId}`
-                          : link.href
-                      }
-                      onClick={(e) =>
-                        handleNavClick(e, {
-                          href: link.href,
-                          sectionId: link.sectionId,
-                        })
-                      }
+                      href={link.href}
+                      onClick={handleNavClick}
                       className={`
                         flex items-center gap-3 px-4 py-3 rounded-xl border-2 font-nav font-bold uppercase tracking-wider text-sm transition-all
                         ${
@@ -475,10 +430,8 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
             {/* Drawer Footer Actions */}
             <div className="pt-4 border-t-2 border-black flex flex-col gap-3">
               <Link
-                href={pathname === "/" ? "#contact" : "/contact"}
-                onClick={(e) =>
-                  handleNavClick(e, { href: "/contact", sectionId: "contact" })
-                }
+                href="/contact"
+                onClick={handleNavClick}
                 className="w-full text-center py-3 bg-[#FFE600] hover:bg-[#FFF033] text-black font-black uppercase text-xs rounded-xl border-2 border-black shadow-[3px_3px_0px_#000] active:shadow-none active:translate-x-0.5 active:translate-y-0.5 font-btn transition-all"
               >
                 COMMISSION ME →
