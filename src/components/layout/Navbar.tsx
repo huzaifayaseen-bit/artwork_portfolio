@@ -145,7 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
     <>
       {/* Edge-to-edge Top Bar (Xotoe reference style) */}
       <header
-        className={`fixed top-0 left-0 right-0 w-full z-50 border-b-[3px] border-black transition-colors duration-200 overflow-hidden ${
+        className={`fixed top-0 left-0 right-0 w-full z-50 border-b-[3px] border-black transition-colors duration-200 overflow-visible ${
           isScrolled || pathname !== "/" ? "!bg-white" : "!bg-[#FF6B35]"
         }`}
       >
@@ -197,7 +197,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                 <div
                   ref={dropdownMenuRef}
                   onKeyDown={handleDropdownMenuKeyDown}
-                  className="absolute top-full left-0 z-[60] min-w-[240px] bg-white border-[3px] border-black rounded-xl shadow-[6px_6px_0px_#000] overflow-hidden select-none animate-comic-snap"
+                  className="absolute top-full left-0 mt-2 z-[100] min-w-[260px] bg-white border-2 border-black rounded-xl shadow-[6px_6px_0px_0px_#000] overflow-hidden select-none animate-comic-snap"
                 >
                   <div className="flex flex-col divide-y-2 divide-black">
                     <Link
@@ -211,7 +211,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                       className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-sm uppercase tracking-wider text-black hover:bg-[#FFE600] transition-colors cursor-pointer"
                     >
                       <span className="flex items-center gap-2">
-                        <span className="text-[10px] font-mono font-black border border-black px-1 rounded">01</span>
+                        <span className="text-[10px] font-mono font-black border border-black px-1 rounded bg-white">01</span>
                         <span>RATES &amp; TIERS</span>
                       </span>
                       <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
@@ -228,7 +228,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                       className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-sm uppercase tracking-wider text-black hover:bg-[#FFE600] transition-colors cursor-pointer"
                     >
                       <span className="flex items-center gap-2">
-                        <span className="text-[10px] font-mono font-black border border-black px-1 rounded">02</span>
+                        <span className="text-[10px] font-mono font-black border border-black px-1 rounded bg-white">02</span>
                         <span>CALCULATOR</span>
                       </span>
                       <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
@@ -242,7 +242,7 @@ export const Navbar: React.FC<NavbarProps> = ({ profile, queueData }) => {
                       className="group flex items-center justify-between px-4 py-3 font-nav font-bold text-sm uppercase tracking-wider text-black hover:bg-[#FFE600] transition-colors cursor-pointer"
                     >
                       <span className="flex items-center gap-2">
-                        <span className="text-[10px] font-mono font-black border border-black px-1 rounded">03</span>
+                        <span className="text-[10px] font-mono font-black border border-black px-1 rounded bg-white">03</span>
                         <span>COMMISSION TERMS</span>
                       </span>
                       <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
