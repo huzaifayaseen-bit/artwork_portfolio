@@ -55,10 +55,12 @@ export const CommissionPricing: React.FC<CommissionPricingProps> = ({
       </div>
 
       {/* Interactive Commission Calculator Widget */}
-      <CommissionCalculator
-        calculatorData={calculatorData}
-        discordTag={discordTag}
-      />
+      <div className="mt-16 sm:mt-24 pt-12 sm:pt-16 border-t-[3px] border-black">
+        <CommissionCalculator
+          calculatorData={calculatorData}
+          discordTag={discordTag}
+        />
+      </div>
 
       {/* Terms & Workflow Mini Note */}
       <div className="mt-10 bg-white border-[3px] border-black p-5 sm:p-6 shadow-neo-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
